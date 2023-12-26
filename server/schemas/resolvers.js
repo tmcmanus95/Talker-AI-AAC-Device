@@ -1,12 +1,19 @@
-const { User } = require("../models");
+const { User, Topic } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId });
+    // user: async (parent, { userId }) => {
+    //   return User.findOne({ _id: userId });
+    // }, // I don't think we will need this.
+    me: async (parent, args, context) => {
+      consolg.log("context, ", context);
+
+      if (context.user) {
+        return Profile.findOne({ _id: context.user._id });
+      }
+      throw AuthenticationError;
     },
-    // By adding context to our query, we can retrieve the logged in user without specifically searching for them
   },
 
   Mutation: {
@@ -16,23 +23,13 @@ const resolvers = {
 
       return { token, user };
     },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw AuthenticationError;
+    // Set up mutation so a logged in user can only remove their profile and no one else's
+    removeUser: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOneAndDelete({ _id: context.user._id });
       }
-
-      const correctPw = await profile.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw AuthenticationError;
-      }
-
-      const token = signToken(user);
-      return { token, user };
+      throw AuthenticationError;
     },
-
     // Add a third argument to the resolver to access data in our `context`
     addTopic: async (parent, { userId, topic }, context) => {
       consolg.log("context, ", context);
@@ -52,13 +49,6 @@ const resolvers = {
       // If user attempts to execute this mutation and isn't logged in, throw an error
       throw AuthenticationError;
     },
-    // Set up mutation so a logged in user can only remove their profile and no one else's
-    removeUser: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOneAndDelete({ _id: context.user._id });
-      }
-      throw AuthenticationError;
-    },
     // Make it so a logged in user can only remove a skill from their own profile
     removeTopic: async (parent, { topic }, context) => {
       if (context.user) {
@@ -69,6 +59,41 @@ const resolvers = {
         );
       }
       throw AuthenticationError;
+    },
+    addResponse: async (parent, { topicId, response }, context) => {
+      return Topic.findOneAndUpdate(
+        { _id: topicId },
+        {
+          $addToSet: { responses: response },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
+    removeResponse: async (parent, { response }, context) => {
+      return Topic.findOneAndUpdate(
+        { _id: topic.id },
+        { $pull: { responses: response } },
+        { new: true }
+      );
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw AuthenticationError;
+      }
+
+      const correctPw = await profile.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw AuthenticationError;
+      }
+
+      const token = signToken(user);
+      return { token, user };
     },
   },
 };
