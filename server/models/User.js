@@ -22,7 +22,7 @@ const userSchema = new Schema({
   topics: [
     {
       type: Schema.Types.ObjectId,
-      ref: "topic",
+      ref: "Topic", // Reference to the Topic model
     },
   ],
 });

@@ -10,10 +10,10 @@ const topicSchema = new Schema(
     },
     promptText: {
       type: String,
-      minLength: 1,
-      maxLength: 500,
+      minlength: 1,
+      maxlength: 500,
     },
-    responses: [Response],
+    responses: [{ type: Schema.Types.ObjectId, ref: "Response" }],
   },
   {
     toJSON: {
@@ -24,6 +24,6 @@ const topicSchema = new Schema(
 );
 
 // Initialize our Topic model
-const Topic = model("topic", topicSchema);
+const Topic = model("Topic", topicSchema);
 
 module.exports = Topic;
