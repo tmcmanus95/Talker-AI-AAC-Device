@@ -1,4 +1,4 @@
-const { Schema, Types } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const responseSchema = new Schema(
   {
@@ -8,11 +8,6 @@ const responseSchema = new Schema(
     },
     imageURL: {
       type: String,
-      required: true,
-    },
-    topic: {
-      type: String,
-      required: true,
     },
   },
   {
@@ -23,4 +18,6 @@ const responseSchema = new Schema(
   }
 );
 
-module.exports = responseSchema;
+const Response = model("Response", responseSchema);
+
+module.exports = Response;

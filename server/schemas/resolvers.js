@@ -1,12 +1,31 @@
-const { User } = require("../models");
+const { User, Topic, Response } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId });
+    users: async () => {
+      return User.find();
     },
-    // By adding context to our query, we can retrieve the logged in user without specifically searching for them
+
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId }).populate({
+        path: "savedTopics.topic",
+        model: "Topic",
+      });
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw AuthenticationError;
+    },
+    topics: async () => {
+      return Topic.find();
+    },
+
+    topic: async (parent, { topicId }) => {
+      return Topic.findOne({ _id: topicId }).populate("responses");
+    },
   },
 
   Mutation: {
@@ -16,6 +35,71 @@ const resolvers = {
 
       return { token, user };
     },
+    removeUser: async (parent, { userId }) => {
+      return User.findOneAndDelete({ _id: userId });
+    },
+    // throw AuthenticationError;
+    // },
+    addTopic: async (parent, { userId, topic }, context) => {
+      try {
+        const newTopic = await Topic.create({ promptText: topic });
+        console.log("Here's the newTopic");
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: userId },
+          {
+            $addToSet: { savedTopics: { topic: newTopic._id } },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        ).populate("savedTopics.topic");
+
+        console.log("updated user: ", updatedUser);
+        return updatedUser;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Failed to add topic to user");
+      }
+    },
+    removeTopic: async (parent, { topicId }, context) => {
+      return User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { savedTopics: { topic: topicId } } },
+        { new: true }
+      );
+    },
+    addResponse: async (parent, { topicId, response }, context) => {
+      try {
+        const newResponse = await Response.create({
+          responseText: response,
+        });
+        console.log("Here's the new response, ", newResponse);
+        const updatedTopic = await Topic.findByIdAndUpdate(
+          topicId,
+          {
+            $addToSet: { responses: newResponse._id },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        ).populate("responses");
+        console.log("Here's the updated topic, ", updatedTopic);
+
+        return updatedTopic;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Failed to add response to Topic");
+      }
+    },
+    removeResponse: async (parent, { responseId }, context) => {
+      return Topic.findOneAndUpdate(
+        { _id: topicId },
+        { $pull: { responses: responseId } },
+        { new: true }
+      );
+    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -23,7 +107,7 @@ const resolvers = {
         throw AuthenticationError;
       }
 
-      const correctPw = await profile.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
         throw AuthenticationError;
@@ -31,44 +115,6 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
-    },
-
-    // Add a third argument to the resolver to access data in our `context`
-    addTopic: async (parent, { userId, topic }, context) => {
-      consolg.log("context, ", context);
-      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-      if (context.user) {
-        return User.findOneAndUpdate(
-          { _id: userId },
-          {
-            $addToSet: { topics: topic },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      // If user attempts to execute this mutation and isn't logged in, throw an error
-      throw AuthenticationError;
-    },
-    // Set up mutation so a logged in user can only remove their profile and no one else's
-    removeUser: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOneAndDelete({ _id: context.user._id });
-      }
-      throw AuthenticationError;
-    },
-    // Make it so a logged in user can only remove a skill from their own profile
-    removeTopic: async (parent, { topic }, context) => {
-      if (context.user) {
-        return User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { topics: topic } },
-          { new: true }
-        );
-      }
-      throw AuthenticationError;
     },
   },
 };

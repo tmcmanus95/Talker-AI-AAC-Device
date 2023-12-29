@@ -4,26 +4,48 @@ const typeDefs = `
     username: String
     email: String
     password: String
-    topics: [String]!
+    savedTopics: [SavedTopic]!
+  }
+
+  type SavedTopic {
+    topic: Topic
+    responses: [Response]!
+  }
+
+  type Topic {
+    _id: ID
+    createdAt: String
+    promptText: String
+    responses: [Response]!
+  }
+
+  type Response {
+    _id: ID
+    responseText: String
+    imageURL: String
   }
 
   type Auth {
     token: ID!
-    profile: Profile
+    user: User
   }
 
   type Query {
-    users: [User]!
+    users: [User]
     user(userId: ID!): User
+    me: User
+    topics: [Topic]
+    topic(topicId: ID!): Topic
   }
 
   type Mutation {
-    addUser(name: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
-
+    addUser(username: String!, email: String!, password: String!): Auth
     addTopic(userId: ID!, topic: String!): User
     removeUser: User
-    removeTopic(topic: String!): User
+    removeTopic(topicId: ID!): User
+    addResponse(topicId: ID!, response: String!): Topic
+    removeResponse(responseId: ID!): Topic
+    login(email: String!, password: String!): Auth
   }
 `;
 
