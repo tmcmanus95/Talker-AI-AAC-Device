@@ -25,6 +25,9 @@
 The following files were leveraged and modified from Northwestern Coding Bootcamp's Practice Modules
 
 - package.json (source: 21-MERN/21-MERN/25-Ins_Resolver_Context/package.json)
+
+- client/src/pages/Login.jsx (source: 21-MERN/25-Ins_Resolver_Context/client/pages/Login.jsx)
+
 - server/config/connections.js (source: 21-MERN/25-Ins_Resolver_Context/server/config/connections.js)
 - server/models/User.js (source: 21-MERN/25-Ins_Resolver_Context/server/models/Profile.js)
 - server/schemas/index.js (source: 21-MERN/25-Ins_Resolver_Context/server/schemas/index.js)
