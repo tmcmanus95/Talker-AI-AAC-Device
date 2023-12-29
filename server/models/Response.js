@@ -8,12 +8,6 @@ const responseSchema = new Schema(
     },
     imageURL: {
       type: String,
-      // required: true,
-    },
-    topic: {
-      type: Schema.Types.ObjectId,
-      ref: "Topic", // Reference to the Topic model
-      // required: true,
     },
   },
   {

@@ -13,7 +13,12 @@ const topicSchema = new Schema(
       minlength: 1,
       maxlength: 500,
     },
-    responses: [{ type: Schema.Types.ObjectId, ref: "Response" }],
+    responses: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Response",
+      },
+    ],
   },
   {
     toJSON: {
@@ -22,7 +27,6 @@ const topicSchema = new Schema(
     id: false,
   }
 );
-
 // Initialize our Topic model
 const Topic = model("Topic", topicSchema);
 

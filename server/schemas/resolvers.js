@@ -8,7 +8,10 @@ const resolvers = {
     },
 
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId });
+      return User.findOne({ _id: userId }).populate({
+        path: "savedTopics.topic",
+        model: "Topic",
+      });
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -21,7 +24,7 @@ const resolvers = {
     },
 
     topic: async (parent, { topicId }) => {
-      return Topic.findOne({ _id: topicId });
+      return Topic.findOne({ _id: topicId }).populate("responses");
     },
   },
 
@@ -32,82 +35,68 @@ const resolvers = {
 
       return { token, user };
     },
-    // Set up mutation so a logged in user can only remove their profile and no one else's
-    removeUser: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOneAndDelete({ _id: context.user._id });
-      }
-      throw AuthenticationError;
+    removeUser: async (parent, { userId }) => {
+      return User.findOneAndDelete({ _id: userId });
     },
-    // Add a third argument to the resolver to access data in our `context`
+    // throw AuthenticationError;
+    // },
     addTopic: async (parent, { userId, topic }, context) => {
-      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-      // if (context.user) {
       try {
-        // Create a new Topic document
         const newTopic = await Topic.create({ promptText: topic });
-
-        // Update the user with the new topic
-        const updatedUser = await User.findByIdAndUpdate(
-          userId,
+        console.log("Here's the newTopic");
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: userId },
           {
-            $addToSet: { topics: newTopic._id },
+            $addToSet: { savedTopics: { topic: newTopic._id } },
           },
           {
             new: true,
             runValidators: true,
           }
-        );
+        ).populate("savedTopics.topic");
 
+        console.log("updated user: ", updatedUser);
         return updatedUser;
       } catch (error) {
         console.error(error);
-        // Handle any errors, e.g., validation errors
         throw new Error("Failed to add topic to user");
       }
     },
-    // If user attempts to execute this mutation and isn't logged in, throw an error
-    // throw AuthenticationError;
-    // },
-    // Make it so a logged in user can only remove a skill from their own profile
     removeTopic: async (parent, { topicId }, context) => {
-      // if (context.user) {
       return User.findOneAndUpdate(
         { _id: context.user._id },
-        { $pull: { topic: topicId } },
+        { $pull: { savedTopics: { topic: topicId } } },
         { new: true }
       );
-      // }
-      // throw AuthenticationError;
     },
     addResponse: async (parent, { topicId, response }, context) => {
       try {
-        // Create a new Response document
-        const newResponse = await Response.create({ responseText: response });
-
-        // Update the topic with the new response
+        const newResponse = await Response.create({
+          responseText: response,
+        });
+        console.log("Here's the new response, ", newResponse);
         const updatedTopic = await Topic.findByIdAndUpdate(
           topicId,
           {
-            $addToSet: { responses: newResponse }, // Use the newResponse directly
+            $addToSet: { responses: newResponse._id },
           },
           {
             new: true,
             runValidators: true,
           }
-        );
+        ).populate("responses");
+        console.log("Here's the updated topic, ", updatedTopic);
 
         return updatedTopic;
       } catch (error) {
         console.error(error);
-        // Handle any errors, e.g., validation errors
         throw new Error("Failed to add response to Topic");
       }
     },
-    removeResponse: async (parent, { response }, context) => {
+    removeResponse: async (parent, { responseId }, context) => {
       return Topic.findOneAndUpdate(
         { _id: topicId },
-        { $pull: { responses: response } },
+        { $pull: { responses: responseId } },
         { new: true }
       );
     },

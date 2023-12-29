@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
+const Response = require("./Response");
 
 const userSchema = new Schema({
   username: {
@@ -19,10 +20,18 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  topics: [
+  savedTopics: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Topic", // Reference to the Topic model
+      topic: {
+        type: Schema.Types.ObjectId,
+        ref: "Topic",
+      },
+      responses: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "Response",
+        },
+      ],
     },
   ],
 });

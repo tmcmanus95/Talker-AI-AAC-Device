@@ -14,8 +14,6 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
 });
-console.log("Typedef: ", typeDefs);
-console.log("resolver: ", resolvers);
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
