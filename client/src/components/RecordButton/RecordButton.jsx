@@ -3,7 +3,7 @@ import { ChatOpenAI } from "langchain/chat_models/openai";
 import { PromptTemplate } from "langchain/prompts";
 import { createClient } from "pexels";
 import "./RecordButton.scss";
-export default function FetchButton() {
+export default function RecordButton() {
   const [userInput, setUserInput] = useState("");
   const [responses, setResponses] = useState([]);
 

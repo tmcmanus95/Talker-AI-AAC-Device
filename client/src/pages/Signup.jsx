@@ -1,26 +1,26 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-import { useMutation } from '@apollo/client';
-import { ADD_PROFILE } from '../utils/mutations';
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../../utils/mutations";
 
-import Auth from '../utils/auth';
+import Auth from "../../utils/auth";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   });
-  const [addProfile, { error, data }] = useMutation(ADD_PROFILE);
+  const [addProfile, { error, data }] = useMutation(ADD_USER);
 
   // update state based on form input changes
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { username, value } = event.target;
 
     setFormState({
       ...formState,
-      [name]: value,
+      [username]: value,
     });
   };
 
@@ -48,7 +48,7 @@ const Signup = () => {
           <div className="card-body">
             {data ? (
               <p>
-                Success! You may now head{' '}
+                Success! You may now head{" "}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
@@ -58,7 +58,7 @@ const Signup = () => {
                   placeholder="Your username"
                   name="name"
                   type="text"
-                  value={formState.name}
+                  value={formState.username}
                   onChange={handleChange}
                 />
                 <input
@@ -79,7 +79,7 @@ const Signup = () => {
                 />
                 <button
                   className="btn btn-block btn-info"
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                   type="submit"
                 >
                   Submit
