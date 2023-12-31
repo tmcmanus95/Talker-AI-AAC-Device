@@ -13,11 +13,15 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_TOPIC = gql`
-  mutation addTopic($userId: ID!, $skill: String!) {
-    addTopic(profileId: $userId, skill: $skill) {
+  mutation Mutation($userId: ID!, $topic: String!) {
+    addTopic(userId: $userId, topic: $topic) {
       _id
       username
-      topic
+      savedTopics {
+        topic {
+          promptText
+        }
+      }
     }
   }
 `;
