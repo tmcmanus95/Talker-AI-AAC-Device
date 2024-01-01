@@ -7,19 +7,22 @@ import { ADD_TOPIC } from "../../../utils/mutations";
 // import Auth from "../../../utils/auth";
 
 const TopicForm = ({ userId, promptText }) => {
-  const [topic, setTopic] = useState("");
+  // const [topic, setTopic] = useState("");
 
   const [addTopic, { error }] = useMutation(ADD_TOPIC);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("The topic is, ", topic);
+    console.log("The topic is, ", promptText);
+    console.log("The userId is, ", userId);
+    const topic = promptText;
+    console.log("This is the topic, ", topic);
     try {
       const data = await addTopic({
         variables: { userId, topic },
       });
 
-      setTopic("");
+      // setTopic("");
     } catch (err) {
       console.error(err);
     }
@@ -30,9 +33,7 @@ const TopicForm = ({ userId, promptText }) => {
       <button>Topic Form Add Button</button>
       <div className="prompt-text">
         Prompt Text:
-        <span onChange={(event) => setTopic(event.target.value)}>
-          {promptText}
-        </span>
+        <span>{promptText}</span>
       </div>
     </form>
   );

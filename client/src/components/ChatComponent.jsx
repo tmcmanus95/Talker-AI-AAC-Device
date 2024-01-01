@@ -1,6 +1,5 @@
 import SpeechButtonList from "./SpeechButtonList";
-import response from "./ChatGPT"; // Adjust the import statement
-
+import response from "./ChatGPT";
 const ChatComponent = () => {
   const [chatGPTResponses, setChatGPTResponses] = useState([]);
 

@@ -4,6 +4,7 @@ import { PromptTemplate } from "langchain/prompts";
 import { useQuery } from "@apollo/client";
 import { createClient } from "pexels";
 import { QUERY_ME } from "../../../utils/queries";
+import ResponseForm from "../ResponseForm/ResponseForm";
 import TopicForm from "../TopicForm/TopicForm";
 import "./RecordButton.scss";
 
@@ -18,9 +19,11 @@ export default function RecordButton() {
   console.log("Query_Me, ", QUERY_ME);
   console.log("useQuery(QUERY_ME):", useQuery(QUERY_ME));
 
-  const userId = 5;
-  const { data } = useQuery(QUERY_ME); //figure out how to get the userId so that the topics / responses can be saved
+  const { loading, data } = useQuery(QUERY_ME); //figure out how to get the userId so that the topics / responses can be saved
+  console.log("this is data.me._id", data);
   console.log("Record Button Data: ", data);
+  const userId = data?.me._id;
+  console.log("userId, ", userId);
   const fetchAnswers = async () => {
     const openAIApiKey = ""; // todo: add to a .env file
 
@@ -81,7 +84,9 @@ export default function RecordButton() {
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
   };
-
+  const responseText = "sample response text";
+  const imageURL = "sample imageurl";
+  const topicId = "sample topicId";
   return (
     <div>
       <input
@@ -110,6 +115,11 @@ export default function RecordButton() {
           </div>
         ))}
       </div>
+      <ResponseForm
+        responseText={responseText}
+        imageURL={imageURL}
+        topicId={topicId}
+      />
     </div>
   );
 }
