@@ -22,7 +22,14 @@ const resolvers = {
       console.log("context, ", context.user);
       if (context.user) {
         console.log("this be my context", context.user);
-        return User.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id }).populate({
+          path: "savedTopics.topic",
+          model: "Topic",
+          populate: {
+            path: "responses",
+            model: "Response",
+          },
+        });
       }
       throw AuthenticationError;
     },

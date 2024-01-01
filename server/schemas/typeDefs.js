@@ -4,7 +4,7 @@ const typeDefs = `
     username: String
     email: String
     password: String
-    savedTopics: [SavedTopic]!
+    savedTopics: [SavedTopic]
   }
 
   type SavedTopic {
@@ -16,7 +16,7 @@ const typeDefs = `
     _id: ID
     createdAt: String
     promptText: String
-    responses: [Response]!
+    responses: [Response]
   }
 
   type Response {
