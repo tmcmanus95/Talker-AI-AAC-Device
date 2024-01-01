@@ -4,6 +4,7 @@ import { PromptTemplate } from "langchain/prompts";
 import { useQuery } from "@apollo/client";
 import { createClient } from "pexels";
 import { QUERY_ME } from "../../../utils/queries";
+import ResponseForm from "../ResponseForm/ResponseForm";
 import TopicForm from "../TopicForm/TopicForm";
 import "./RecordButton.scss";
 
@@ -83,7 +84,9 @@ export default function RecordButton() {
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
   };
-
+  const responseText = "sample response text";
+  const imageURL = "sample imageurl";
+  const topicId = "sample topicId";
   return (
     <div>
       <input
@@ -112,6 +115,11 @@ export default function RecordButton() {
           </div>
         ))}
       </div>
+      <ResponseForm
+        responseText={responseText}
+        imageURL={imageURL}
+        topicId={topicId}
+      />
     </div>
   );
 }
