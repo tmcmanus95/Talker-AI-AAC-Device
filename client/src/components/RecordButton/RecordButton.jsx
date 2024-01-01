@@ -1,16 +1,26 @@
 import { useState, useEffect } from "react";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { PromptTemplate } from "langchain/prompts";
+import { useQuery } from "@apollo/client";
 import { createClient } from "pexels";
+import { QUERY_ME } from "../../../utils/queries";
+import TopicForm from "../TopicForm/TopicForm";
 import "./RecordButton.scss";
-export default function FetchButton() {
+
+export default function RecordButton() {
   const [userInput, setUserInput] = useState("");
   const [responses, setResponses] = useState([]);
+  const [promptText, setPromptText] = useState("");
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
   };
+  console.log("Query_Me, ", QUERY_ME);
+  console.log("useQuery(QUERY_ME):", useQuery(QUERY_ME));
 
+  const userId = 5;
+  const { data } = useQuery(QUERY_ME); //figure out how to get the userId so that the topics / responses can be saved
+  console.log("Record Button Data: ", data);
   const fetchAnswers = async () => {
     const openAIApiKey = ""; // todo: add to a .env file
 
@@ -27,6 +37,7 @@ export default function FetchButton() {
       const result = await responseChain.invoke({
         promptText: userInput,
       });
+      setPromptText(userInput);
       console.log("Question or Topic:", userInput);
       console.log("Chat GPT Responses:", result.content);
       // Create an array of responses split at new line
@@ -38,37 +49,18 @@ export default function FetchButton() {
 
   useEffect(() => {
     if ("speechSynthesis" in window) {
-      const gifAPIKey = "00i0GbbklHCvJrFCh4J39nvyQb3SUtwb&q"; //todo, add to an env file
-      const imageAPIKey = "lYuomr2uMS5O4SjkT948S0W4HmTEnIEy8rOOLNcv8h8";
       // getting corresponding gif
       responses.forEach((response, index) => {
-        // const gifRequestUrl = `https://api.giphy.com/v1/gifs/search?api_key=${gifAPIKey}=${response}&limit=1&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
-        // console.log(response.toLowerCase().trim());
-        // const imageRequestURL = `https://api.unsplash.com/photos/?client_id=${imageAPIKey}&page=1&query=${response
-        //   .toLowerCase()
-        //   .trim()}`;
-        // fetch(gifRequestUrl)
-        //   .then((response) => response.json())
-        //   .then((data) => {
-        //     const gifUrl =
-        //       data.data.length > 0 ? data.data[0].images.original.url : null;
-        //     console.log(gifUrl);
-        //     const button = document.getElementById(`button-${index}`);
-        //     button.addEventListener("click", () => speak(response));
-        //     const gif = document.getElementById(`gif-${index}`);
-        //     gif.src = gifUrl;
-        //   })
-        //   .catch((error) => {
-        //     console.error("Error fetching GIF data:", error);
-        //   });
         const query = response;
 
-        const client = createClient();
+        const client = createClient(
+          "THj5EwzyfSVYW1UvgByttwmIlcqXDvRS8AmbWtx587POTV86qPqdfd30"
+        );
 
         client.photos
           .search({ query, per_page: 1 })
           .then((data) => {
-            console.log(data);
+            console.log("client.photos data", data);
             const imageSrc =
               data.photos.length > 0 ? data.photos[0].src.medium : null;
             console.log(imageSrc);
@@ -80,16 +72,6 @@ export default function FetchButton() {
           .catch((error) => {
             console.error("Error fetching Pexels data:", error);
           });
-        // ...
-        // fetch(imageRequestURL)
-        //   .then((response) => response.json())
-        //   .then((data) => {
-        //     console.log(imageRequestURL);
-        //     console.log(data);
-        //   })
-        //   .catch((error) => {
-        //     console.log(error);
-        //   });
       });
     }
   }, [responses]);
@@ -112,10 +94,18 @@ export default function FetchButton() {
       <button className="fetch-button" onClick={fetchAnswers}>
         Fetch
       </button>
+      <TopicForm promptText={promptText} userId={userId} />
+      {/* <div className="prompt-text">Prompt Text: {promptText}</div> */}
       <div className="responsesContainer">
         {responses.map((response, index) => (
           <div className="responseButton" id={`button-${index}`} key={index}>
-            <p>{response}</p>
+            <div>
+              <p>{response}</p>
+              <span>
+                <button>add</button>
+              </span>
+            </div>
+
             <img id={`gif-${index}`}></img>
           </div>
         ))}

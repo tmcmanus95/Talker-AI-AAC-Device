@@ -11,10 +11,17 @@ const resolvers = {
       return User.findOne({ _id: userId }).populate({
         path: "savedTopics.topic",
         model: "Topic",
+        populate: {
+          path: "responses",
+          model: "Response",
+        },
       });
     },
+
     me: async (parent, args, context) => {
+      console.log("context, ", context.user);
       if (context.user) {
+        console.log("this be my context", context.user);
         return User.findOne({ _id: context.user._id });
       }
       throw AuthenticationError;
