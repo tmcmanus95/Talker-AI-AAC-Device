@@ -21,11 +21,24 @@ export const QUERY_SINGLE_PROFILE = gql`
 `;
 
 export const QUERY_ME = gql`
-  query me {
+  query Query {
     me {
       _id
-      name
-      topics
+      username
+      email
+      password
+      savedTopics {
+        topic {
+          _id
+          createdAt
+          promptText
+          responses {
+            _id
+            responseText
+            imageURL
+          }
+        }
+      }
     }
   }
 `;

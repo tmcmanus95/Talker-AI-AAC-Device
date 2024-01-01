@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { PromptTemplate } from "langchain/prompts";
+import { useQuery } from "@apollo/client";
 import { createClient } from "pexels";
+import { QUERY_ME } from "../../../utils/queries";
 import TopicForm from "../TopicForm/TopicForm";
 import "./RecordButton.scss";
+
 export default function RecordButton() {
   const [userInput, setUserInput] = useState("");
   const [responses, setResponses] = useState([]);
@@ -12,7 +15,12 @@ export default function RecordButton() {
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
   };
+  console.log("Query_Me, ", QUERY_ME);
+  console.log("useQuery(QUERY_ME):", useQuery(QUERY_ME));
 
+  const userId = 5;
+  const { data } = useQuery(QUERY_ME); //figure out how to get the userId so that the topics / responses can be saved
+  console.log("Record Button Data: ", data);
   const fetchAnswers = async () => {
     const openAIApiKey = ""; // todo: add to a .env file
 
@@ -52,7 +60,7 @@ export default function RecordButton() {
         client.photos
           .search({ query, per_page: 1 })
           .then((data) => {
-            console.log(data);
+            console.log("client.photos data", data);
             const imageSrc =
               data.photos.length > 0 ? data.photos[0].src.medium : null;
             console.log(imageSrc);
@@ -86,7 +94,7 @@ export default function RecordButton() {
       <button className="fetch-button" onClick={fetchAnswers}>
         Fetch
       </button>
-      <TopicForm promptText={promptText} />
+      <TopicForm promptText={promptText} userId={userId} />
       {/* <div className="prompt-text">Prompt Text: {promptText}</div> */}
       <div className="responsesContainer">
         {responses.map((response, index) => (
