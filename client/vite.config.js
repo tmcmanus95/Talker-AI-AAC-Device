@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5000,
+    port: 5001,
     open: true,
     // Important for MERN Setup: Here we're establishing a relationship between our two development servers.
     // We are pointing our Vite client-side development server to proxy API requests to our server-side Node server at port 3001.

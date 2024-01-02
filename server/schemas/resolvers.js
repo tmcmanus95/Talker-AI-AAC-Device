@@ -61,7 +61,12 @@ const resolvers = {
         const updatedUser = await User.findOneAndUpdate(
           { _id: userId },
           {
-            $addToSet: { savedTopics: { topic: newTopic._id } },
+            $push: {
+              savedTopics: {
+                $each: [{ topic: newTopic._id }],
+                $position: 0,
+              },
+            },
           },
           {
             new: true,
@@ -83,10 +88,16 @@ const resolvers = {
         { new: true }
       );
     },
-    addResponse: async (parent, { topicId, response }, context) => {
+    addResponse: async (
+      parent,
+      { topicId, responseText, imageURL },
+      context
+    ) => {
       try {
         const newResponse = await Response.create({
-          responseText: response,
+          topicId: topicId,
+          responseText: responseText,
+          imageURL: imageURL,
         });
         console.log("Here's the new response, ", newResponse);
         const updatedTopic = await Topic.findByIdAndUpdate(

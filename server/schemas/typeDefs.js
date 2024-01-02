@@ -43,7 +43,7 @@ const typeDefs = `
     addTopic(userId: ID!, topic: String!): User
     removeUser: User
     removeTopic(topicId: ID!): User
-    addResponse(topicId: ID!, response: String!): Topic
+    addResponse(topicId: ID!, responseText: String, imageURL: String): Topic
     removeResponse(responseId: ID!): Topic
     login(email: String!, password: String!): Auth
   }
