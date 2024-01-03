@@ -15,11 +15,10 @@ export const ADD_USER = gql`
 export const ADD_TOPIC = gql`
   mutation Mutation($userId: ID!, $topic: String!) {
     addTopic(userId: $userId, topic: $topic) {
-      _id
-      username
       savedTopics {
         topic {
           promptText
+          _id
         }
       }
     }
@@ -27,11 +26,13 @@ export const ADD_TOPIC = gql`
 `;
 
 export const ADD_RESPONSE = gql`
-  mutation addResponse($topicId: ID!, $response: String!) {
-    addResponse(topicId: $topicId, response: $response) {
+  mutation Mutation($topicId: ID!, $responseText: String, $imageURL: String) {
+    addResponse(
+      topicId: $topicId
+      responseText: $responseText
+      imageURL: $imageURL
+    ) {
       _id
-      topic
-      response
     }
   }
 `;

@@ -1,15 +1,20 @@
-// import { useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import Header from "../components/Header/Header";
 import RecordButton from "../components/RecordButton/RecordButton";
+import SavedTopics from "../components/SavedTopics/SavedTopics";
+import { QUERY_ME } from "../../utils/queries";
 const Home = () => {
-  // const { loading, data } = useQuery(QUERY_PROFILES);
-  // const profiles = data?.profiles || [];
+  const { loading, data } = useQuery(QUERY_ME);
+  console.log(data);
+  const username = data?.me.username;
+  const topics = data?.me.savedTopics;
 
   return (
     <main>
       <div>
         <Header />
         <RecordButton />
+        <SavedTopics username={username} topics={topics} />
       </div>
     </main>
   );
