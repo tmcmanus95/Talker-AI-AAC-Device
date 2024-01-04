@@ -13,7 +13,7 @@ export default function RecordButton() {
   const [userInput, setUserInput] = useState("");
   const [responses, setResponses] = useState([]);
   const [promptText, setPromptText] = useState("");
-  const [imageURLs, setImageURLs] = useState([]); // Change to an array to store multiple image URLs
+  const [imageURLs, setImageURLs] = useState([]);
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
@@ -23,7 +23,7 @@ export default function RecordButton() {
   const userId = data?.me._id;
 
   const fetchAnswers = async () => {
-    const openAIApiKey = "";
+    const openAIApiKey = "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";
 
     const llm = new ChatOpenAI({ openAIApiKey });
 
@@ -40,10 +40,12 @@ export default function RecordButton() {
       });
 
       setPromptText(userInput);
+      console.log("this is what I got back from chatgpt, ", result);
       console.log("Question or Topic:", userInput);
       console.log("Chat GPT Responses:", result.content);
 
       const newResponses = result.content.split("\n");
+      console.log("This is the array we will map over, ", newResponses);
       setResponses(newResponses);
 
       const newImageURLs = [];
@@ -86,10 +88,7 @@ export default function RecordButton() {
       <button className="fetch-button" onClick={fetchAnswers}>
         Fetch
       </button>
-      <TopicForm promptText={promptText} userId={userId} />
-      <div className="responsesContainer">
-        <ResponseForm responses={responses} imageURLs={imageURLs} />
-      </div>
+
       <div>
         <BigResponse
           responses={responses}
