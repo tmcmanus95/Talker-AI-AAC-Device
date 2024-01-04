@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_TOPIC, ADD_RESPONSE } from "../../../utils/mutations";
+import "./BigResponse.scss";
 
 const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
   const [addTopic, { error: topicError }] = useMutation(ADD_TOPIC);
@@ -56,7 +57,7 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <button>Topic Form Add Button</button>
+      <button>Save Topic and Responses</button>
       <div className="prompt-text">
         Prompt Text:
         <span>{promptText}</span>
@@ -66,9 +67,6 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
           <div id={`button-${index}`}>
             <div>
               <p>{response}</p>
-              <span>
-                <button>save</button>
-              </span>
             </div>
             <img src={imageURLs[index]} alt={`Response Image ${index}`} />
           </div>
