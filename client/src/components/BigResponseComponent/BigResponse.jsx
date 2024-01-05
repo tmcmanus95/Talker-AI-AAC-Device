@@ -68,7 +68,7 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
             <div>
               <p>{response}</p>
             </div>
-            <img class="contain" src={imageURLs[index]} alt={`Response Image ${index}`} />
+            <img src={imageURLs[index]} alt={`Response Image ${index}`} />
           </div>
         </form>
       ))}

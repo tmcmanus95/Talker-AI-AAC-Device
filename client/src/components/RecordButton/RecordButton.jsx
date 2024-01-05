@@ -23,7 +23,7 @@ export default function RecordButton() {
   const userId = data?.me._id;
 
   const fetchAnswers = async () => {
-    const openAIApiKey = "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";
+    const openAIApiKey = "";
 
     const llm = new ChatOpenAI({ openAIApiKey });
 
