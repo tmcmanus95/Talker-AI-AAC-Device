@@ -69,7 +69,7 @@ const ResponseForm = ({ index, responses }) => {
               </span>
             </div>
 
-            <img id={`gif-${index}`} alt={`gif-${index}`} />
+            <img class="image" id={`gif-${index}`} alt={`gif-${index}`} />
           </div>
         </form>
       ))}
