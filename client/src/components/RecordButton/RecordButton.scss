@@ -1,14 +1,14 @@
-// .responsesContainer {
-//   width: 50%;
-//   display: flex;
-//   justify-content: center;
-//   flex: auto;
-// }
+.responsesContainer {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex: auto;
+}
 
 .responseButton {
   display: inline-block;
   margin: 5px;
-  height: 50vh;
+  height: 250px;
   width: 30%;
   padding: 5px;
   border: 5px solid purple;
@@ -17,11 +17,10 @@
   flex-direction: column;
 }
 
-img {
-  height: 50%;
-  width: 50%;
-object-fit: contain;
-}
+// img {
+//   width: 50%;
+//   object-fit: contain;
+// }
 
 .responseButton:hover {
   cursor: pointer;

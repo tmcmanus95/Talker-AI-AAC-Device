@@ -1,41 +1,41 @@
-// .responsesContainer {
-//   width: 100%;
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   justify-content: center;
-// }
+.responsesContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-// .responseButton {
-//   flex: 1;
-//   display: flex;
-//   margin: 5px;
-//   height: 10%;
-//   width: 15%;
-//   padding: 5px;
-//   border: 5px solid green;
-//   text-align: center;
-//   justify-content: center;
-//   flex-direction: column;
-// }
+.responseButton {
+  flex: 1;
+  display: flex;
+  margin: 5px;
+  height: 10%;
+  width: 15%;
+  padding: 5px;
+  border: 5px solid green;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
-// // img {
-// //   height: 100%;
-// //   width: 100%;
-// // }
+img {
+  height: 70%;
+  width: 70%;
+}
 
-// .responseButton:hover {
-//   cursor: pointer;
-//   box-shadow: 5px 5px 5px powderblue;
-// }
+.responseButton:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px powderblue;
+}
 
-// .input-field {
-//   width: 50vh;
-//   height: 25px;
-// }
+.input-field {
+  width: 50vh;
+  height: 25px;
+}
 
-// .fetch-button {
-//   margin: 5px;
-//   background-color: powderblue;
-//   color: black;
-// }
+.fetch-button {
+  margin: 5px;
+  background-color: powderblue;
+  color: black;
+}
