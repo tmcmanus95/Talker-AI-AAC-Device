@@ -12,6 +12,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const { ChatOpenAI } = require("langchain/chat_models/openai");
 const { PromptTemplate } = require("langchain/prompts");
+const { createClient } = require("pexels");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -54,6 +55,20 @@ const fetchAnswers = async (userInput) => {
 app.use(cors());
 app.use(bodyParser.json());
 
+const fetchImages = async (searchTerm) => {
+  const query = searchTerm;
+
+  const client = createClient(process.env.PEXELS_API_KEY);
+
+  try {
+    const data = await client.photos.search({ query, per_page: 1 });
+    console.log("Here sht image data I got back, ", data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching Pexels data:", error);
+  }
+};
+
 app.post("/api/fetchAnswers", async (req, res) => {
   console.log(req.body);
   const { userInput } = req.body;
@@ -61,6 +76,19 @@ app.post("/api/fetchAnswers", async (req, res) => {
   try {
     const chatGPTResults = await fetchAnswers(userInput);
     res.json(chatGPTResults);
+  } catch (error) {
+    console.error("Error fetching data from API:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/api/fetchImage", async (req, res) => {
+  console.log(req.body);
+  const { searchTerm } = req.body;
+
+  try {
+    const imageResult = await fetchImages(searchTerm);
+    res.json(imageResult);
   } catch (error) {
     console.error("Error fetching data from API:", error);
     res.status(500).json({ error: "Internal Server Error" });
