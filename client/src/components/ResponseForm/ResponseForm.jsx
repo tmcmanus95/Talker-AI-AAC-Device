@@ -19,7 +19,7 @@ const ResponseForm = ({ index, responses }) => {
 
     try {
       const data = await addResponse({
-        variables: { topicId, responseText, imageURL: imageSrc }, // Use imageSrc here
+        variables: { topicId, responseText, imageURL: imageSrc },
       });
 
       setResponse("");

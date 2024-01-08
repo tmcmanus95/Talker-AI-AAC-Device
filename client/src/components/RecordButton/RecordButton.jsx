@@ -39,26 +39,26 @@ export default function RecordButton() {
       );
       const chatGPTResults = response.data.kwargs.content;
       const chatGPTResultsArray = chatGPTResults.split("\n");
-      console.log("chatGPTResultsArray");
+      console.log("chatGPTResultsArray, ", chatGPTResultsArray);
       setResponses(chatGPTResultsArray);
       console.log("here is the responses variable, ", responses);
       const newImageURLs = [];
-      for (let index = 0; index < responses.length; index++) {
-        const query = responses[index];
+      // for (let index = 0; index < responses.length; index++) {
+      //   const query = responses[index];
 
-        const client = createClient(
-          "THj5EwzyfSVYW1UvgByttwmIlcqXDvRS8AmbWtx587POTV86qPqdfd30"
-        );
+      //   const client = createClient(
+      //     "THj5EwzyfSVYW1UvgByttwmIlcqXDvRS8AmbWtx587POTV86qPqdfd30"
+      //   );
 
-        try {
-          const data = await client.photos.search({ query, per_page: 1 });
-          const imageSrc =
-            data.photos.length > 0 ? data.photos[0].src.medium : null;
-          newImageURLs[index] = imageSrc;
-        } catch (error) {
-          console.error("Error fetching Pexels data:", error);
-        }
-      }
+      //   try {
+      //     const data = await client.photos.search({ query, per_page: 1 });
+      //     const imageSrc =
+      //       data.photos.length > 0 ? data.photos[0].src.medium : null;
+      //     newImageURLs[index] = imageSrc;
+      //   } catch (error) {
+      //     console.error("Error fetching Pexels data:", error);
+      //   }
+      // }
 
       setImageURLs(newImageURLs);
     } catch (error) {
