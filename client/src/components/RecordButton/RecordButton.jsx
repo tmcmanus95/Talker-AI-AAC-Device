@@ -82,7 +82,7 @@ export default function RecordButton() {
       <div>
         <BigResponse
           responses={responses}
-          promptText={promptText}
+          promptText={userInput}
           userId={userId}
           imageURLs={imageURLs}
         />

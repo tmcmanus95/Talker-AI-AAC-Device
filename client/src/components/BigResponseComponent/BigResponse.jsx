@@ -13,7 +13,7 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
   };
-
+  console.log("this is the promptText,", promptText);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
