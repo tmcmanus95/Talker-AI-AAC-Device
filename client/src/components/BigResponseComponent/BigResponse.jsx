@@ -57,7 +57,7 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <button>Save Topic and Responses</button>
+      <button className="saveTopicBtn">Save Topic and Responses</button>
       <div className="prompt-text">
         Prompt Text:
         <span>{promptText}</span>

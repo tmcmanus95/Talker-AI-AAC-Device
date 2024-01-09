@@ -41,6 +41,15 @@
         color: #ffffff;
     }
 
+    .fetch-button {
+        background-color: powderblue !important;
+    }
+
+    .saveTopicBtn {
+        background-color: purple !important;
+        margin-bottom: 2em !important;
+    }
+
     p.footer {
         padding: 1em 2em 1em 2em !important;
         font-size: 80%;
@@ -50,7 +59,7 @@
 
  }
 
- @media (min-width:576px) {
+ @media (max-width:576px) {
 
     body, Container {
         margin: 0 auto !important;
@@ -90,6 +99,14 @@
    Button {
         background-color: darkslategray !important;
         color: #ffffff;
+    }
+
+    .fetch-button {
+        background-color: powderblue !important;
+    }
+
+    .saveTopicBtn {
+        background-color: purple !important;
     }
 
     p.footer {

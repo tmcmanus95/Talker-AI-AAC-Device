@@ -5,6 +5,7 @@ import axios from "axios";
 import BigResponse from "../BigResponseComponent/BigResponse";
 import "./RecordButton.scss";
 import { QUERY_ME } from "../../../utils/queries";
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 
 export default function RecordButton() {
   const [userInput, setUserInput] = useState("");
@@ -73,7 +74,13 @@ export default function RecordButton() {
   };
 
   return (
-    <div>
+
+    <Container>
+      <Row>
+        <Col>
+
+   
+      <form>
       <input
         type="text"
         value={userInput}
@@ -85,14 +92,18 @@ export default function RecordButton() {
         Fetch
       </button>
 
-      <div>
+      </form>
+  
         <BigResponse
           responses={responses}
           promptText={userInput}
           userId={userId}
           imageURLs={imageURLs}
-        />
-      </div>
-    </div>
+        />    
+
+    </Col>
+      </Row>
+    </Container>
+
   );
 }
