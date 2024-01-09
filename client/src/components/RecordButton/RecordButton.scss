@@ -60,3 +60,16 @@
 //   width: 30%;
 //   height: 30%;
 // }
+
+.responseButton {
+    display: inline-flex;
+    margin: 5px;
+    padding: 5px;
+  //   border: 5px solid purple;
+    width: 31%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    object-fit: contain;
+  }

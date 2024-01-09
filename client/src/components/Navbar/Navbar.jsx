@@ -1,18 +1,23 @@
 import { Link } from "react-router-dom";
 import Auth from "../../../utils/auth";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
-export default function Navbar() {
+
+export default function NavbarMain() {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
   return (
     <section>
-      <nav className="py-4 sm:py-10 mb-4 sm:mb-12  flex flex-col sm:flex-row justify-between items-center mx-5">
-        <div>
+      <Navbar bg="dark" data-bs-theme="dark">
+        <Container>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg btn-primary m-2" to="/me">
+              <Link to="/me">
                 View My Profile
               </Link>
               <button className="btn btn-lg btn-light m-2" onClick={logout}>
@@ -21,25 +26,25 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-primary m-2" to="/login">
+              <Link to="/login">
                 Login
               </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
+              <Nav.Link to="/signup">
                 Signup
-              </Link>
+              </Nav.Link>
             </>
           )}
-        </div>
-        <Link to="/">
-          <h1 className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 mb-4 sm:mb-0 sm:ml-8 rounded-md">
+        </Container>
+        <Navbar.Brand to="/">
+          <h4>
             Home
-          </h1>
-        </Link>
+          </h4>
+        </Navbar.Brand>
         <ul className="flex sm:flex-row items-center ">
           <li>
             <Link
               to="/me"
-              className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 mb-4 mr-2 sm:mb-0 sm:ml-8 rounded-md"
+              className="me-auto"
             >
               Profile
             </Link>
@@ -47,7 +52,7 @@ export default function Navbar() {
           <li>
             <Link
               to="/login"
-              className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 mb-4 mr-2 sm:mb-0 sm:ml-8 rounded-md"
+              className="me-auto"
             >
               Login
             </Link>
@@ -55,13 +60,13 @@ export default function Navbar() {
           <li>
             <Link
               to="/signup"
-              className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 mb-4 mr-2 sm:mb-0 sm:ml-8 rounded-md"
+              className="me-auto"
             >
               Signup
             </Link>
           </li>
         </ul>
-      </nav>
+      </Navbar>
     </section>
   );
 }
