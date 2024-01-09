@@ -3,6 +3,9 @@ import { useQuery } from "@apollo/client";
 
 import { QUERY_ME } from "../../utils/queries";
 
+import Header from "../components/Header/Header";
+import Navbar from "../components/Navbar/Navbar";
+
 // import Auth from "../utils/auth";
 
 const Profile = () => {
@@ -14,6 +17,11 @@ const Profile = () => {
   console.log("topics, ", topics);
   console.log("username, ", username);
   return (
+<>
+    <Header />
+    <Navbar />
+
+
     <section>
       <h1> Welcome, {username}!</h1>
       <div>
@@ -35,6 +43,8 @@ const Profile = () => {
           ))}
       </div>
     </section>
+    </>
+
   );
 };
 

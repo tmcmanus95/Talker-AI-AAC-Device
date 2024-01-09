@@ -5,7 +5,7 @@ import { LOGIN_USER } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 import Header from "../components/Header/Header";
-import Navbar from "../components/Navbar/Navbar";
+// import Navbar from "../components/Navbar/Navbar";
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 
 const Login = (props) => {
@@ -47,7 +47,7 @@ const Login = (props) => {
   return (
 <>
     <Header />
-    <Navbar />
+    {/* <Navbar /> */}
 
     <Container>
       <Row>
@@ -57,7 +57,7 @@ const Login = (props) => {
             {data ? (
               <p>
                 Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/me">back to the homepage.</Link>
               </p>
             ) : (
               <Form onSubmit={handleFormSubmit}>
