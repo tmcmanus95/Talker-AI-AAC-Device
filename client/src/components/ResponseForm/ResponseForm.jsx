@@ -4,8 +4,6 @@ import { useMutation } from "@apollo/client";
 import { ADD_RESPONSE } from "../../../utils/mutations";
 import { createClient } from "pexels";
 import "./ResponseForm.scss";
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 
 const ResponseForm = ({ index, responses }) => {
   // const [response, setResponse] = useState("");

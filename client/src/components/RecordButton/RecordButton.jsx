@@ -8,9 +8,9 @@ import BigResponse from "../BigResponseComponent/BigResponse";
 import ResponseForm from "../ResponseForm/ResponseForm";
 import TopicForm from "../TopicForm/TopicForm";
 import "./RecordButton.scss";
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button'
 
 export default function RecordButton() {
   const [userInput, setUserInput] = useState("");
@@ -26,7 +26,7 @@ export default function RecordButton() {
   const userId = data?.me._id;
 
   const fetchAnswers = async () => {
-    const openAIApiKey = "";
+    const openAIApiKey = "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";
 
     const llm = new ChatOpenAI({ openAIApiKey });
 
@@ -81,16 +81,20 @@ export default function RecordButton() {
 
   return (
     <div>
-      <input
+      <Form.Control className="mb-3"
         type="text"
         value={userInput}
         onChange={handleInputChange}
         placeholder="Enter a topic or question"
-        className="input-field"
+        // className="input-field"
       />
-      <button className="fetch-button" onClick={fetchAnswers}>
+      <div className="button-container">
+      <div className="d-grid gap-2">
+      <Button className="fetch-button" variant="primary" size ="lg" onClick={fetchAnswers}>
         Fetch
-      </button>
+      </Button>
+      </div>
+      </div>
 
         <BigResponse
           responses={responses}
