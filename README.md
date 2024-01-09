@@ -1,5 +1,16 @@
 # AI Powered AAC Device
 
+# Elevator Pitch
+ Do you or a loved one have an impairment or disability with severe communication disorders?
+ If so, than the talker app is perfect for you! This app makes communication very simple
+ by providing you with pictures and text to speech as responses to any question you might have. 
+ Just ask a question in the app to get started today! 
+
+# Description
+We have created an app that helps supplement or compensate for the 
+impairment and disability patterns of individuals with severe expressive communication disorders.
+ When asked a question in the app, the OpenAI pulls responses for 
+ the question asked along with pictures and a text to speech button 
 # Application Link
 
 # Screenshots
@@ -21,6 +32,9 @@
   - Pexels
 
 # Contributions
+- MongoDB atlas https://www.youtube.com/watch?v=lyOgmd8U99c&ab_channel=FullStackCoder
+- Render Deployment https://www.google.com/search?q=how+to+deploy+from+github+to+render&sca_esv=595826640&sxsrf=AM9HkKlavTzUNV05FoKhBG3VP3IToqm9PQ%3A1704417685891&source=hp&ei=lVmXZbmENI-IptQPu4yN-AM&iflsig=AO6bgOgAAAAAZZdnpWCmvNF0ZrtOQqrbrCqMEig2a7Go&ved=0ahUKEwj5otvVisWDAxUPhIkEHTtGAz8Q4dUDCAw&uact=5&oq=how+to+deploy+from+github+to+render&gs_lp=Egdnd3Mtd2l6IiNob3cgdG8gZGVwbG95IGZyb20gZ2l0aHViIHRvIHJlbmRlcjIFECEYoAEyBRAhGKABMgUQIRigATIIECEYFhgeGB1Iuk9QAFjSTnAAeACQAQCYAWGgAbkRqgECMzW4AQPIAQD4AQHCAgoQIxiABBiKBRgnwgIQEC4YgAQYigUYQxjHARjRA8ICERAuGIAEGLEDGIMBGMcBGNEDwgILEAAYgAQYsQMYgwHCAg4QLhiABBixAxjHARjRA8ICChAAGIAEGIoFGEPCAgUQABiABMICBRAuGIAEwgILEAAYgAQYigUYsQPCAgsQABiABBiKBRiRAsICCBAAGIAEGLEDwgILEAAYgAQYigUYhgPCAgYQABgWGB7CAggQABgWGB4YCg&sclient=gws-wiz#fpstate=ive&vld=cid:75ddf26a,vid:mJASUXzjMQA,st:0
+- Bootstrap https://www.w3schools.com/bootstrap/default.asp
 
 The following files were leveraged and modified from Northwestern Coding Bootcamp's Practice Modules
 
