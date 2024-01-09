@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import Header from "../components/Header/Header";
+import Navbar from "../components/Navbar/Navbar";
 import RecordButton from "../components/RecordButton/RecordButton";
 import SavedTopics from "../components/SavedTopics/SavedTopics";
 import { QUERY_ME } from "../../utils/queries";
@@ -13,6 +14,7 @@ const Home = () => {
     <main>
       <div>
         <Header />
+        <Navbar />
         <RecordButton />
         <SavedTopics username={username} topics={topics} />
       </div>
