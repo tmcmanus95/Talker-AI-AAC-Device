@@ -43,28 +43,30 @@ export default function RecordButton() {
       setResponses(chatGPTResultsArray);
       console.log("here is the responses variable, ", responses);
       const newImageURLs = [];
-      for (let index = 0; index < responses.length; index++) {
-        const response = await axios.post(
-          "http://localhost:3000/api/fetchImage",
-          { searchTerm: responses[index] }
-        );
-
-        try {
-          const data = response;
-          console.log("this is my image data, ", data);
-          console.log("This is data.photos ", data.data.photos);
-          console.log(
-            "This is data.photos.src.medium: ",
-            data.data.photos[0].src.medium
-          );
-          const imageSrc =
-            data.data.photos.length > 0 ? data.data.photos[0].src.medium : null;
-          newImageURLs[index] = imageSrc;
-          console.log("This is my imageSrc, ", imageSrc);
-        } catch (error) {
-          console.error("Error fetching Pexels data:", error);
-        }
-      }
+      await Promise.all(
+        chatGPTResultsArray.map(async (response, index) => {
+          try {
+            const imageData = await axios.post(
+              "http://localhost:3000/api/fetchImage",
+              { searchTerm: response }
+            );
+            console.log("this is my image data, ", imageData);
+            console.log("This is data.photos ", imageData.data.photos);
+            console.log(
+              "This is data.photos.src.medium: ",
+              imageData.data.photos[0].src.medium
+            );
+            const imageSrc =
+              imageData.data.photos.length > 0
+                ? imageData.data.photos[0].src.medium
+                : null;
+            newImageURLs[index] = imageSrc;
+            console.log("This is my imageSrc, ", imageSrc);
+          } catch (error) {
+            console.error("Error fetching Pexels data:", error);
+          }
+        })
+      );
 
       setImageURLs(newImageURLs);
     } catch (error) {
