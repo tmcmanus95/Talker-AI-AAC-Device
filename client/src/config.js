@@ -1,7 +1,7 @@
 const config = {
   serverUrl:
-    process.env.NODE_ENV === "production"
-      ? process.env.MONGODB_URI
+    import.meta.env.PROD === "production"
+      ? import.meta.env.REACT_APP_SERVER_URL
       : "http://localhost:3000",
 };
 
