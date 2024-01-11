@@ -11,7 +11,7 @@ import { QUERY_ME } from "../../../utils/queries";
 import config from "../../config";
 
 export default function RecordButton() {
-  console.log(serverUrl);
+  console.log(config.serverUrl);
   const [userInput, setUserInput] = useState("");
   const [responses, setResponses] = useState([]);
   const [promptText, setPromptText] = useState("");
