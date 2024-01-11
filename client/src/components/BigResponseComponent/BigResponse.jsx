@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_TOPIC, ADD_RESPONSE } from "../../../utils/mutations";
 import "./BigResponse.scss";
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
   const [addTopic, { error: topicError }] = useMutation(ADD_TOPIC);
@@ -57,23 +59,27 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <button>Save Topic and Responses</button>
-      <div className="prompt-text">
-        Prompt Text:
-        <span>{promptText}</span>
-      </div>
+      <div className="saveButtonContainer">
+        <Button className="saveTopic" variant="secondary" size="sm">Save Topic and Responses</Button>
+        </div>
+        <div className="prompt-text-container">
+          <div className="prompt-text">
+            Prompt Text:
+            <span>{promptText}</span>
+          </div>
+        </div>
       {responses.map((response, index) => (
         <form className="responseButton" key={index}>
-          <div id={`button-${index}`}>
+          <Card style={{ width: '20rem' }} id={`button-${index}`}>
             <div>
-              <p>{response}</p>
+              <Card.Title>{response}</Card.Title>
             </div>
-            <img src={imageURLs[index]} alt={`Response Image ${index}`} />
-          </div>
+            <Card.Img src={imageURLs[index]} alt={`Response Image ${index}`} />
+          </Card>
         </form>
       ))}
     </form>
-  );
+  )
 };
 
 export default BigResponse;
