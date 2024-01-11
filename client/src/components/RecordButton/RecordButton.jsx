@@ -10,8 +10,6 @@ import Button from "react-bootstrap/Button";
 import { QUERY_ME } from "../../../utils/queries";
 // import config from "../../config";
 
-const PORT = import.meta.env.PORT || 3000;
-
 export default function RecordButton() {
   // console.log(config.serverUrl);
   const [userInput, setUserInput] = useState("");
@@ -34,9 +32,12 @@ export default function RecordButton() {
 
   const fetchAnswersAndImages = async () => {
     try {
-      const response = await axios.post(`/api/fetchAnswers`, {
-        userInput,
-      });
+      const response = await axios.post(
+        `https://ai-aac-db2.onrender.com/api/fetchAnswers`,
+        {
+          userInput,
+        }
+      );
 
       console.log("Response from axios:", response.data);
 
@@ -49,9 +50,12 @@ export default function RecordButton() {
       await Promise.all(
         chatGPTResultsArray.map(async (response, index) => {
           try {
-            const imageData = await axios.post(`/api/fetchImages`, {
-              searchTerm: response,
-            });
+            const imageData = await axios.post(
+              `https://ai-aac-db2.onrender.com/api/fetchImages`,
+              {
+                searchTerm: response,
+              }
+            );
 
             console.log("Image data:", imageData.data);
 
