@@ -16,6 +16,12 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
   };
+
+  const handleSpeak = (text) => {
+    return () => {
+      speak(text);
+    };
+  };
   console.log("this is the promptText,", promptText);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -63,6 +69,7 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
             className="saveTopic saveTopicBtn"
             variant="secondary"
             size="sm"
+            type="submit"
           >
             Save Topic and Responses
           </Button>
@@ -74,10 +81,14 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
           </div>
         </div>
         {responses.map((response, index) => (
-          <form className="responseButton" key={index}>
+          <form
+            onClick={handleSpeak(response)}
+            className="responseButton"
+            key={index}
+          >
             <Card style={{ width: "20rem" }} id={`button-${index}`}>
               <div>
-                <Card.Title onClick={speak(response)}>{response}</Card.Title>
+                <Card.Title>{response}</Card.Title>
               </div>
               <Card.Img
                 src={imageURLs[index]}
