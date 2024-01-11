@@ -11,39 +11,37 @@ export default function NavbarMain() {
   return (
     <section>
 
-      <Navbar bg="dark" data-bs-theme="dark">
-        <Container>
+      <Navbar>
+
           {Auth.loggedIn() ? 
           (
             <>
            
-              <Link className="btn btn-lg btn-primary m-2" to="/me">
+              <Link to="/me">
                 <button>View My Profile</button>
               </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              <button onClick={logout}>
                 Logout
               </button>
             </>
           ) : (
             <>
 
-<Link className="btn btn-lg btn-primary m-2" to="/login">
-              <button><Link to="/login">Login</button>
+<Link to="/login">
+              <button>Login</button>
 </Link>
             
 
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
+              <Link to="/signup">
               <button>
                 Signup
                 </button>
               </Link>
             </>
           )}
-        </div>
+   
 
-    
       </Navbar>
-
 
     </section>
   );
