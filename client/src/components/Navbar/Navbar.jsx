@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
 import Auth from "../../../utils/auth";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
+import { Container, Row, Col, Button, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 export default function NavbarMain() {
   const logout = (event) => {
@@ -13,12 +10,15 @@ export default function NavbarMain() {
   };
   return (
     <section>
+
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          {Auth.loggedIn() ? (
+          {Auth.loggedIn() ? 
+          (
             <>
-              <Link to="/me">
-                View My Profile
+           
+              <Link className="btn btn-lg btn-primary m-2" to="/me">
+                <button>View My Profile</button>
               </Link>
               <button className="btn btn-lg btn-light m-2" onClick={logout}>
                 Logout
@@ -26,47 +26,25 @@ export default function NavbarMain() {
             </>
           ) : (
             <>
-              <Link to="/login">
-                Login
-              </Link>
-              <Nav.Link to="/signup">
+
+<Link className="btn btn-lg btn-primary m-2" to="/login">
+              <button><Link to="/login">Login</button>
+</Link>
+            
+
+              <Link className="btn btn-lg btn-light m-2" to="/signup">
+              <button>
                 Signup
-              </Nav.Link>
+                </button>
+              </Link>
             </>
           )}
-        </Container>
-        <Navbar.Brand to="/">
-          <h4>
-            Home
-          </h4>
-        </Navbar.Brand>
-        <ul className="flex sm:flex-row items-center ">
-          <li>
-            <Link
-              to="/me"
-              className="me-auto"
-            >
-              Profile
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/login"
-              className="me-auto"
-            >
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/signup"
-              className="me-auto"
-            >
-              Signup
-            </Link>
-          </li>
-        </ul>
+        </div>
+
+    
       </Navbar>
+
+
     </section>
   );
 }

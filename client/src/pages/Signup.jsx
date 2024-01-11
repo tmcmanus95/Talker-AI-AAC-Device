@@ -4,6 +4,10 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
+import Header from "../components/Header/Header";
+// import Navbar from "../components/Navbar/Navbar";
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+
 const Signup = () => {
   const [formState, setFormState] = useState({
     username: "",
@@ -38,11 +42,15 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
+<>
+    <Header />
+    {/* <Navbar /> */}
+
+    <Container>
+      <Row>
+
+          <h1>Sign Up</h1>
+
             {data ? (
               <p>
                 Success! You may now head{" "}
@@ -89,10 +97,10 @@ const Signup = () => {
                 {error.message}
               </div>
             )}
-          </div>
-        </div>
-      </div>
-    </main>
+         
+    </Row>
+    </Container>
+    </>
   );
 };
 

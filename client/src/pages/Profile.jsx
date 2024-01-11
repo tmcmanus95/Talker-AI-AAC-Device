@@ -3,6 +3,12 @@ import { useQuery } from "@apollo/client";
 
 import { QUERY_ME } from "../../utils/queries";
 
+import Header from "../components/Header/Header";
+import Navbar from "../components/Navbar/Navbar";
+import RecordButton from "../components/RecordButton/RecordButton";
+
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+
 // import Auth from "../utils/auth";
 
 const Profile = () => {
@@ -14,8 +20,20 @@ const Profile = () => {
   console.log("topics, ", topics);
   console.log("username, ", username);
   return (
-    <section>
+<>
+    <Header />
+    <Navbar />
+    <RecordButton />
+
+    <hr />
+
+    <Container>
+      <Row>
+        <Col>
       <h1> Welcome, {username}!</h1>
+
+      <p className="intro">Below are your saved topics and responses:</p>
+
       <div>
         {topics &&
           topics.map((topic) => (
@@ -34,7 +52,11 @@ const Profile = () => {
             </div>
           ))}
       </div>
-    </section>
+      </Col>
+      </Row>
+    </Container>
+    </>
+
   );
 };
 

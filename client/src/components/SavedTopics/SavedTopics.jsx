@@ -1,7 +1,7 @@
 import "./SavedTopics.scss";
 export default function SavedTopics({ username, topics }) {
   return (
-    <section>
+    <section id="savedTopicsSection">
       <h1>{username}'s Saved Topics</h1>
       <div>
         <div>

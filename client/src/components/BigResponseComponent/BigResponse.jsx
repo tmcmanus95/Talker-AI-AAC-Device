@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_TOPIC, ADD_RESPONSE } from "../../../utils/mutations";
+import Accordion from 'react-bootstrap/Accordion';
 import "./BigResponse.scss";
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
@@ -57,10 +58,16 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
     }
   };
 
+
   return (
+
+    <>
+     
     <form onSubmit={handleFormSubmit}>
+
+    
       <div className="saveButtonContainer">
-        <Button className="saveTopic" variant="secondary" size="sm">Save Topic and Responses</Button>
+        <Button className="saveTopic saveTopicBtn" variant="secondary" size="sm">Save Topic and Responses</Button>
         </div>
         <div className="prompt-text-container">
           <div className="prompt-text">
@@ -76,10 +83,15 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
             </div>
             <Card.Img src={imageURLs[index]} alt={`Response Image ${index}`} />
           </Card>
+
         </form>
+
       ))}
+
     </form>
+    </>
   )
+
 };
 
 export default BigResponse;

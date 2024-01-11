@@ -4,6 +4,9 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
+import Header from "../components/Header/Header";
+// import Navbar from "../components/Navbar/Navbar";
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -42,18 +45,24 @@ const Login = (props) => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
+<>
+    <Header />
+    {/* <Navbar /> */}
+
+    <Container>
+      <Row>
+     
+          <h1>Login</h1>
+         
             {data ? (
               <p>
                 Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/me">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <Form onSubmit={handleFormSubmit} id="loginForm">
+                <Row>
+        <Col>
                 <input
                   className="form-input"
                   placeholder="Your email"
@@ -62,7 +71,13 @@ const Login = (props) => {
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <input
+                
+        </Col>
+        </Row>
+
+        <Row>
+        <Col>
+           <input
                   className="form-input"
                   placeholder="******"
                   name="password"
@@ -70,6 +85,12 @@ const Login = (props) => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+
+          </Col>
+          </Row>
+
+          <Row>
+        <Col>
                 <button
                   className="btn btn-block btn-info"
                   style={{ cursor: "pointer" }}
@@ -77,7 +98,10 @@ const Login = (props) => {
                 >
                   Submit
                 </button>
-              </form>
+
+                </Col>
+                </Row>
+              </Form>
             )}
 
             {error && (
@@ -85,10 +109,12 @@ const Login = (props) => {
                 {error.message}
               </div>
             )}
-          </div>
-        </div>
-      </div>
-    </main>
+          
+     
+      </Row>
+    </Container>
+
+    </>
   );
 };
 
