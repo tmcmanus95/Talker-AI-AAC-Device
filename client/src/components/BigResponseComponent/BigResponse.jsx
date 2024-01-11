@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_TOPIC, ADD_RESPONSE } from "../../../utils/mutations";
-// import "./BigResponse.scss";
 import Accordion from 'react-bootstrap/Accordion';
+import "./BigResponse.scss";
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
   const [addTopic, { error: topicError }] = useMutation(ADD_TOPIC);
@@ -62,34 +64,34 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
     <>
      
     <form onSubmit={handleFormSubmit}>
-      <button className="saveTopicBtn">Save Topic and Responses</button>
-      <div className="prompt-text">
-        Prompt Text:
-        <span>{promptText}</span>
-      </div>
-      </form>
 
-      <Accordion defaultActiveKey="{index}">
-      {responses.map((response, index) => (
-        <Accordion.Item eventKey="{index}">
-        <form className="responseButton">
-          <div id={`button-${index}`}>
-          <Accordion.Header>{response}</Accordion.Header>
-            {/* <div>
-              <p>{response}</p>
-            </div> */}
-             <Accordion.Body>
-            <img src={imageURLs[index]} alt={`Response Image ${index}`} />
-            </Accordion.Body>
+    
+      <div className="saveButtonContainer">
+        <Button className="saveTopic saveTopicBtn" variant="secondary" size="sm">Save Topic and Responses</Button>
+        </div>
+        <div className="prompt-text-container">
+          <div className="prompt-text">
+            Prompt Text:
+            <span>{promptText}</span>
           </div>
-        </form>
-        </Accordion.Item>
-      ))}
-   
+        </div>
+      {responses.map((response, index) => (
+        <form className="responseButton" key={index}>
+          <Card style={{ width: '20rem' }} id={`button-${index}`}>
+            <div>
+              <Card.Title>{response}</Card.Title>
+            </div>
+            <Card.Img src={imageURLs[index]} alt={`Response Image ${index}`} />
+          </Card>
 
-    </Accordion>
+        </form>
+
+      ))}
+
+    </form>
     </>
-  );
+  )
+
 };
 
 export default BigResponse;

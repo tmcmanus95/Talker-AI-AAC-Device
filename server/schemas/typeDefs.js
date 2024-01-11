@@ -41,9 +41,11 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addTopic(userId: ID!, topic: String!): User
+    editTopic(topicId: ID!, promptText: String!): Topic
     removeUser: User
     removeTopic(topicId: ID!): User
     addResponse(topicId: ID!, responseText: String, imageURL: String): Topic
+    editResponse(responseId: ID!, responseText: String, imageURL: String): Topic
     removeResponse(responseId: ID!): Topic
     login(email: String!, password: String!): Auth
   }

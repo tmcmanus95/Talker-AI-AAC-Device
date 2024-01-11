@@ -4,6 +4,9 @@ import { useQuery } from "@apollo/client";
 import axios from "axios";
 import BigResponse from "../BigResponseComponent/BigResponse";
 import "./RecordButton.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import { QUERY_ME } from "../../../utils/queries";
 
 export default function RecordButton() {
@@ -76,16 +79,25 @@ export default function RecordButton() {
 
   return (
     <div>
-      <input
+      <Form.Control
+        className="mb-3"
         type="text"
         value={userInput}
         onChange={handleInputChange}
         placeholder="Enter a topic or question"
-        className="input-field"
       />
-      <button className="fetch-button" onClick={fetchAnswersAndImages}>
-        Fetch
-      </button>
+      <div className="button-container">
+        <div className="d-grid gap-2">
+          <Button
+            className="fetch-button"
+            variant="secondary"
+            size="lg"
+            onClick={fetchAnswersAndImages}
+          >
+            Fetch
+          </Button>
+        </div>
+      </div>
 
       <div>
         <BigResponse

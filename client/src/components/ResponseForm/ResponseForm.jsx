@@ -1,3 +1,6 @@
+
+// ResponseForm.jsx
+  // const [response, setResponse] = useState("");
 // // ResponseForm.jsx
 // import { useState, useEffect } from "react";
 // import { useMutation } from "@apollo/client";
@@ -68,13 +71,5 @@
 //                 <button>save</button>
 //               </span>
 //             </div>
-
-//             <img id={`gif-${index}`} alt={`gif-${index}`} />
-//           </div>
-//         </form>
-//       ))}
-//     </>
-//   );
-// };
 
 // export default ResponseForm;
