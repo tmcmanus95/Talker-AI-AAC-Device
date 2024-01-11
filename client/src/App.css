@@ -1,3 +1,16 @@
+
+.logo {
+    display: block;
+    margin-bottom: 1em;
+    max-height: 250px;
+    max-width: 100%;
+  }
+
+#footer {
+    margin: 2em auto;
+    max-width: 100%;
+}
+
 @media (min-width: 0px, max-width:576px) {
   body {
     margin: 0 auto !important;
