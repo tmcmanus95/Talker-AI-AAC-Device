@@ -4,9 +4,9 @@ import { useQuery } from "@apollo/client";
 import axios from "axios";
 import BigResponse from "../BigResponseComponent/BigResponse";
 import "./RecordButton.scss";
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
+import "bootstrap/dist/css/bootstrap.min.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import { QUERY_ME } from "../../../utils/queries";
 
 export default function RecordButton() {
@@ -21,10 +21,6 @@ export default function RecordButton() {
   };
 
   const { loading, data } = useQuery(QUERY_ME);
-  const userId = data?.me._id;
-
-  const fetchAnswers = async () => {
-    const openAIApiKey = "";
 
   useEffect(() => {
     if (!loading && data && data.me) {
@@ -83,22 +79,25 @@ export default function RecordButton() {
 
   return (
     <div>
-      <Form.Control className="mb-3"
+      <Form.Control
+        className="mb-3"
         type="text"
         value={userInput}
         onChange={handleInputChange}
         placeholder="Enter a topic or question"
-      // className="input-field"
       />
       <div className="button-container">
         <div className="d-grid gap-2">
-          <Button className="fetch-button" variant="secondary" size="lg" onClick={fetchAnswers}>
+          <Button
+            className="fetch-button"
+            variant="secondary"
+            size="lg"
+            onClick={fetchAnswersAndImages}
+          >
             Fetch
           </Button>
         </div>
-      <button className="fetch-button" onClick={fetchAnswersAndImages}>
-        Fetch
-      </button>
+      </div>
 
       <div>
         <BigResponse
@@ -108,13 +107,6 @@ export default function RecordButton() {
           imageURLs={imageURLs}
         />
       </div>
-
-      <BigResponse
-        responses={responses}
-        promptText={promptText}
-        userId={userId}
-        imageURLs={imageURLs}
-      />
     </div>
   );
 }
