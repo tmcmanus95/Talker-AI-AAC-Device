@@ -8,8 +8,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { QUERY_ME } from "../../../utils/queries";
+import config from "../../config";
 
 export default function RecordButton() {
+  console.log(config.serverUrl);
   const [userInput, setUserInput] = useState("");
   const [responses, setResponses] = useState([]);
   const [promptText, setPromptText] = useState("");
@@ -31,10 +33,9 @@ export default function RecordButton() {
   const fetchAnswersAndImages = async () => {
     try {
       // Make a request to your server
-      const response = await axios.post(
-        "http://localhost:3000/api/fetchAnswers",
-        { userInput }
-      );
+      const response = await axios.post(`${config.serverUrl}/api/fetchAnswer`, {
+        userInput,
+      });
       console.log("here's the response from axios, ", response);
       console.log(
         "response.data.kwargs.content: ",
@@ -50,8 +51,11 @@ export default function RecordButton() {
         chatGPTResultsArray.map(async (response, index) => {
           try {
             const imageData = await axios.post(
-              "http://localhost:3000/api/fetchImage",
-              { searchTerm: response }
+              `${config.serverUrl}/api/fetchImage`,
+
+              {
+                searchTerm: response,
+              }
             );
             console.log("this is my image data, ", imageData);
             console.log("This is data.photos ", imageData.data.photos);
