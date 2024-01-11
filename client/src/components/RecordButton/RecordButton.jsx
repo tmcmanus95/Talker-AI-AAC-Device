@@ -33,12 +33,9 @@ export default function RecordButton() {
   const fetchAnswersAndImages = async () => {
     try {
       // Make a request to your server
-      const response = await axios.post(
-        `${config.serverUrl}/api/fetchAnswers`,
-        {
-          userInput,
-        }
-      );
+      const response = await axios.post(`${config.serverUrl}/api/fetchAnswer`, {
+        userInput,
+      });
       console.log("here's the response from axios, ", response);
       console.log(
         "response.data.kwargs.content: ",
@@ -55,6 +52,7 @@ export default function RecordButton() {
           try {
             const imageData = await axios.post(
               `${config.serverUrl}/api/fetchImage`,
+
               {
                 searchTerm: response,
               }
