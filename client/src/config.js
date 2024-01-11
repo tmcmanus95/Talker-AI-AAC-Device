@@ -1,6 +1,6 @@
 const config = {
   serverUrl: import.meta.env.PROD
-    ? import.meta.env.REACT_APP_SERVER_URL
+    ? "https://localhost:4000"
     : "http://localhost:3000",
 };
 
