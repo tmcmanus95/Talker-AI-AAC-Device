@@ -32,12 +32,9 @@ export default function RecordButton() {
 
   const fetchAnswersAndImages = async () => {
     try {
-      const response = await axios.post(
-        `${config.serverUrl}/api/fetchAnswers`,
-        {
-          userInput,
-        }
-      );
+      const response = await axios.post(`/api/fetchAnswers`, {
+        userInput,
+      });
 
       console.log("Response from axios:", response.data);
 
@@ -50,12 +47,9 @@ export default function RecordButton() {
       await Promise.all(
         chatGPTResultsArray.map(async (response, index) => {
           try {
-            const imageData = await axios.post(
-              `${config.serverUrl}/api/fetchImage`,
-              {
-                searchTerm: response,
-              }
-            );
+            const imageData = await axios.post(`/api/fetchImage`, {
+              searchTerm: response,
+            });
 
             console.log("Image data:", imageData.data);
 
