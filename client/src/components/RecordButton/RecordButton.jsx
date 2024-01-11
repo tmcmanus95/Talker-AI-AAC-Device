@@ -32,45 +32,41 @@ export default function RecordButton() {
 
   const fetchAnswersAndImages = async () => {
     try {
-      // Make a request to your server
-      const response = await axios.post(`${config.serverUrl}/api/fetchAnswer`, {
-        userInput,
-      });
-      console.log("here's the response from axios, ", response);
-      console.log(
-        "response.data.kwargs.content: ",
-        response.data.kwargs.content
+      const response = await axios.post(
+        `${config.serverUrl}/api/fetchAnswers`,
+        {
+          userInput,
+        }
       );
+
+      console.log("Response from axios:", response.data);
+
       const chatGPTResults = response.data.kwargs.content;
       const chatGPTResultsArray = chatGPTResults.split("\n");
-      console.log("chatGPTResultsArray, ", chatGPTResultsArray);
       setResponses(chatGPTResultsArray);
-      console.log("here is the responses variable, ", responses);
+
       const newImageURLs = [];
+
       await Promise.all(
         chatGPTResultsArray.map(async (response, index) => {
           try {
             const imageData = await axios.post(
               `${config.serverUrl}/api/fetchImage`,
-
               {
                 searchTerm: response,
               }
             );
-            console.log("this is my image data, ", imageData);
-            console.log("This is data.photos ", imageData.data.photos);
-            console.log(
-              "This is data.photos.src.medium: ",
-              imageData.data.photos[0].src.medium
-            );
+
+            console.log("Image data:", imageData.data);
+
             const imageSrc =
               imageData.data.photos.length > 0
                 ? imageData.data.photos[0].src.medium
                 : null;
+
             newImageURLs[index] = imageSrc;
-            console.log("This is my imageSrc, ", imageSrc);
-          } catch (error) {
-            console.error("Error fetching Pexels data:", error);
+          } catch (imageError) {
+            console.error("Error fetching image data:", imageError);
           }
         })
       );

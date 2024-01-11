@@ -82,7 +82,7 @@ app.post("/api/fetchAnswers", async (req, res) => {
   }
 });
 
-app.post("/api/fetchImage", async (req, res) => {
+app.post("/api/fetchImages", async (req, res) => {
   console.log(req.body);
   const { searchTerm } = req.body;
 
