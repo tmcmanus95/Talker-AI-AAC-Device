@@ -41,7 +41,7 @@ export default function RecordButton() {
 
       console.log("Response from axios:", response.data);
 
-      const chatGPTResults = response.data.kwargs.content;
+      const chatGPTResults = response.data.kwargs?.content;
       const chatGPTResultsArray = chatGPTResults.split("\n");
       setResponses(chatGPTResultsArray);
 
