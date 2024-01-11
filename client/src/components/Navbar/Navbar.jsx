@@ -16,27 +16,13 @@ export default function NavbarMain() {
           {Auth.loggedIn() ? 
           (
             <>
-           
-              <Link to="/me">
-                <button>View My Profile</button>
-              </Link>
-              <button onClick={logout}>
-                Logout
-              </button>
+              <Link to="/me"><button>View My Profile</button></Link>
+              <button onClick={logout}>Logout</button>
             </>
           ) : (
             <>
-
-<Link to="/login">
-              <button>Login</button>
-</Link>
-            
-
-              <Link to="/signup">
-              <button>
-                Signup
-                </button>
-              </Link>
+            <Link to="/login"><button>Login</button></Link>
+            <Link to="/signup"><button>Signup</button></Link>
             </>
           )}
    
