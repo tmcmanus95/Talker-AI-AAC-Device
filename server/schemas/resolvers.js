@@ -52,8 +52,7 @@ const resolvers = {
     removeUser: async (parent, { userId }) => {
       return User.findOneAndDelete({ _id: userId });
     },
-    // throw AuthenticationError;
-    // },
+
     addTopic: async (parent, { userId, topic }, context) => {
       try {
         const newTopic = await Topic.create({ promptText: topic });
@@ -79,6 +78,20 @@ const resolvers = {
       } catch (error) {
         console.error(error);
         throw new Error("Failed to add topic to user");
+      }
+    },
+    editTopic: async (parent, { topicId, promptText }, context) => {
+      try {
+        const updatedTopic = await Topic.findByIdAndUpdate(
+          topicId,
+          { $set: { promptText } },
+          { new: true }
+        );
+        console.log("heres my updated topic!: ", updatedTopic);
+        return updatedTopic;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Failed to edit topic");
       }
     },
     removeTopic: async (parent, { topicId }, context) => {
@@ -116,6 +129,20 @@ const resolvers = {
       } catch (error) {
         console.error(error);
         throw new Error("Failed to add response to Topic");
+      }
+    },
+    editResponse: async (parent, { responseId, responseText }, context) => {
+      try {
+        const updatedResponse = await Response.findByIdAndUpdate(
+          responseId,
+          { $set: { responseText } },
+          { new: true }
+        );
+        console.log("heres my updated topic!: ", updatedResponse);
+        return updatedResponse;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Failed to edit response");
       }
     },
     removeResponse: async (parent, { responseId }, context) => {
