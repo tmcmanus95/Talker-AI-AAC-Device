@@ -1,6 +1,6 @@
 const config = {
   serverUrl:
-    import.meta.env.MODE === "production"
+    process.env.NODE_ENV === "production"
       ? process.env.MONGODB_URI
       : "http://localhost:3000",
 };
