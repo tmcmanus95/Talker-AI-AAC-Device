@@ -59,16 +59,18 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <button>Save Topic and Responses</button>
-      <div className="prompt-text-container">
-      <div className="prompt-text">
-        Prompt Text:
-        <span>{promptText}</span>
-      </div>
-      </div>
+      <div className="saveButtonContainer">
+        <Button className="saveTopic" variant="secondary" size="sm">Save Topic and Responses</Button>
+        </div>
+        <div className="prompt-text-container">
+          <div className="prompt-text">
+            Prompt Text:
+            <span>{promptText}</span>
+          </div>
+        </div>
       {responses.map((response, index) => (
         <form className="responseButton" key={index}>
-          <Card style= {{ width: '20rem' }} id={`button-${index}`}>
+          <Card style={{ width: '20rem' }} id={`button-${index}`}>
             <div>
               <Card.Title>{response}</Card.Title>
             </div>

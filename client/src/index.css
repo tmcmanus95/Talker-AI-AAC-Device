@@ -72,4 +72,5 @@ button:focus-visible {
   margin-right: auto;
   width: 50%;
   max-height: 100px;
+  margin-bottom: 4px;
 }

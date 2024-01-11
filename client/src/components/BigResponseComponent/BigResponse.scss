@@ -36,6 +36,19 @@ img {
   box-shadow: 5px 5px 5px powderblue;
 }
 
+.saveTopic {
+    max-height: 100px;
+    padding: 4px;
+    margin: 0px 4px 4px 4px;
+}
+
+.saveButtonContainer {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
 // .input-field {
 //   width: 50vh;
 //   height: 25px;

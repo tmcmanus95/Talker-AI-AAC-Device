@@ -86,22 +86,22 @@ export default function RecordButton() {
         value={userInput}
         onChange={handleInputChange}
         placeholder="Enter a topic or question"
-        // className="input-field"
+      // className="input-field"
       />
       <div className="button-container">
-      <div className="d-grid gap-2">
-      <Button className="fetch-button" variant="primary" size ="lg" onClick={fetchAnswers}>
-        Fetch
-      </Button>
-      </div>
+        <div className="d-grid gap-2">
+          <Button className="fetch-button" variant="secondary" size="lg" onClick={fetchAnswers}>
+            Fetch
+          </Button>
+        </div>
       </div>
 
-        <BigResponse
-          responses={responses}
-          promptText={promptText}
-          userId={userId}
-          imageURLs={imageURLs}
-        />
+      <BigResponse
+        responses={responses}
+        promptText={promptText}
+        userId={userId}
+        imageURLs={imageURLs}
+      />
     </div>
   );
 }
