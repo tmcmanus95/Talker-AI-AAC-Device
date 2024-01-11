@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_TOPIC, ADD_RESPONSE } from "../../../utils/mutations";
-import "./BigResponse.scss";
+// import "./BigResponse.scss";
+import Accordion from 'react-bootstrap/Accordion';
 
 const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
   const [addTopic, { error: topicError }] = useMutation(ADD_TOPIC);
@@ -55,24 +56,39 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
     }
   };
 
+
   return (
+
+    <>
+     
     <form onSubmit={handleFormSubmit}>
       <button className="saveTopicBtn">Save Topic and Responses</button>
       <div className="prompt-text">
         Prompt Text:
         <span>{promptText}</span>
       </div>
+      </form>
+
+      <Accordion defaultActiveKey="{index}">
       {responses.map((response, index) => (
-        <form className="responseButton" key={index}>
+        <Accordion.Item eventKey="{index}">
+        <form className="responseButton">
           <div id={`button-${index}`}>
-            <div>
+          <Accordion.Header>{response}</Accordion.Header>
+            {/* <div>
               <p>{response}</p>
-            </div>
+            </div> */}
+             <Accordion.Body>
             <img src={imageURLs[index]} alt={`Response Image ${index}`} />
+            </Accordion.Body>
           </div>
         </form>
+        </Accordion.Item>
       ))}
-    </form>
+   
+
+    </Accordion>
+    </>
   );
 };
 

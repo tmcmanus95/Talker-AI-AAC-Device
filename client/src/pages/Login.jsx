@@ -60,7 +60,7 @@ const Login = (props) => {
                 <Link to="/me">back to the homepage.</Link>
               </p>
             ) : (
-              <Form onSubmit={handleFormSubmit}>
+              <Form onSubmit={handleFormSubmit} id="loginForm">
                 <Row>
         <Col>
                 <input

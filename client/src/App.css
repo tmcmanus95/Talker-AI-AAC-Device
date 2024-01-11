@@ -1,6 +1,6 @@
 @media (min-width:0px) {
 
-    body, .container {
+    body {
         margin: 0 auto !important;
         align-items: center !important;
         display: block !important;
@@ -10,6 +10,12 @@
     nav {
         padding: 0.5em 2em !important;
         width: 100% !important;
+    }
+
+    input {
+        padding: 1em !important;
+        width: 80% !important;
+        margin: 1em 2em;
     }
 
     .logo{
@@ -30,7 +36,7 @@
         width: 100% !important;
     }
 
-    Button, Input {
+    Button {
         width: 80% !important;
         margin: 0.5em;
         
@@ -43,11 +49,11 @@
 
     .fetch-button {
         background-color: powderblue !important;
+        margin: 1em 2em;
     }
 
-    .saveTopicBtn {
+    form button.saveTopicBtn {
         background-color: purple !important;
-        margin-bottom: 2em !important;
     }
 
     p.footer {
@@ -55,21 +61,54 @@
         font-size: 80%;
         width: 100% !important;
     }
+
+    .accordion-collapse.collapse.show {
+        display: block;
+    }
+    
+    .accordion-collapse.collapse {
+        display: none;
+    }
+
+    .accordion-item {
+        display: flex;
+    }
+
+    .accordion-body img {
+        max-width: 100%;
+    }
+    
+
+    .prompt-text {
+        margin-top: 1em;
+    }
     
 
  }
 
  @media (max-width:576px) {
 
-    body, Container {
+    body {
         margin: 0 auto !important;
         align-items: center !important;
         display: block !important;
     }
 
+    container {
+
+    }
+
+
+
     nav {
         padding: 0.5em 2em !important;
         width: 100% !important;
+    }
+
+    input {
+        padding: 1em !important;
+        width: 80% !important;
+        margin: 1em 2em;
     }
 
     .logo{
@@ -90,7 +129,16 @@
         width: 100% !important;
     }
 
-    Button, Input {
+    #loginForm {
+        padding: 0em 0em !important;
+    }
+
+    #loginForm button.btn {
+        margin: 1em 2em !important;
+
+    }
+
+    Button {
         width: 80% !important;
         margin: 0.5em;
         
@@ -103,9 +151,10 @@
 
     .fetch-button {
         background-color: powderblue !important;
+        margin: 1em 2em !important;
     }
 
-    .saveTopicBtn {
+    form button.saveTopicBtn {
         background-color: purple !important;
     }
 
@@ -113,6 +162,46 @@
         padding: 1em 2em 1em 2em !important;
         font-size: 80%;
         width: 100% !important;
+    }
+
+    .accordion-collapse.collapse.show {
+        display: block;
+    }
+    
+    .accordion-collapse.collapse {
+        display: none;
+    }
+
+    .prompt-text {
+        margin-top: 1em;
+    }
+
+    #savedTopicsSection {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    #savedTopicsSection ul {
+        max-width: 100% !important;
+        width: 100% !important;
+        display: block;
+        margin: 0em 0em !important;
+        padding: 0em 0em !important;
+    }
+
+    #savedTopicsSection ul li p, #savedTopicsSection h4 {
+        max-width: 100% !important;
+    }
+
+    #savedTopicsSection ul li {
+        max-width: 100% !important;
+        display: block;
+    }
+
+    #savedTopicsSection img {
+        max-width: 90% !important;
+        padding: 0 0 !important;
+        margin: 0 auto !important;
     }
 
  }
