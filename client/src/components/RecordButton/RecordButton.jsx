@@ -42,6 +42,14 @@ export default function RecordButton() {
       console.log("Response from axios:", response.data);
 
       const chatGPTResults = response.data.kwargs?.content;
+
+      if (!chatGPTResults) {
+        console.error(
+          "Error: 'content' property is undefined in the response data."
+        );
+        return;
+      }
+
       const chatGPTResultsArray = chatGPTResults.split("\n");
       setResponses(chatGPTResultsArray);
 
@@ -59,12 +67,15 @@ export default function RecordButton() {
 
             console.log("Image data:", imageData.data);
 
-            const imageSrc =
-              imageData.data.photos.length > 0
-                ? imageData.data.photos[0].src.medium
-                : null;
-
-            newImageURLs[index] = imageSrc;
+            if (imageData.data.photos && imageData.data.photos.length > 0) {
+              const imageSrc = imageData.data.photos[0].src.medium;
+              newImageURLs[index] = imageSrc;
+            } else {
+              console.warn(
+                "No photos found in image data for searchTerm:",
+                response
+              );
+            }
           } catch (imageError) {
             console.error("Error fetching image data:", imageError);
           }
