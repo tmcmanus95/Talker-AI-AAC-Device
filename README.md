@@ -1,7 +1,7 @@
 # AI Powered AAC Device
 
 # Elevator Pitch
- Do you or a loved one have an impairment or disability with severe communication disorders?
+ Do you or someone that you know have an impairment or disability with severe communication disorders?
  If so, than the talker app is perfect for you! This app makes communication very simple
  by providing you with pictures and text to speech as responses to any question you might have. 
  Just ask a question in the app to get started today! 
@@ -45,6 +45,8 @@ https://ai-aac-db2.onrender.com/
 - https://nanonets.com/blog/langchain/
 - https://www.npmjs.com/package/bcrypt
 - https://www.w3schools.com/react/
+- https://expressjs.com/
+- https://sass-lang.com/documentation/
 
 The following files were leveraged and modified from Northwestern Coding Bootcamp's Practice Modules
 
