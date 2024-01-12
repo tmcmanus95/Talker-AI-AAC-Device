@@ -6,7 +6,7 @@ export default function Header() {
   <Container>
   <Row>
     <Col>
- <a href="/" title="Back to Homepage"><img class="logo" src="../../../public/talker-logo-whitebg.png" alt="Talker App" title="Talker App" /></a>
+ <a href="/" title="Back to Homepage"><img class="logo" src="talker-logo-whitebg.png" alt="Talker App" title="Talker App" /></a>
  </Col>
  </Row>
  </Container>
