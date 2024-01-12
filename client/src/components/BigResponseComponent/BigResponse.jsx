@@ -5,6 +5,7 @@ import Accordion from "react-bootstrap/Accordion";
 import "./BigResponse.scss";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Auth from "../../../utils/auth";
 
 const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
   const [addTopic, { error: topicError }] = useMutation(ADD_TOPIC);
@@ -64,6 +65,8 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
   return (
     <>
       <form onSubmit={handleFormSubmit}>
+
+      {Auth.loggedIn() ? 
         <div className="saveButtonContainer">
           <Button
             className="saveTopic saveTopicBtn"
@@ -74,12 +77,18 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
             Save Topic and Responses
           </Button>
         </div>
+
+        : (
+
         <div className="prompt-text-container">
           <div className="prompt-text">
             Prompt Text:
             <span>{promptText}</span>
           </div>
         </div>
+
+)}
+
         {responses.map((response, index) => (
           <form
             onClick={handleSpeak(response)}

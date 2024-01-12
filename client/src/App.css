@@ -51,11 +51,10 @@
   Button {
     width: 80% !important;
     margin: 0.5em;
-  }
-
-  Button {
     background-color: darkslategray !important;
     color: #ffffff;
+    width: 100% !important;
+    display: block !important;
   }
 
   .fetch-button {
