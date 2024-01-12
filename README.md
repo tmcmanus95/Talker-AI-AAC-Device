@@ -17,6 +17,11 @@ https://github.com/project3-AAC/AAC-Conversation-Device
 https://ai-aac-db2.onrender.com/
 
 # Screenshots
+
+![Alt text](image.png)
+
+![Alt text](image-1.png)
+
 # Technologies
 
 - JavaScript
