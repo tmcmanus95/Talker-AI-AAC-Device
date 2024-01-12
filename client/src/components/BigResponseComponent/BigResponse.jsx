@@ -10,6 +10,7 @@ import { QUERY_ME } from "../../../utils/queries";
 import "./BigResponse.scss";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Auth from "../../../utils/auth";
 
 export default function BigResponse({
   userId,
@@ -92,6 +93,8 @@ export default function BigResponse({
   ) : (
     <>
       <form onSubmit={handleFormSubmit}>
+
+      {Auth.loggedIn() ? 
         <div className="saveButtonContainer">
           <Button
             className="saveTopic saveTopicBtn"
@@ -102,6 +105,9 @@ export default function BigResponse({
             Save Topic and Responses
           </Button>
         </div>
+
+        : (
+
         <div className="prompt-text-container">
           <div className="prompt-text">
             <span>{promptText}</span>
@@ -114,6 +120,9 @@ export default function BigResponse({
             )}
           </div>
         </div>
+
+)}
+
         {responses.map((response, index) => (
           <div
             key={index}

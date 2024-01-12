@@ -1,8 +1,21 @@
 .logo {
-  display: block;
-  margin-bottom: 1em;
-  max-height: 250px;
-  max-width: 100%;
+    display: block;
+    margin: 2em auto;
+    max-height: 250px;
+    max-width: 100%;
+  }
+
+  .prompt-text {
+    font-size: medium;
+    COLOR: purple;
+    background-color: #cccccc;
+    padding: 1em;
+    margin: 1em auto !important;
+    width: 100%;
+}
+
+span.promptText {
+    padding-left: 0.5em;
 }
 
 #footer {
@@ -50,11 +63,10 @@
   Button {
     width: 80% !important;
     margin: 0.5em;
-  }
-
-  Button {
     background-color: darkslategray !important;
     color: #ffffff;
+    width: 100% !important;
+    display: block !important;
   }
 
   .fetch-button {
@@ -88,7 +100,6 @@
     max-width: 100%;
   }
 
-  .prompt-text {
-    margin-top: 1em;
-  }
+  
+
 }
