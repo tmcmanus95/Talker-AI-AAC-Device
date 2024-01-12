@@ -7,7 +7,8 @@ import Header from "../components/Header/Header";
 import Navbar from "../components/Navbar/Navbar";
 import RecordButton from "../components/RecordButton/RecordButton";
 
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import SavedTopics from "../components/SavedTopics/SavedTopics";
 
 // import Auth from "../utils/auth";
 
@@ -20,43 +21,24 @@ const Profile = () => {
   console.log("topics, ", topics);
   console.log("username, ", username);
   return (
-<>
-    <Header />
-    <Navbar />
-    <RecordButton />
+    <>
+      <Header />
+      <Navbar />
+      <RecordButton />
 
-    <hr />
+      <hr />
 
-    <Container>
-      <Row>
-        <Col>
-      <h1> Welcome, {username}!</h1>
+      <Container>
+        <Row>
+          <Col>
+            <h1> Welcome, {username}!</h1>
 
-      <p className="intro">Below are your saved topics and responses:</p>
-
-      <div>
-        {topics &&
-          topics.map((topic) => (
-            <div key={topic.topic._id}>
-              <div>
-                <h4>{topic.topic.promptText}</h4>
-                <ul>
-                  {topic.topic.responses.map((response) => (
-                    <li key={response._id}>
-                      <p>{response.responseText}</p>
-                      {response.imageURL && <img src={response.imageURL} />}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-      </div>
-      </Col>
-      </Row>
-    </Container>
+            <p className="intro">Below are your saved topics and responses:</p>
+            <SavedTopics username={username} topics={topics} />
+          </Col>
+        </Row>
+      </Container>
     </>
-
   );
 };
 
