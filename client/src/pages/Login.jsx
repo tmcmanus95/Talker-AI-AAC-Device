@@ -47,7 +47,6 @@ const Login = (props) => {
   return (
 <>
     <Header />
-    {/* <Navbar /> */}
 
     <Container>
       <Row>

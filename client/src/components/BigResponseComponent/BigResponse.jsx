@@ -83,7 +83,7 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
         <div className="prompt-text-container">
           <div className="prompt-text">
             Prompt Text:
-            <span>{promptText}</span>
+            <span className="promptText">{promptText}</span>
           </div>
         </div>
 
