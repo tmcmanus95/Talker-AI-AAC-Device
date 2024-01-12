@@ -12,9 +12,11 @@ impairment and disability patterns of individuals with severe expressive communi
  When asked a question in the app, the OpenAI pulls responses for 
  the question asked along with pictures and a text to speech button 
 # Application Link
+https://github.com/project3-AAC/AAC-Conversation-Device
+
+https://ai-aac-db2.onrender.com/
 
 # Screenshots
-
 # Technologies
 
 - JavaScript
