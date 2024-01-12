@@ -37,6 +37,9 @@ https://ai-aac-db2.onrender.com/
 - MongoDB atlas https://www.youtube.com/watch?v=lyOgmd8U99c&ab_channel=FullStackCoder
 - Render Deployment https://www.google.com/search?q=how+to+deploy+from+github+to+render&sca_esv=595826640&sxsrf=AM9HkKlavTzUNV05FoKhBG3VP3IToqm9PQ%3A1704417685891&source=hp&ei=lVmXZbmENI-IptQPu4yN-AM&iflsig=AO6bgOgAAAAAZZdnpWCmvNF0ZrtOQqrbrCqMEig2a7Go&ved=0ahUKEwj5otvVisWDAxUPhIkEHTtGAz8Q4dUDCAw&uact=5&oq=how+to+deploy+from+github+to+render&gs_lp=Egdnd3Mtd2l6IiNob3cgdG8gZGVwbG95IGZyb20gZ2l0aHViIHRvIHJlbmRlcjIFECEYoAEyBRAhGKABMgUQIRigATIIECEYFhgeGB1Iuk9QAFjSTnAAeACQAQCYAWGgAbkRqgECMzW4AQPIAQD4AQHCAgoQIxiABBiKBRgnwgIQEC4YgAQYigUYQxjHARjRA8ICERAuGIAEGLEDGIMBGMcBGNEDwgILEAAYgAQYsQMYgwHCAg4QLhiABBixAxjHARjRA8ICChAAGIAEGIoFGEPCAgUQABiABMICBRAuGIAEwgILEAAYgAQYigUYsQPCAgsQABiABBiKBRiRAsICCBAAGIAEGLEDwgILEAAYgAQYigUYhgPCAgYQABgWGB7CAggQABgWGB4YCg&sclient=gws-wiz#fpstate=ive&vld=cid:75ddf26a,vid:mJASUXzjMQA,st:0
 - Bootstrap https://www.w3schools.com/bootstrap/default.asp
+- https://nanonets.com/blog/langchain/
+- https://www.npmjs.com/package/bcrypt
+- https://www.w3schools.com/react/
 
 The following files were leveraged and modified from Northwestern Coding Bootcamp's Practice Modules
 
