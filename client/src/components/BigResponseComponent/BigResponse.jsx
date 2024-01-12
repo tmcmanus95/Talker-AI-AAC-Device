@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_TOPIC, ADD_RESPONSE } from "../../../utils/mutations";
-import Accordion from "react-bootstrap/Accordion";
+import {
+  ADD_TOPIC,
+  ADD_RESPONSE,
+  REMOVE_TOPIC,
+} from "../../../utils/mutations";
+import { QUERY_ME } from "../../../utils/queries";
+
 import "./BigResponse.scss";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
+export default function BigResponse({
+  userId,
+  promptText,
+  responses,
+  imageURLs,
+}) {
   const [addTopic, { error: topicError }] = useMutation(ADD_TOPIC);
+  const [removeTopic, { error }] = useMutation(REMOVE_TOPIC);
   const [addResponse, { error: responseError }] = useMutation(ADD_RESPONSE);
+  const [savedTopic, setSavedTopic] = useState(false);
+  const [removedTopic, setRemovedtopic] = useState(false);
   const [topicId, setTopicId] = useState(null);
   const [response, setResponse] = useState("");
 
@@ -17,14 +30,27 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
     window.speechSynthesis.speak(utterance);
   };
 
-  const handleSpeak = (text) => {
-    return () => {
-      speak(text);
-    };
+  const handleRemoveTopic = async (topicId) => {
+    console.log("I'm in the handleRemoteTopic, here's my topicId: ", topicId);
+    try {
+      const { data } = await removeTopic({
+        variables: { topicId },
+      });
+      console.log("remove topic data, ", data);
+      console.log("I have removed the topic!");
+      setRemovedtopic(true);
+      setTopicId(null);
+      setResponse("");
+    } catch (err) {
+      console.error(err);
+    }
   };
-  console.log("this is the promptText,", promptText);
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    if (removedTopic) {
+      return;
+    }
 
     const topic = promptText;
 
@@ -51,17 +77,19 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
               imageURL: imageURLs[i],
             },
           });
+          setSavedTopic(true);
         } catch (responseError) {
           console.error(`Error adding response at index ${i}:`, responseError);
         }
       }
-      setResponse("");
     } catch (topicError) {
       console.error("Error adding topic:", topicError);
     }
   };
 
-  return (
+  return removedTopic ? (
+    <></>
+  ) : (
     <>
       <form onSubmit={handleFormSubmit}>
         <div className="saveButtonContainer">
@@ -76,15 +104,21 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
         </div>
         <div className="prompt-text-container">
           <div className="prompt-text">
-            Prompt Text:
             <span>{promptText}</span>
+            {savedTopic ? (
+              <Button onClick={() => handleRemoveTopic(topicId)}>
+                Remove Topic and Responses
+              </Button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         {responses.map((response, index) => (
-          <form
-            onClick={handleSpeak(response)}
-            className="responseButton"
+          <div
             key={index}
+            onClick={() => speak(response)}
+            className="responseButton"
           >
             <Card style={{ width: "20rem" }} id={`button-${index}`}>
               <div>
@@ -95,11 +129,9 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
                 alt={`Response Image ${index}`}
               />
             </Card>
-          </form>
+          </div>
         ))}
       </form>
     </>
   );
-};
-
-export default BigResponse;
+}

@@ -38,21 +38,14 @@ export const ADD_RESPONSE = gql`
 `;
 
 export const REMOVE_TOPIC = gql`
-  mutation removeTopic($topic: String!) {
-    removeTopic(topic: $topic) {
+  mutation Mutation($topicId: ID!) {
+    removeTopic(topicId: $topicId) {
       _id
-      name
-      topics
-    }
-  }
-`;
-
-export const REMOVE_RESPONSE = gql`
-  mutation removeResponse($response: String!) {
-    removeResponse(response: $response) {
-      _id
-      topic
-      responses
+      savedTopics {
+        topic {
+          _id
+        }
+      }
     }
   }
 `;
