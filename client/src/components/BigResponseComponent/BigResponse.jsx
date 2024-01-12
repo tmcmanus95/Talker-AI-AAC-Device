@@ -97,10 +97,10 @@ const BigResponse = ({ userId, promptText, responses, imageURLs }) => {
           >
             <Card style={{ width: "20rem" }} id={`button-${index}`}>
               <div>
-                <Card.Title>{response}</Card.Title>
+                <Card.Title>{response.responseTet}</Card.Title>
               </div>
               <Card.Img
-                src={imageURLs[index]}
+                src={response.imageURLs[index]}
                 alt={`Response Image ${index}`}
               />
             </Card>

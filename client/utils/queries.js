@@ -42,3 +42,16 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_SINGLE_TOPIC = gql`
+  query Query($topicId: ID!) {
+    topic(topicId: $topicId) {
+      promptText
+      responses {
+        _id
+        responseText
+        imageURL
+      }
+    }
+  }
+`;
