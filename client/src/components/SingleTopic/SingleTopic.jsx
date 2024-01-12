@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_SINGLE_TOPIC } from "../../../utils/queries";
+import "./SingleTopic.scss";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
@@ -32,7 +33,7 @@ export default function SingleTopic() {
           <span>
             {responses.map((response, index) => (
               <form
-                onClick={handleSpeak(response.responseText)} // Access responseText
+                onClick={handleSpeak(response.responseText)}
                 className="responseButton"
                 key={index}
               >
@@ -41,7 +42,7 @@ export default function SingleTopic() {
                     <Card.Title>{response.responseText}</Card.Title>
                   </div>
                   <Card.Img
-                    src={response.imageURL} // Use response.imageURL
+                    src={response.imageURL}
                     alt={`Response Image ${index}`}
                   />
                 </Card>

@@ -22,8 +22,6 @@ const Profile = () => {
   console.log("username, ", username);
   return (
     <>
-      <Header />
-      <Navbar />
       <RecordButton />
 
       <hr />
