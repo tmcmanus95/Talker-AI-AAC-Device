@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { useMutation } from "@apollo/client";
 import { REMOVE_TOPIC } from "../../../utils/mutations";
+import { QUERY_ME } from "../../../utils/queries";
 
 export default function SavedTopics({ username, topics }) {
-  const [removeTopic, { error }] = useMutation(REMOVE_TOPIC);
+  const [removeTopic, { error }] = useMutation(REMOVE_TOPIC, {
+    refetchQueries: [QUERY_ME, "me"],
+  });
 
   const handleRemoveTopic = async (topicId) => {
     console.log("I'm in the handleRemoteTopic, here's my topicId: ", topicId);
@@ -26,7 +29,7 @@ export default function SavedTopics({ username, topics }) {
         <div>
           {topics &&
             topics.map((topic) => (
-              <Link
+              <div
                 to={topic.topic._id}
                 key={topic.topic._id}
                 className="savedTopicBlock"
@@ -35,6 +38,9 @@ export default function SavedTopics({ username, topics }) {
                   <h4 className="savedTopicPromptText">
                     {topic.topic.promptText}
                   </h4>
+                  <button onClick={() => handleRemoveTopic(topic.topic._id)}>
+                    Remove Topic
+                  </button>
                   <div>
                     {topic.topic.responses.map((response) => (
                       <li className="savedResponseContainer" key={response._id}>
@@ -52,7 +58,7 @@ export default function SavedTopics({ username, topics }) {
                     ))}
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
         </div>
       </div>
