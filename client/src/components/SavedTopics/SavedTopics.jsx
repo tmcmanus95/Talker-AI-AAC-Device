@@ -10,7 +10,8 @@ export default function SavedTopics({ username, topics }) {
     refetchQueries: [QUERY_ME, "me"],
   });
 
-  const handleRemoveTopic = async (topicId) => {
+  const handleRemoveTopic = async (e, topicId) => {
+    e.preventDefault();
     console.log("I'm in the handleRemoteTopic, here's my topicId: ", topicId);
     try {
       const { data } = await removeTopic({
@@ -29,8 +30,8 @@ export default function SavedTopics({ username, topics }) {
         <div>
           {topics &&
             topics.map((topic) => (
-              <div
-                to={topic.topic._id}
+              <Link
+                to={`${topic.topic._id}`}
                 key={topic.topic._id}
                 className="savedTopicBlock"
               >
@@ -38,7 +39,12 @@ export default function SavedTopics({ username, topics }) {
                   <h4 className="savedTopicPromptText">
                     {topic.topic.promptText}
                   </h4>
-                  <button onClick={() => handleRemoveTopic(topic.topic._id)}>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRemoveTopic(e, topic.topic._id);
+                    }}
+                  >
                     Remove Topic
                   </button>
                   <div>
@@ -58,7 +64,7 @@ export default function SavedTopics({ username, topics }) {
                     ))}
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
         </div>
       </div>
