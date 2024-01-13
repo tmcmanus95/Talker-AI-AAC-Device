@@ -17,6 +17,7 @@ export default function BigResponse({
   promptText,
   responses,
   imageURLs,
+  isFetchedAnswers,
 }) {
   const [addTopic, { error: topicError }] = useMutation(ADD_TOPIC);
   const [removeTopic, { error }] = useMutation(REMOVE_TOPIC);
@@ -93,35 +94,32 @@ export default function BigResponse({
   ) : (
     <>
       <form onSubmit={handleFormSubmit}>
-
-      {Auth.loggedIn() ? 
-        <div className="saveButtonContainer">
-          <Button
-            className="saveTopic saveTopicBtn"
-            variant="secondary"
-            size="sm"
-            type="submit"
-          >
-            Save Topic and Responses
-          </Button>
-        </div>
-
-        : (
-
-        <div className="prompt-text-container">
-          <div className="prompt-text">
-            <span>{promptText}</span>
-            {savedTopic ? (
-              <Button onClick={() => handleRemoveTopic(topicId)}>
-                Remove Topic and Responses
-              </Button>
-            ) : (
-              <></>
-            )}
+        {Auth.loggedIn() && isFetchedAnswers ? (
+          <div className="saveButtonContainer">
+            <Button
+              className="saveTopic saveTopicBtn"
+              variant="secondary"
+              size="sm"
+              type="submit"
+            >
+              Save Topic and Responses
+            </Button>
+            <div className="prompt-text-container">
+              <div className="prompt-text">
+                <span>{promptText}</span>
+                {savedTopic ? (
+                  <Button onClick={() => handleRemoveTopic(topicId)}>
+                    Remove Topic and Responses
+                  </Button>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
-
-)}
+        ) : (
+          <></>
+        )}
 
         {responses.map((response, index) => (
           <div

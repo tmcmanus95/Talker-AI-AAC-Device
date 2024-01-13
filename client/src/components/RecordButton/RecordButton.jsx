@@ -17,6 +17,7 @@ export default function RecordButton() {
   const [promptText, setPromptText] = useState("");
   const [imageURLs, setImageURLs] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [isFetchedAnswers, setIsFetchedAnswers] = useState(false);
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
@@ -71,7 +72,7 @@ export default function RecordButton() {
               const imageSrc = imageData.data.photos[0].src.medium;
               newImageURLs[index] = imageSrc;
             } else {
-              console.warn(
+              console.log(
                 "No photos found in image data for searchTerm:",
                 response
               );
@@ -83,6 +84,7 @@ export default function RecordButton() {
       );
 
       setImageURLs(newImageURLs);
+      setIsFetchedAnswers(true);
     } catch (error) {
       console.error("Error fetching data from API:", error);
     }
@@ -113,6 +115,7 @@ export default function RecordButton() {
       <div>
         <BigResponse
           responses={responses}
+          isFetchedAnswers={isFetchedAnswers}
           promptText={userInput}
           userId={userId}
           imageURLs={imageURLs}
