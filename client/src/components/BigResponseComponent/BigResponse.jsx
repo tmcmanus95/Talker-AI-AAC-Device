@@ -12,6 +12,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Auth from "../../../utils/auth";
 import EditModal from "../EditModal/EditModal";
+import { QUERY_SINGLE_TOPIC } from "../../../utils/queries";
 
 export default function BigResponse({
   userId,
@@ -29,8 +30,10 @@ export default function BigResponse({
   const [topicId, setTopicId] = useState(null);
   const [responseIds, setResponseIds] = useState([]);
   const [response, setResponse] = useState("");
-  const [removeResponse, { error: removeResponseError }] =
-    useMutation(REMOVE_RESPONSE);
+  const [removeResponse, { error: removeResponseError }] = useMutation(
+    REMOVE_RESPONSE,
+    { refetchQueries: [QUERY_SINGLE_TOPIC, `${topicId}`] }
+  );
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
@@ -57,7 +60,7 @@ export default function BigResponse({
   //   setResponse;
   // };
 
-  const handleRemoveResponse = async (topicId, responseId) => {
+  const handleRemoveResponse = async (topicId, responseId, index) => {
     console.log("here is my topicId, ", topicId);
     console.log("here is my responseId, ", responseId);
 
@@ -183,6 +186,7 @@ export default function BigResponse({
           <EditModal
             className="responseButton"
             addCustomResponse={addCustomResponse}
+            savedTopic={savedTopic}
           />
         ) : (
           <></>

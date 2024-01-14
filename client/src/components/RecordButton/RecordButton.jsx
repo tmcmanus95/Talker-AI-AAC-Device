@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 // import { createClient } from "pexels";
 import axios from "axios";
 import BigResponse from "../BigResponseComponent/BigResponse";
@@ -8,6 +9,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { QUERY_ME } from "../../../utils/queries";
+import { ADD_RESPONSE } from "../../../utils/mutations";
+
 // import config from "../../config";
 
 export default function RecordButton() {
@@ -17,8 +20,8 @@ export default function RecordButton() {
   const [promptText, setPromptText] = useState("");
   const [imageURLs, setImageURLs] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [addResponse, { error: responseError }] = useMutation(ADD_RESPONSE);
   const [isFetchedAnswers, setIsFetchedAnswers] = useState(false);
-
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
   };
@@ -31,7 +34,7 @@ export default function RecordButton() {
     }
   }, [loading, data]);
 
-  const addCustomResponse = (response, imageURL) => {
+  const addCustomResponse = async (response, imageURL) => {
     setResponses([...responses, response]);
     setImageURLs([...imageURLs, imageURL]);
   };

@@ -29,6 +29,10 @@ const router = createBrowserRouter([
         path: "/:topicId",
         element: <SingleTopic />,
       },
+      {
+        path: "me/:topicId",
+        element: <SingleTopic />,
+      },
     ],
   },
 ]);

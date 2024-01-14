@@ -55,11 +55,3 @@ export const QUERY_SINGLE_TOPIC = gql`
     }
   }
 `;
-
-export const REMOVE_TOPIC = gql`
-  mutation Mutation($topicId: ID!) {
-    removeTopic(topicId: $topicId) {
-      _id
-    }
-  }
-`;
