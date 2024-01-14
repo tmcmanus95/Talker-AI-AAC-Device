@@ -1,0 +1,24 @@
+.modalContainer {
+  display: flex;
+  text-align: center;
+}
+.customResponseInput {
+  background-color: blue;
+  font-size: 100px;
+}
+
+.possibleImageContainer {
+  background-color: purple;
+  display: inline-block;
+  width: 20rem;
+}
+
+.possibleImage {
+  margin: 5px;
+  border: 3px solid black;
+}
+
+.possibleImage:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px powderblue;
+}

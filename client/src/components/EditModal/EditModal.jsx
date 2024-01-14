@@ -2,6 +2,7 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
+import "./EditModal.scss";
 
 export default function EditModal({ addCustomResponse }) {
   const [customResponse, setCustomResponse] = useState("");
@@ -43,23 +44,24 @@ export default function EditModal({ addCustomResponse }) {
   const handleSelectImage = (url) => {
     setCustomImageURL(url);
     addCustomResponse(customResponse, url);
+    setModal(!modal);
   };
 
   return (
-    <div>
+    <div className="modalContainer">
       {!modal ? (
         <button onClick={toggleModal}>+</button>
       ) : (
         <div>
           <Form.Control
-            className="mb-3"
+            className="mb-3 customResponseInput"
             type="text"
             value={customResponse}
             onChange={handleInputChange}
             placeholder="Enter a custom response"
           />
           <Form.Control
-            className="mb-3"
+            className="mb-3 customSearchTermInput"
             type="text"
             value={imageSearchTerm}
             onChange={handleImageSearchTermChange}
@@ -72,15 +74,19 @@ export default function EditModal({ addCustomResponse }) {
               size="lg"
               onClick={fetchCustomImageOptions}
             >
-              Add custom Image
+              Search Custom Image
             </Button>
           </div>
           {possibleImageURLs.map((possibleImage) => (
             <div
+              className="possibleImageContainer"
               key={possibleImage.id}
               onClick={() => handleSelectImage(possibleImage.src.medium)}
             >
-              <img src={possibleImage.src.medium}></img>
+              <img
+                className="possibleImage"
+                src={possibleImage.src.medium}
+              ></img>
             </div>
           ))}
           <button onClick={toggleModal}>close</button>
