@@ -31,6 +31,11 @@ export default function RecordButton() {
     }
   }, [loading, data]);
 
+  const addCustomResponse = (response, imageURL) => {
+    setResponses([...responses, response]);
+    setImageURLs([...imageURLs, imageURL]);
+  };
+
   const fetchAnswersAndImages = async () => {
     try {
       const response = await axios.post(
@@ -119,6 +124,7 @@ export default function RecordButton() {
           promptText={userInput}
           userId={userId}
           imageURLs={imageURLs}
+          addCustomResponse={addCustomResponse}
         />
       </div>
     </div>

@@ -145,7 +145,7 @@ const resolvers = {
         throw new Error("Failed to edit response");
       }
     },
-    removeResponse: async (parent, { responseId }, context) => {
+    removeResponse: async (parent, { topicId, responseId }, context) => {
       return Topic.findOneAndUpdate(
         { _id: topicId },
         { $pull: { responses: responseId } },

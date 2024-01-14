@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { useMutation } from "@apollo/client";
 import { REMOVE_TOPIC } from "../../../utils/mutations";
 import { QUERY_ME } from "../../../utils/queries";
+import Auth from "../../../utils/auth";
 
 export default function SavedTopics({ username, topics }) {
   const [removeTopic, { error }] = useMutation(REMOVE_TOPIC, {
@@ -25,7 +26,11 @@ export default function SavedTopics({ username, topics }) {
   };
   return (
     <section className="savedTopicsSection">
-      <h1 className="savedTopicsHeader">{username}'s Saved Topics</h1>
+      {Auth.loggedIn() ? (
+        <h1 className="savedTopicsHeader">{username}'s Saved Topics</h1>
+      ) : (
+        <></>
+      )}
       <div className="savedTopicsContainer">
         <div>
           {topics &&
@@ -36,17 +41,20 @@ export default function SavedTopics({ username, topics }) {
                 className="savedTopicBlock"
               >
                 <div>
-                  <h4 className="savedTopicPromptText">
-                    {topic.topic.promptText}
+                  <h4>
+                    <span className="savedTopicPromptText">
+                      {topic.topic.promptText}
+                    </span>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleRemoveTopic(e, topic.topic._id);
+                      }}
+                    >
+                      X
+                    </button>
                   </h4>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleRemoveTopic(e, topic.topic._id);
-                    }}
-                  >
-                    Remove Topic
-                  </button>
+
                   <div>
                     {topic.topic.responses.map((response) => (
                       <li className="savedResponseContainer" key={response._id}>

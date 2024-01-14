@@ -19,20 +19,57 @@ export const ADD_TOPIC = gql`
         topic {
           promptText
           _id
+          responses {
+            _id
+            responseText
+            imageURL
+          }
         }
       }
     }
   }
 `;
 
+// export const ADD_TOPIC = gql`
+//   mutation Mutation($userId: ID!, $topic: String!) {
+//     addTopic(userId: $userId, topic: $topic) {
+//       savedTopics {
+//         topic {
+//           promptText
+//           responses {
+//             _id
+//             responseText
+//             imageURL
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
+
+// export const ADD_RESPONSE = gql`
+//   mutation Mutation($topicId: ID!, $responseText: String, $imageURL: String) {
+//     addResponse(
+//       topicId: $topicId
+//       responseText: $responseText
+//       imageURL: $imageURL
+//     ) {
+//       _id
+//     }
+//   }
+// `;
+
 export const ADD_RESPONSE = gql`
-  mutation Mutation($topicId: ID!, $responseText: String, $imageURL: String) {
+  mutation Mutation($topicId: ID!, $responseText: String, $imageUrl: String) {
     addResponse(
       topicId: $topicId
       responseText: $responseText
-      imageURL: $imageURL
+      imageURL: $imageUrl
     ) {
       _id
+      responses {
+        _id
+      }
     }
   }
 `;
@@ -45,6 +82,19 @@ export const REMOVE_TOPIC = gql`
         topic {
           _id
         }
+      }
+    }
+  }
+`;
+
+export const REMOVE_RESPONSE = gql`
+  mutation Mutation($topicId: ID!, $responseId: ID!) {
+    removeResponse(topicId: $topicId, responseId: $responseId) {
+      _id
+      promptText
+      responses {
+        _id
+        responseText
       }
     }
   }
