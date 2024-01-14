@@ -60,11 +60,11 @@ export const ADD_TOPIC = gql`
 // `;
 
 export const ADD_RESPONSE = gql`
-  mutation Mutation($topicId: ID!, $responseText: String, $imageUrl: String) {
+  mutation Mutation($topicId: ID!, $responseText: String, $imageURL: String) {
     addResponse(
       topicId: $topicId
       responseText: $responseText
-      imageURL: $imageUrl
+      imageURL: $imageURL
     ) {
       _id
       responses {

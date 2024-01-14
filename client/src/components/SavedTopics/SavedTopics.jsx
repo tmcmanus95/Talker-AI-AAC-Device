@@ -24,6 +24,7 @@ export default function SavedTopics({ username, topics }) {
       console.error(err);
     }
   };
+  console.log("This is my topic, ", topics);
   return (
     <section className="savedTopicsSection">
       {Auth.loggedIn() ? (

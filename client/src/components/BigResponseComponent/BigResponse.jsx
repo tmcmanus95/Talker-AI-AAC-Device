@@ -6,7 +6,6 @@ import {
   REMOVE_TOPIC,
   REMOVE_RESPONSE,
 } from "../../../utils/mutations";
-import { QUERY_ME } from "../../../utils/queries";
 
 import "./BigResponse.scss";
 import Card from "react-bootstrap/Card";
@@ -89,6 +88,7 @@ export default function BigResponse({
 
       for (let i = 0; i < responses.length; i++) {
         try {
+          console.log("here's my imageURLs[i]", imageURLs[i]);
           const responseMutationResult = await addResponse({
             variables: {
               topicId: savedTopicId,
