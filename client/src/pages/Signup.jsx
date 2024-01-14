@@ -43,7 +43,7 @@ const Signup = () => {
 
   return (
 <>
-    <Header />
+    {/* <Header /> */}
     {/* <Navbar /> */}
 
     <Container>
