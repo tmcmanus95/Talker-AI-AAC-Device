@@ -5,6 +5,11 @@
     max-width: 100%;
   }
 
+.navbar-expand {
+    flex-wrap: nowrap;
+    place-content: center !important;
+}
+
   .prompt-text {
     font-size: medium;
     COLOR: purple;
@@ -16,6 +21,23 @@
 
 span.promptText {
     padding-left: 0.5em;
+}
+
+.loginFormContainer {
+  margin: 1em auto;
+  text-align: center;
+}
+
+input.form-input {
+  margin-top: 1em;
+}
+
+.btn-info, .fetch-button {
+  margin-top: 1em;
+  background-color: darkslategray !important;
+  color: #ffffff !important;
+  text-transform: uppercase;
+  font-size: 1rem !important;
 }
 
 #footer {
@@ -60,19 +82,23 @@ span.promptText {
     width: 100% !important;
   }
 
-  Button {
+  /* Button {
     width: 80% !important;
     margin: 0.5em;
     background-color: darkslategray !important;
     color: #ffffff;
     width: 100% !important;
     display: block !important;
-  }
+  } */
 
-  .fetch-button {
-    background-color: powderblue !important;
-    margin: 1em 2em;
+  .btn-info, .fetch-button {
+    margin-top: 1em;
+    background-color: darkslategray !important;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    font-size: 1rem !important;
   }
+  
 
   form button.saveTopicBtn {
     background-color: purple !important;
@@ -100,6 +126,13 @@ span.promptText {
     max-width: 100%;
   }
 
+  .loginFormContainer {
+    margin: 1em auto;
+    text-align: center;
+  }
   
+  input.form-input {
+    margin-top: 1em;
+  }
 
 }

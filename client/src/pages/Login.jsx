@@ -46,7 +46,7 @@ const Login = (props) => {
 
   return (
     <>
-      <Container>
+      <Container className="loginFormContainer">
         <Row>
           <h1>Login</h1>
 
