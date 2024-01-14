@@ -11,12 +11,14 @@ const Home = () => {
   const topics = data?.me.savedTopics;
 
   return (
+    <div class="container">
     <main>
       <div>
         <RecordButton />
         <SavedTopics username={username} topics={topics} />
       </div>
     </main>
+    </div>
   );
 };
 

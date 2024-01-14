@@ -9,6 +9,7 @@ export default function NavbarMain() {
     Auth.logout();
   };
   return (
+    <div class="container">
     <section>
 
       <Navbar>
@@ -30,5 +31,6 @@ export default function NavbarMain() {
       </Navbar>
 
     </section>
+    </div>
   );
 }
