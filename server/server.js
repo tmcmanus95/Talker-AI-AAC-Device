@@ -33,7 +33,7 @@ const fetchAnswers = async (userInput) => {
   const llm = new ChatOpenAI({ openAIApiKey });
 
   const promptTemplate =
-    "You are in a AAC device. Give 10 1-5 word responses to the following topic or question to be used as a button to be pressed by an adult with developmental disabilities. do not start the response with a number separate each new response with a new line: {promptText}";
+    "You are in a AAC device. Give 6 1-5 word responses to the following topic or question to be used as a button to be pressed by an adult with developmental disabilities. do not start the response with a number separate each new response with a new line: {promptText}";
 
   const responsePrompt = PromptTemplate.fromTemplate(promptTemplate);
   const responseChain = responsePrompt.pipe(llm);
@@ -69,6 +69,20 @@ const fetchImages = async (searchTerm) => {
   }
 };
 
+const fetchCustomImages = async (searchTerm) => {
+  const query = searchTerm;
+
+  const client = createClient(process.env.PEXELS_API_KEY);
+
+  try {
+    const data = await client.photos.search({ query, per_page: 10 });
+    console.log("Here sht image data I got back, ", data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching Pexels data:", error);
+  }
+};
+
 app.post("/api/fetchAnswers", async (req, res) => {
   console.log(req.body);
   const { userInput } = req.body;
@@ -88,6 +102,19 @@ app.post("/api/fetchImages", async (req, res) => {
 
   try {
     const imageResult = await fetchImages(searchTerm);
+    res.json(imageResult);
+  } catch (error) {
+    console.error("Error fetching data from API:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/api/fetchCustomImages", async (req, res) => {
+  console.log(req.body);
+  const { searchTerm } = req.body;
+
+  try {
+    const imageResult = await fetchCustomImages(searchTerm);
     res.json(imageResult);
   } catch (error) {
     console.error("Error fetching data from API:", error);

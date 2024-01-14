@@ -46,7 +46,7 @@ const typeDefs = `
     removeTopic(topicId: ID!): User
     addResponse(topicId: ID!, responseText: String, imageURL: String): Topic
     editResponse(responseId: ID!, responseText: String, imageURL: String): Topic
-    removeResponse(responseId: ID!): Topic
+    removeResponse(topicId: ID!, responseId: ID!): Topic
     login(email: String!, password: String!): Auth
   }
 `;
