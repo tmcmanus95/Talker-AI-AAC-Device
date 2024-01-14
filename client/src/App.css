@@ -1,29 +1,30 @@
 .logo {
-    display: block;
-    margin: 2em auto;
-    max-height: 250px;
-    max-width: 100%;
-  }
-
-.navbar-expand {
-    flex-wrap: nowrap;
-    place-content: center !important;
+  display: block;
+  margin: 2em auto;
+  max-height: 250px;
+  max-width: 100%;
 }
 
-  .prompt-text {
-    font-size: medium;
-    COLOR: purple;
-    background-color: #cccccc;
-    padding: 1em;
-    margin: 1em auto !important;
-    width: 100%;
+.navbar-expand {
+  flex-wrap: nowrap;
+  place-content: center !important;
+}
+
+.prompt-text {
+  font-size: medium;
+  color: purple;
+  background-color: #cccccc;
+  padding: 1em;
+  margin: 1em auto !important;
+  width: 100%;
 }
 
 span.promptText {
-    padding-left: 0.5em;
+  padding-left: 0.5em;
 }
 
-.loginFormContainer, .signUpFormContainer {
+.loginFormContainer,
+.signUpFormContainer {
   margin: 1em auto;
   text-align: center;
 }
@@ -32,7 +33,8 @@ input.form-input {
   margin-top: 1em;
 }
 
-.btn-info, .fetch-button {
+.btn-info,
+.fetch-button {
   margin-top: 1em;
   background-color: darkslategray !important;
   color: #ffffff !important;
@@ -82,14 +84,14 @@ input.form-input {
     width: 100% !important;
   }
 
-  .btn-info, .fetch-button {
+  .btn-info,
+  .fetch-button {
     margin-top: 1em;
     background-color: darkslategray !important;
     color: #ffffff !important;
     text-transform: uppercase;
     font-size: 1rem !important;
   }
-  
 
   form button.saveTopicBtn {
     background-color: purple !important;
@@ -117,13 +119,13 @@ input.form-input {
     max-width: 100%;
   }
 
-  .loginFormContainer, .signUpFormContainer {
+  .loginFormContainer,
+  .signUpFormContainer {
     margin: 1em auto;
     text-align: center;
   }
-  
+
   input.form-input {
     margin-top: 1em;
   }
-
 }
