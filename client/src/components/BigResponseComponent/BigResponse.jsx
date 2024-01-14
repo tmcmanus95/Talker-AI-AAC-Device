@@ -13,7 +13,7 @@ import Button from "react-bootstrap/Button";
 import Auth from "../../../utils/auth";
 import EditModal from "../EditModal/EditModal";
 import { QUERY_SINGLE_TOPIC } from "../../../utils/queries";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 export default function BigResponse({
   userId,
@@ -193,7 +193,7 @@ export default function BigResponse({
             </Card>
           </div>
         ))}
-        {isFetchedAnswers ? (
+        {isFetchedAnswers && !savedTopic ? (
           <EditModal
             className="responseButton"
             addCustomResponse={addCustomResponse}
@@ -202,6 +202,7 @@ export default function BigResponse({
         ) : (
           <></>
         )}
+        {savedTopic ? <Link to={`/${topicId}`}>Edit Topic</Link> : <></>}
       </form>
     </>
   );
