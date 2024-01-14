@@ -17,8 +17,8 @@ export default function NavbarMain() {
           {Auth.loggedIn() ? 
           (
             <>
-              <Link to="/me"><button>View My Profile</button></Link>
-              <button onClick={logout}>Logout</button>
+              <Link to="/me"><button class="btn">View My Profile</button></Link>
+              <button onClick={logout} class="btn">Logout</button>
             </>
           ) : (
             <>

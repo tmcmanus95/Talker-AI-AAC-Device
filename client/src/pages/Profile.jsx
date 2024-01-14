@@ -22,11 +22,12 @@ const Profile = () => {
   console.log("username, ", username);
   return (
     <>
-      <RecordButton />
+   <Container className="profilePageContainer">
 
+      <RecordButton />
+   
       <hr />
 
-      <Container>
         <Row>
           <Col>
             <h1> Welcome, {username}!</h1>
