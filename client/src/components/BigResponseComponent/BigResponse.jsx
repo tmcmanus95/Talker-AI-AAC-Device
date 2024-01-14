@@ -13,6 +13,7 @@ import Button from "react-bootstrap/Button";
 import Auth from "../../../utils/auth";
 import EditModal from "../EditModal/EditModal";
 import { QUERY_SINGLE_TOPIC } from "../../../utils/queries";
+import { useLocation } from "react-router-dom";
 
 export default function BigResponse({
   userId,
@@ -30,6 +31,8 @@ export default function BigResponse({
   const [topicId, setTopicId] = useState(null);
   const [responseIds, setResponseIds] = useState([]);
   const [response, setResponse] = useState("");
+  const location = useLocation();
+  const currentPath = location.pathname;
   const [removeResponse, { error: removeResponseError }] = useMutation(
     REMOVE_RESPONSE,
     { refetchQueries: [QUERY_SINGLE_TOPIC, `${topicId}`] }
@@ -65,10 +68,16 @@ export default function BigResponse({
     console.log("here is my responseId, ", responseId);
 
     console.log("handle remove function working");
-    const { data } = await removeResponse({
-      variables: { topicId, responseId },
-    });
-    console.log("remove reponse data, ", data);
+    if (savedTopic) {
+      const { data } = await removeResponse({
+        variables: { topicId, responseId },
+      });
+      setResponseIds((prevResponseIds) => {
+        const newResponseIds = [...prevResponseIds];
+        newResponseIds.splice(index, 1);
+        return newResponseIds;
+      });
+    }
   };
 
   const handleFormSubmit = async (event) => {
@@ -154,6 +163,8 @@ export default function BigResponse({
               </div>
             </div>
           </div>
+        ) : isFetchedAnswers ? (
+          <div>Login to save and customize responses!</div>
         ) : (
           <></>
         )}
@@ -172,13 +183,13 @@ export default function BigResponse({
                 src={imageURLs[index]}
                 alt={`Response Image ${index}`}
               />
-              <Button
+              {/* <Button
                 onClick={() =>
                   handleRemoveResponse(topicId, responseIds[index])
                 }
               >
                 Remove Response
-              </Button>
+              </Button> */}
             </Card>
           </div>
         ))}
