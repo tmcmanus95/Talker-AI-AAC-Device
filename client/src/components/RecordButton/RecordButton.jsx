@@ -18,6 +18,7 @@ export default function RecordButton() {
   const [userInput, setUserInput] = useState("");
   const [responses, setResponses] = useState([]);
   const [promptText, setPromptText] = useState("");
+  const [responsesLoading, setResponsesLoading] = useState(false);
   const [imageURLs, setImageURLs] = useState([]);
   const [userId, setUserId] = useState(null);
   const [addResponse, { error: responseError }] = useMutation(ADD_RESPONSE);
@@ -40,6 +41,7 @@ export default function RecordButton() {
   };
 
   const fetchAnswersAndImages = async () => {
+    setResponsesLoading(true);
     try {
       const response = await axios.post(
         `https://ai-aac-db2.onrender.com/api/fetchAnswers`,
@@ -93,6 +95,7 @@ export default function RecordButton() {
 
       setImageURLs(newImageURLs);
       setIsFetchedAnswers(true);
+      setResponsesLoading(false);
     } catch (error) {
       console.error("Error fetching data from API:", error);
     }
@@ -121,14 +124,18 @@ export default function RecordButton() {
       </div>
 
       <div>
-        <BigResponse
-          responses={responses}
-          isFetchedAnswers={isFetchedAnswers}
-          promptText={userInput}
-          userId={userId}
-          imageURLs={imageURLs}
-          addCustomResponse={addCustomResponse}
-        />
+        {responsesLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <BigResponse
+            responses={responses}
+            isFetchedAnswers={isFetchedAnswers}
+            promptText={userInput}
+            userId={userId}
+            imageURLs={imageURLs}
+            addCustomResponse={addCustomResponse}
+          />
+        )}
       </div>
     </div>
   );
