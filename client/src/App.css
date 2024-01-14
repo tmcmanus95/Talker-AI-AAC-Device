@@ -28,6 +28,10 @@ span.promptText {
   text-align: center;
 }
 
+input {
+  width: 100% !important;
+}
+
 input.form-input {
   margin-top: 1em;
 }
@@ -59,9 +63,7 @@ input.form-input {
   }
 
   input {
-    padding: 1em !important;
-    width: 80% !important;
-    margin: 1em 2em;
+    width: 100% !important;
   }
 
   .logo {
