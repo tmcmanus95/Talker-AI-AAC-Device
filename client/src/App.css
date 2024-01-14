@@ -23,7 +23,7 @@ span.promptText {
     padding-left: 0.5em;
 }
 
-.loginFormContainer {
+.loginFormContainer, .signUpFormContainer {
   margin: 1em auto;
   text-align: center;
 }
@@ -126,7 +126,7 @@ input.form-input {
     max-width: 100%;
   }
 
-  .loginFormContainer {
+  .loginFormContainer, .signUpFormContainer {
     margin: 1em auto;
     text-align: center;
   }
