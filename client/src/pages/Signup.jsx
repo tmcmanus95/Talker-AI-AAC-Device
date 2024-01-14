@@ -46,7 +46,7 @@ const Signup = () => {
     {/* <Header /> */}
     {/* <Navbar /> */}
 
-    <Container>
+    <Container className="signUpFormContainer">
       <Row>
 
           <h1>Sign Up</h1>
@@ -57,8 +57,10 @@ const Signup = () => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
+              <Form onSubmit={handleFormSubmit}>
+                <Row>
+                  <Col>
+                  <input
                   className="form-input"
                   placeholder="Your username"
                   name="username"
@@ -66,7 +68,12 @@ const Signup = () => {
                   value={formState.username}
                   onChange={handleChange}
                 />
-                <input
+                  </Col>
+                </Row>
+               
+<Row>
+                  <Col>
+                  <input
                   className="form-input"
                   placeholder="Your email"
                   name="email"
@@ -74,7 +81,14 @@ const Signup = () => {
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <input
+                  </Col>
+                </Row>
+
+               
+
+<Row>
+                  <Col>
+                  <input
                   className="form-input"
                   placeholder="******"
                   name="password"
@@ -82,14 +96,25 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <button
+                  </Col>
+                </Row>
+
+                
+
+<Row>
+                  <Col>
+                  <button
                   className="btn btn-block btn-info"
                   style={{ cursor: "pointer" }}
                   type="submit"
                 >
                   Submit
                 </button>
-              </form>
+                  </Col>
+                </Row>
+
+                
+              </Form>
             )}
 
             {error && (
