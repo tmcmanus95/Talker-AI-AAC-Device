@@ -11,16 +11,20 @@
 }
 
 .prompt-text {
-  font-size: medium;
+  font-size: 2rem;
   color: purple;
-  background-color: #cccccc;
-  padding: 1em;
-  margin: 1em auto !important;
+  /* background-color: #cccccc; */
+  /* padding: 1em; */
+  margin-bottom: 1em;
   width: 100%;
 }
 
 span.promptText {
   padding-left: 0.5em;
+}
+
+form {
+  margin-top: 3em;
 }
 
 .loginFormContainer,
@@ -45,6 +49,16 @@ input.form-input {
   text-transform: uppercase;
   font-size: 1rem !important;
 }
+
+.saveButtonContainer {
+  display: block !important;
+}
+
+button.saveTopic {
+  margin: 2em 1em 0em 1em;
+}
+
+  /* SavedTopics Styles */
 
 .savedTopicsSection {
   width: 100%;
@@ -72,8 +86,19 @@ input.form-input {
   background-color: darkslateblue;
 }
 
+.savedTopicBlock:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px powderblue;
+}
+
 h4 button {
   margin: 0.5em 0 0 1em;
+}
+
+.savedTopicsContainer {
+  width: 100%;
+  display: flex;
+  text-align: center;
 }
 
 .savedTopicsContainer h4 {
@@ -121,6 +146,12 @@ a.savedTopicBlock {
 
 h1.savedTopicsHeader {
   text-align: center !important;
+}
+
+.prompt-text-container span {
+  display: block;
+  margin-top: 1em;
+  background-color: #ffffff;
 }
 
 #footer {
@@ -208,6 +239,16 @@ h1.savedTopicsHeader {
     margin-top: 1em;
   }
 
+  .saveButtonContainer {
+    display: block !important;
+}
+
+button.saveTopic {
+    margin: 2em 1em 0em 1em;
+}
+
+  /* SavedTopics Styles */
+
   .savedTopicsSection {
     width: 100%;
   }
@@ -237,6 +278,12 @@ h1.savedTopicsHeader {
   h4 button {
     margin: 0.5em 0 0 1em;
   }
+
+  .savedTopicsContainer {
+    width: 100%;
+    display: flex;
+    text-align: center;
+  }
   
   .savedTopicsContainer h4 {
     margin: 1em;
@@ -245,6 +292,11 @@ h1.savedTopicsHeader {
     font-size: 1.2rem;
     text-transform: capitalize;
     padding: 0.5em;
+  }
+
+  .savedTopicBlock:hover {
+    cursor: pointer;
+    box-shadow: 5px 5px 5px powderblue;
   }
   
   .savedResponseContainer {
