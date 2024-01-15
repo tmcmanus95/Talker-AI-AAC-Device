@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import EditModal from "../EditModal/EditModal";
 import { useState } from "react";
 import { ADD_RESPONSE, REMOVE_RESPONSE } from "../../../utils/mutations";
+import { CiSquareRemove } from "react-icons/ci";
 
 export default function SingleTopic() {
   const { topicId } = useParams();
@@ -20,6 +21,7 @@ export default function SingleTopic() {
 
   const handleRemoveResponse = async (topicId, responseId, index, e) => {
     e.preventDefault();
+    e.stopPropagation();
     console.log("here is my topicId, ", topicId);
     console.log("here is my responseId, ", responseId);
 
@@ -68,34 +70,38 @@ export default function SingleTopic() {
       <div className="prompt-text-container">
         <div className="prompt-text">
           Prompt Text: {topicText}
-          <span>
-            {responses.map((response, index) => (
-              <form
-                onClick={handleSpeak(response.responseText)}
-                className="responseButton"
-                key={index}
-              >
-                <Card style={{ width: "20rem" }} id={`button-${index}`}>
-                  <div>
-                    <Card.Title>{response.responseText}</Card.Title>
-                  </div>
-                  <Card.Img
-                    src={response.imageURL}
-                    alt={`Response Image ${index}`}
-                  />
-                </Card>
-                <button
-                  type="button"
-                  onClick={(e) =>
-                    handleRemoveResponse(topicId, response._id, index, e)
-                  }
+          <div className="responsesContainer">
+            <span>
+              <EditModal
+                className="editModal"
+                addCustomResponse={addCustomResponse}
+              />
+              {responses.map((response, index) => (
+                <form
+                  onClick={handleSpeak(response.responseText)}
+                  className="responseButton"
+                  key={index}
                 >
-                  X
-                </button>
-              </form>
-            ))}
-          </span>
-          <EditModal addCustomResponse={addCustomResponse} />
+                  <Card style={{ width: "20rem" }} id={`button-${index}`}>
+                    <div>
+                      <Card.Title>{response.responseText}</Card.Title>
+                      <CiSquareRemove
+                        type="button"
+                        className="removeResponseButton"
+                        onClick={(e) =>
+                          handleRemoveResponse(topicId, response._id, index, e)
+                        }
+                      />
+                    </div>
+                    <Card.Img
+                      src={response.imageURL}
+                      alt={`Response Image ${index}`}
+                    />
+                  </Card>
+                </form>
+              ))}
+            </span>
+          </div>
         </div>
       </div>
     </form>

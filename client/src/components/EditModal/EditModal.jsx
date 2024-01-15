@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import "./EditModal.scss";
+import { CiCirclePlus } from "react-icons/ci";
 
 export default function EditModal({ addCustomResponse }) {
   const [customResponse, setCustomResponse] = useState("");
@@ -50,7 +51,10 @@ export default function EditModal({ addCustomResponse }) {
   return (
     <div className="modalContainer">
       {!modal ? (
-        <button onClick={toggleModal}>+</button>
+        <button className="addCustomResponseButton" onClick={toggleModal}>
+          <CiCirclePlus />
+          Add Custom Response
+        </button>
       ) : (
         <div>
           <Form.Control
@@ -89,7 +93,9 @@ export default function EditModal({ addCustomResponse }) {
               ></img>
             </div>
           ))}
-          <button onClick={toggleModal}>close</button>
+          <button className="closeButton" onClick={toggleModal}>
+            close
+          </button>
         </div>
       )}
     </div>

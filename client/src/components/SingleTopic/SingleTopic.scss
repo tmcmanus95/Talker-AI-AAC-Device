@@ -1,17 +1,11 @@
-// .responsesContainer {
-//   width: 33%;
-//   display: flex;
-//   justify-content: center;
-//   flex: auto;
-
-// }
-
 @media (min-width: 768px) {
+  .responsesContainer {
+    display: inline-block;
+  }
   .responseButton {
     display: inline-flex;
     margin: 5px;
     padding: 5px;
-    //   border: 5px solid purple;
     width: 31%;
     align-items: center;
     text-align: center;
@@ -48,6 +42,15 @@
     align-items: center;
     text-align: center;
     justify-content: center;
+  }
+
+  .removeResponseButton {
+    background-color: red;
+  }
+
+  .editModal {
+    background-color: black;
+    display: inline-flex;
   }
 
   // .input-field {

@@ -12,6 +12,8 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const { ChatOpenAI } = require("langchain/chat_models/openai");
 const { PromptTemplate } = require("langchain/prompts");
+const { RecursiveCharacterTextSplitter } = require("langchain/text_splitter");
+
 const { createClient } = require("pexels");
 
 const PORT = process.env.PORT || 3000;
@@ -51,6 +53,8 @@ const fetchAnswers = async (userInput) => {
     console.error("Error fetching data from API:", error);
   }
 };
+
+fetchAnswers("what did you do this weekend?");
 
 app.use(cors());
 app.use(bodyParser.json());
