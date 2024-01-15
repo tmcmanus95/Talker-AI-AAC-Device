@@ -168,7 +168,16 @@ export default function BigResponse({
         ) : (
           <></>
         )}
-
+        {isFetchedAnswers && !savedTopic ? (
+          <EditModal
+            className="responseButton"
+            addCustomResponse={addCustomResponse}
+            savedTopic={savedTopic}
+          />
+        ) : (
+          <></>
+        )}
+        {savedTopic ? <Link to={`/${topicId}`}>Edit Topic</Link> : <></>}
         {responses.map((response, index) => (
           <div
             key={index}
@@ -193,16 +202,6 @@ export default function BigResponse({
             </Card>
           </div>
         ))}
-        {isFetchedAnswers && !savedTopic ? (
-          <EditModal
-            className="responseButton"
-            addCustomResponse={addCustomResponse}
-            savedTopic={savedTopic}
-          />
-        ) : (
-          <></>
-        )}
-        {savedTopic ? <Link to={`/${topicId}`}>Edit Topic</Link> : <></>}
       </form>
     </>
   );

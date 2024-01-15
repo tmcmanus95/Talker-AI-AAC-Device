@@ -7,6 +7,14 @@
   font-size: 100px;
 }
 
+.addCustomResponseButton {
+  background: linear-gradient(to bottom right, rebeccapurple, purple);
+  color: white;
+  padding: 3px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
 .possibleImageContainer {
   background-color: purple;
   display: inline-block;
@@ -21,4 +29,11 @@
 .possibleImage:hover {
   cursor: pointer;
   box-shadow: 5px 5px 5px powderblue;
+}
+.closeButton {
+  background: linear-gradient(to bottom, rebeccapurple, purple);
+  color: white;
+  padding: 3px;
+  border-radius: 5px;
+  margin-left: 5px;
 }
