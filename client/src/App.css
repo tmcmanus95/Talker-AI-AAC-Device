@@ -53,11 +53,12 @@ input.form-input {
 .savedTopicsHeader {
   width: 100%;
   display: block;
-  background-color: steelblue;
+  background-color: rebeccapurple;
   margin: 1em auto;
   color: #ffffff;
   font-size: 2rem;
   padding: 1em;
+  border-radius: 20px;
 }
 
 .savedTopicBlock {
@@ -106,6 +107,20 @@ h4 button {
 
 a.savedTopicBlock {
   text-decoration: none;
+}
+
+.responseButton {
+  min-width: 25% !important;
+  display: inline-table !important;
+}
+
+a.savedTopicBlock {
+  text-decoration: none;
+  border-radius: 15px;
+}
+
+h1.savedTopicsHeader {
+  text-align: center !important;
 }
 
 #footer {
@@ -200,12 +215,13 @@ a.savedTopicBlock {
   .savedTopicsHeader {
     width: 100%;
     display: block;
-    background-color: steelblue;
+    background-color: rebeccapurple;
     margin: 1em auto;
     color: #ffffff;
     font-size: 2rem;
     padding: 1em;
-  }
+    border-radius: 20px;
+}
   
   .savedTopicBlock {
     display: inline-block;
@@ -253,6 +269,11 @@ a.savedTopicBlock {
 
   a.savedTopicBlock {
     text-decoration: none;
+}
+
+.responseButton {
+  min-width: 25% !important;
+  display: inline-table !important;
 }
 
 }
