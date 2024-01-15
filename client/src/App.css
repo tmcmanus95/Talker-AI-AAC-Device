@@ -29,6 +29,10 @@ span.promptText {
   text-align: center;
 }
 
+input {
+  width: 100% !important;
+}
+
 input.form-input {
   margin-top: 1em;
 }
@@ -40,6 +44,68 @@ input.form-input {
   color: #ffffff !important;
   text-transform: uppercase;
   font-size: 1rem !important;
+}
+
+.savedTopicsSection {
+  width: 100%;
+}
+
+.savedTopicsHeader {
+  width: 100%;
+  display: block;
+  background-color: steelblue;
+  margin: 1em auto;
+  color: #ffffff;
+  font-size: 2rem;
+  padding: 1em;
+}
+
+.savedTopicBlock {
+  display: inline-block;
+  border: 2px solid steelblue;
+  max-width: 300px;
+  max-height: 500px;
+  overflow: hidden;
+  margin: 5px;
+  text-align: center;
+  background-color: darkslateblue;
+}
+
+h4 button {
+  margin: 0.5em 0 0 1em;
+}
+
+.savedTopicsContainer h4 {
+  margin: 1em;
+  background-color: darkslateblue;
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  padding: 0.5em;
+}
+
+.savedResponseContainer {
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  display: inline-grid;
+  margin: 0.5em;
+  padding: 0.5em;
+  max-height: 150px;
+  overflow: hidden;
+}
+
+.savedResponseText {
+  max-width: 100px;
+  color: #ffffff;
+}
+
+.savedResponseImage {
+  max-width: 100px;
+  height: auto;
+}
+
+a.savedTopicBlock {
+  text-decoration: none;
 }
 
 #footer {
@@ -61,9 +127,7 @@ input.form-input {
   }
 
   input {
-    padding: 1em !important;
-    width: 80% !important;
-    margin: 1em 2em;
+    width: 100% !important;
   }
 
   .logo {
@@ -128,4 +192,67 @@ input.form-input {
   input.form-input {
     margin-top: 1em;
   }
+
+  .savedTopicsSection {
+    width: 100%;
+  }
+  
+  .savedTopicsHeader {
+    width: 100%;
+    display: block;
+    background-color: steelblue;
+    margin: 1em auto;
+    color: #ffffff;
+    font-size: 2rem;
+    padding: 1em;
+  }
+  
+  .savedTopicBlock {
+    display: inline-block;
+    border: 2px solid steelblue;
+    max-width: 300px;
+    max-height: 500px;
+    overflow: hidden;
+    margin: 5px;
+    text-align: center;
+    background-color: darkslateblue;
+  }
+  
+  h4 button {
+    margin: 0.5em 0 0 1em;
+  }
+  
+  .savedTopicsContainer h4 {
+    margin: 1em;
+    background-color: darkslateblue;
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    padding: 0.5em;
+  }
+  
+  .savedResponseContainer {
+    border: 2px solid #ffffff;
+    box-sizing: border-box;
+    display: inline-grid;
+    margin: 0.5em;
+    padding: 0.5em;
+    max-height: 150px;
+    overflow: hidden;
+  }
+  
+  .savedResponseText {
+    max-width: 100px;
+    color: #ffffff;
+  }
+  
+  .savedResponseImage {
+    max-width: 100px;
+    height: auto;
+  }
+
+  a.savedTopicBlock {
+    text-decoration: none;
+}
+
 }
