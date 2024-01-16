@@ -11,7 +11,9 @@ import Button from "react-bootstrap/Button";
 import { QUERY_ME } from "../../../utils/queries";
 import { ADD_RESPONSE } from "../../../utils/mutations";
 
-// import config from "../../config";
+import { bouncy } from "ldrs";
+
+bouncy.register();
 
 export default function RecordButton() {
   // console.log(config.serverUrl);
@@ -125,7 +127,9 @@ export default function RecordButton() {
 
       <div>
         {responsesLoading ? (
-          <div>Loading...</div>
+          <div className="loadingAnimation">
+            <l-bouncy size="65" speed="1.75" color="purple"></l-bouncy>
+          </div>
         ) : (
           <BigResponse
             responses={responses}
