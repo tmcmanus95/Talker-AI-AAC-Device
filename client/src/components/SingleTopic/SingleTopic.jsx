@@ -18,6 +18,7 @@ export default function SingleTopic() {
     REMOVE_RESPONSE,
     { refetchQueries: [QUERY_SINGLE_TOPIC, `${topicId}`] }
   );
+  const [editMode, setEditMode] = useState(false);
 
   const handleRemoveResponse = async (topicId, responseId, index, e) => {
     e.preventDefault();
@@ -65,17 +66,29 @@ export default function SingleTopic() {
     };
   };
 
+  const toggleEditMode = (e) => {
+    e.preventDefault();
+    setEditMode(!editMode);
+    console.log("edit mode is ", editMode);
+  };
   return (
     <form className="singleTopicContainer">
       <div className="prompt-text-container">
         <div className="prompt-text">{topicText}</div>
       </div>
+      <button onClick={(e) => toggleEditMode(e)}>edit</button>
+
       <div className="responsesContainer">
         <span>
-          <EditModal
-            className="editModal"
-            addCustomResponse={addCustomResponse}
-          />
+          {editMode ? (
+            <EditModal
+              className="editModal"
+              addCustomResponse={addCustomResponse}
+            />
+          ) : (
+            <></>
+          )}
+
           {responses.map((response, index) => (
             <form
               onClick={handleSpeak(response.responseText)}
@@ -86,13 +99,17 @@ export default function SingleTopic() {
                 <div className="responseTitleContainer">
                   <Card.Title>{response.responseText}</Card.Title>
                   <span>
-                    <CiSquareRemove
-                      type="button"
-                      className="removeResponseButton"
-                      onClick={(e) =>
-                        handleRemoveResponse(topicId, response._id, index, e)
-                      }
-                    />
+                    {editMode ? (
+                      <CiSquareRemove
+                        type="button"
+                        className="removeResponseButton"
+                        onClick={(e) =>
+                          handleRemoveResponse(topicId, response._id, index, e)
+                        }
+                      />
+                    ) : (
+                      <></>
+                    )}
                   </span>
                 </div>
                 <Card.Img
