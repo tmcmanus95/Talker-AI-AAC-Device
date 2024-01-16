@@ -56,7 +56,7 @@ input.form-input {
 }
 
 button.saveTopic {
-  margin: 2em 1em 0em 1em;
+  margin-top: 2em;
 }
 
 /* SavedTopics Styles */
@@ -215,8 +215,8 @@ h1.savedTopicsHeader {
   }
 
   Form {
-    padding: 0.5em 2em !important;
-    width: 100%;
+    /* padding: 0.5em 2em !important; */
+    width: 100% !important;
   }
 
   .btn-info,
@@ -268,9 +268,10 @@ h1.savedTopicsHeader {
     display: block !important;
   }
 
-  button.saveTopic {
-    margin: 2em 1em 0em 1em;
-  }
+
+button.saveTopic {
+    margin-top: 2em;
+}
 
   /* SavedTopics Styles */
 
@@ -346,8 +347,16 @@ h1.savedTopicsHeader {
 
   a.savedTopicBlock {
     text-decoration: none;
-  }
+}
 
+.saveTopicBtn, .addCustomResponseButton {
+  width: 100%;
+}
+
+.prompt-text {
+  text-align: center;
+}
+  
   .responseButton {
     min-width: 25% !important;
     /* display: inline-table !important; */
