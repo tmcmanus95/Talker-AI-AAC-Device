@@ -5,11 +5,16 @@ import { useMutation } from "@apollo/client";
 import { REMOVE_TOPIC } from "../../../utils/mutations";
 import { QUERY_ME } from "../../../utils/queries";
 import Auth from "../../../utils/auth";
+import { useState } from "react";
+import { CiSquareRemove } from "react-icons/ci";
+import { FaEdit } from "react-icons/fa";
+import { MdDoneOutline } from "react-icons/md";
 
 export default function SavedTopics({ username, topics }) {
   const [removeTopic, { error }] = useMutation(REMOVE_TOPIC, {
     refetchQueries: [QUERY_ME, "me"],
   });
+  const [editMode, setEditMode] = useState(false);
 
   const handleRemoveTopic = async (e, topicId) => {
     e.preventDefault();
@@ -24,11 +29,29 @@ export default function SavedTopics({ username, topics }) {
       console.error(err);
     }
   };
+
+  const toggleEditMode = (e) => {
+    e.preventDefault();
+    setEditMode(!editMode);
+  };
   console.log("This is my topic, ", topics);
   return (
     <section className="savedTopicsSection">
       {Auth.loggedIn() ? (
-        <h1 className="savedTopicsHeader">{username}'s Saved Topics</h1>
+        <div>
+          <h1 className="savedTopicsHeader">{username}'s Saved Topics</h1>
+          {editMode ? (
+            <MdDoneOutline
+              className="savedTopicsEditToggle doneEditingCheck"
+              onClick={(e) => toggleEditMode(e)}
+            />
+          ) : (
+            <FaEdit
+              className="savedTopicsEditToggle"
+              onClick={(e) => toggleEditMode(e)}
+            />
+          )}
+        </div>
       ) : (
         <></>
       )}
@@ -46,14 +69,17 @@ export default function SavedTopics({ username, topics }) {
                     <span className="savedTopicPromptText">
                       {topic.topic.promptText}
                     </span>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleRemoveTopic(e, topic.topic._id);
-                      }}
-                    >
-                      X
-                    </button>
+                    {editMode ? (
+                      <CiSquareRemove
+                        className="removeSavedTopicButton"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleRemoveTopic(e, topic.topic._id);
+                        }}
+                      />
+                    ) : (
+                      <></>
+                    )}
                   </h4>
 
                   <div>

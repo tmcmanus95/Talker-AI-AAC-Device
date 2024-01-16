@@ -16,7 +16,7 @@
 }
 
 .possibleImageContainer {
-  background-color: purple;
+  background-color: lavender;
   display: inline-block;
   width: 20rem;
 }
@@ -24,6 +24,9 @@
 .possibleImage {
   margin: 5px;
   border: 3px solid black;
+  animation-name: animate-pop;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
 }
 
 .possibleImage:hover {
