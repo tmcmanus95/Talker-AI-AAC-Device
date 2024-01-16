@@ -35,7 +35,7 @@ const fetchAnswers = async (userInput) => {
   const llm = new ChatOpenAI({ openAIApiKey });
 
   const promptTemplate =
-    "You are in a AAC device. Give 6 1-5 word responses to the following topic or question to be used as a button to be pressed by an adult with developmental disabilities. do not start the response with a number separate each new response with a new line: {promptText}";
+    "You are in a AAC device. Give 6 single word responses to the following topic or question to be used as a button to be pressed by an adult with developmental disabilities. do not start the response with a number separate each new response with a new line: {promptText}";
 
   const responsePrompt = PromptTemplate.fromTemplate(promptTemplate);
   const responseChain = responsePrompt.pipe(llm);
@@ -53,8 +53,6 @@ const fetchAnswers = async (userInput) => {
     console.error("Error fetching data from API:", error);
   }
 };
-
-fetchAnswers("what did you do this weekend?");
 
 app.use(cors());
 app.use(bodyParser.json());

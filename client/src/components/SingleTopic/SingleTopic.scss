@@ -45,12 +45,15 @@
   }
 
   .removeResponseButton {
-    background-color: red;
+    color: red;
   }
 
   .editModal {
     background-color: black;
     display: inline-flex;
+  }
+  .responseTitleContainer {
+    display: inline-block;
   }
 
   // .input-field {
