@@ -135,6 +135,10 @@ export default function BigResponse({
     }
   };
 
+  const savedResponse = savedTopic
+    ? { background: "darkseagreen" }
+    : { background: "white" };
+
   return removedTopic ? (
     <></>
   ) : (
@@ -142,19 +146,35 @@ export default function BigResponse({
       <form onSubmit={handleFormSubmit}>
         {Auth.loggedIn() && isFetchedAnswers ? (
           <div className="saveButtonContainer">
-            <Button
-              className="saveTopic saveTopicBtn"
-              variant="secondary"
-              size="sm"
-              type="submit"
-            >
-              Save Topic and Responses
-            </Button>
+            {savedTopic ? (
+              <Button
+                className="saveTopic saveTopicBtn"
+                variant="secondary"
+                size="sm"
+                type="submit"
+                style={savedResponse}
+              >
+                Topic Saved!
+              </Button>
+            ) : (
+              <Button
+                className="saveTopic saveTopicBtn"
+                variant="secondary"
+                size="sm"
+                type="submit"
+              >
+                Save Topic and Responses
+              </Button>
+            )}
+
             <div className="prompt-text-container">
               <div className="prompt-text">
                 <span>{promptText}</span>
                 {savedTopic ? (
-                  <Button onClick={() => handleRemoveTopic(topicId)}>
+                  <Button
+                    className="removeTopicButton"
+                    onClick={() => handleRemoveTopic(topicId)}
+                  >
                     Remove Topic and Responses
                   </Button>
                 ) : (
@@ -183,6 +203,7 @@ export default function BigResponse({
             key={index}
             onClick={() => speak(response)}
             className="responseButton"
+            style={savedResponse}
           >
             <Card style={{ width: "20rem" }} id={`button-${index}`}>
               <div>

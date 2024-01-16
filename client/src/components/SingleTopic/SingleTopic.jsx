@@ -83,15 +83,22 @@ export default function SingleTopic() {
                   key={index}
                 >
                   <Card style={{ width: "20rem" }} id={`button-${index}`}>
-                    <div>
+                    <div className="responseTitleContainer">
                       <Card.Title>{response.responseText}</Card.Title>
-                      <CiSquareRemove
-                        type="button"
-                        className="removeResponseButton"
-                        onClick={(e) =>
-                          handleRemoveResponse(topicId, response._id, index, e)
-                        }
-                      />
+                      <span>
+                        <CiSquareRemove
+                          type="button"
+                          className="removeResponseButton"
+                          onClick={(e) =>
+                            handleRemoveResponse(
+                              topicId,
+                              response._id,
+                              index,
+                              e
+                            )
+                          }
+                        />
+                      </span>
                     </div>
                     <Card.Img
                       src={response.imageURL}
