@@ -41,10 +41,16 @@ export default function SavedTopics({ username, topics }) {
         <div>
           <h1 className="savedTopicsHeader">{username}'s Saved Topics</h1>
           {editMode ? (
-            <MdDoneOutline onClick={(e) => toggleEditMode(e)} />
+            <MdDoneOutline
+              className="savedTopicsEditToggle doneEditingCheck"
+              onClick={(e) => toggleEditMode(e)}
+            />
           ) : (
-            <FaEdit onClick={(e) => toggleEditMode(e)} />
-          )}{" "}
+            <FaEdit
+              className="savedTopicsEditToggle"
+              onClick={(e) => toggleEditMode(e)}
+            />
+          )}
         </div>
       ) : (
         <></>
@@ -65,7 +71,7 @@ export default function SavedTopics({ username, topics }) {
                     </span>
                     {editMode ? (
                       <CiSquareRemove
-                        className="removeTopicButton"
+                        className="removeSavedTopicButton"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleRemoveTopic(e, topic.topic._id);

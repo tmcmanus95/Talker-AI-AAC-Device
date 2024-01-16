@@ -143,7 +143,7 @@ a.savedTopicBlock {
   /* background-color: red; */
   animation-name: example;
   animation-duration: 2s;
-  opacity: 100%;
+  /* opacity: 100%; */
   margin-top: 2em !important;
 }
 

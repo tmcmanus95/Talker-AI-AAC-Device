@@ -1,3 +1,21 @@
-.removeTopicButton:hover {
-  background-color: red;
+.removeSavedTopicButton {
+  color: indianred;
+  font-size: 35px;
+}
+
+.removeSavedTopicButton:hover {
+  color: red;
+  font-size: 35px;
+}
+
+.savedTopicsEditToggle {
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.doneEditingCheck {
+  color: green;
+}
+.doneEditingCheck:hover {
+  color: darkgreen;
 }
