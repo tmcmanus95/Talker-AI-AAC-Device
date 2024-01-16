@@ -6,6 +6,9 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import EditModal from "../EditModal/EditModal";
 import { useState } from "react";
+import { FaEdit } from "react-icons/fa";
+import { MdDoneOutline } from "react-icons/md";
+
 import { ADD_RESPONSE, REMOVE_RESPONSE } from "../../../utils/mutations";
 import { CiSquareRemove } from "react-icons/ci";
 
@@ -74,9 +77,17 @@ export default function SingleTopic() {
   return (
     <form className="singleTopicContainer">
       <div className="prompt-text-container">
-        <div className="prompt-text">{topicText}</div>
+        <div className="prompt-text">
+          <h2>{topicText}</h2>
+          <span className="editIcon">
+            {editMode ? (
+              <MdDoneOutline onClick={(e) => toggleEditMode(e)} />
+            ) : (
+              <FaEdit onClick={(e) => toggleEditMode(e)} />
+            )}
+          </span>
+        </div>
       </div>
-      <button onClick={(e) => toggleEditMode(e)}>edit</button>
 
       <div className="responsesContainer">
         <span>

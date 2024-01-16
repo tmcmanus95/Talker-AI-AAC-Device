@@ -22,7 +22,19 @@
 .prompt-text-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
+}
+
+.prompt-text {
+  display: inline;
+}
+
+.editIcon {
+  display: inline;
+}
+.editIcon:hover {
+  cursor: pointer;
 }
 
 img {
@@ -50,12 +62,16 @@ img {
 }
 
 .removeResponseButton {
+  color: indianred;
+  font-size: 50px;
+}
+
+.removeResponseButton:hover {
   color: red;
 }
 
 .editModal {
-  background-color: black;
-  display: inline-flex;
+  display: flex;
 }
 .responseTitleContainer {
   display: flex;
