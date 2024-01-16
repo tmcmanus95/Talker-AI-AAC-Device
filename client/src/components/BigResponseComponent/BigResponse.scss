@@ -18,6 +18,9 @@
     justify-content: center;
     flex-direction: column;
     object-fit: contain;
+    animation-name: animate-pop;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
   }
 
   .prompt-text-container {
@@ -79,4 +82,17 @@
   //   background-color: powderblue;
   //   color: black;
   // }
+  @keyframes animate-pop {
+    0% {
+      opacity: 0;
+      filter: brightness(3) saturate(3);
+      transform: scale(0.5, 0.5);
+    }
+
+    100% {
+      opacity: 1;
+      filter: brightness(1) saturate(1);
+      transform: scale(1, 1);
+    }
+  }
 }

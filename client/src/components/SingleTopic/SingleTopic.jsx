@@ -66,50 +66,43 @@ export default function SingleTopic() {
   };
 
   return (
-    <form>
+    <form className="singleTopicContainer">
       <div className="prompt-text-container">
-        <div className="prompt-text">
-          Prompt Text: {topicText}
-          <div className="responsesContainer">
-            <span>
-              <EditModal
-                className="editModal"
-                addCustomResponse={addCustomResponse}
-              />
-              {responses.map((response, index) => (
-                <form
-                  onClick={handleSpeak(response.responseText)}
-                  className="responseButton"
-                  key={index}
-                >
-                  <Card style={{ width: "20rem" }} id={`button-${index}`}>
-                    <div className="responseTitleContainer">
-                      <Card.Title>{response.responseText}</Card.Title>
-                      <span>
-                        <CiSquareRemove
-                          type="button"
-                          className="removeResponseButton"
-                          onClick={(e) =>
-                            handleRemoveResponse(
-                              topicId,
-                              response._id,
-                              index,
-                              e
-                            )
-                          }
-                        />
-                      </span>
-                    </div>
-                    <Card.Img
-                      src={response.imageURL}
-                      alt={`Response Image ${index}`}
+        <div className="prompt-text">{topicText}</div>
+      </div>
+      <div className="responsesContainer">
+        <span>
+          <EditModal
+            className="editModal"
+            addCustomResponse={addCustomResponse}
+          />
+          {responses.map((response, index) => (
+            <form
+              onClick={handleSpeak(response.responseText)}
+              className="responseButton"
+              key={index}
+            >
+              <Card style={{ width: "20rem" }} id={`button-${index}`}>
+                <div className="responseTitleContainer">
+                  <Card.Title>{response.responseText}</Card.Title>
+                  <span>
+                    <CiSquareRemove
+                      type="button"
+                      className="removeResponseButton"
+                      onClick={(e) =>
+                        handleRemoveResponse(topicId, response._id, index, e)
+                      }
                     />
-                  </Card>
-                </form>
-              ))}
-            </span>
-          </div>
-        </div>
+                  </span>
+                </div>
+                <Card.Img
+                  src={response.imageURL}
+                  alt={`Response Image ${index}`}
+                />
+              </Card>
+            </form>
+          ))}
+        </span>
       </div>
     </form>
   );
