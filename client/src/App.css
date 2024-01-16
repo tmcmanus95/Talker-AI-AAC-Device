@@ -59,7 +59,7 @@ button.saveTopic {
   margin: 2em 1em 0em 1em;
 }
 
-  /* SavedTopics Styles */
+/* SavedTopics Styles */
 
 .savedTopicsSection {
   width: 100%;
@@ -137,9 +137,9 @@ a.savedTopicBlock {
 
 .responseButton {
   min-width: 25% !important;
-  display: inline-table !important;
-  width: 100px;
-  height: 100px;
+  /* display: inline-table !important; */
+  /* width: 100px;
+  height: 100px; */
   /* background-color: red; */
   animation-name: example;
   animation-duration: 2s;
@@ -150,10 +150,18 @@ a.savedTopicBlock {
 @keyframes example {
   /* from {opacity: 30%;}
   to {opacity: 50%;} */
-  0%   {opacity: 0%;}
-  25%  {opacity: 25%;}
-  50%  {opacity: 50%;}
-  100% {opacity: 100%;}
+  0% {
+    opacity: 0%;
+  }
+  25% {
+    opacity: 25%;
+  }
+  50% {
+    opacity: 50%;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 
 a.savedTopicBlock {
@@ -208,7 +216,7 @@ h1.savedTopicsHeader {
 
   Form {
     padding: 0.5em 2em !important;
-    width: 100% !important;
+    width: 100%;
   }
 
   .btn-info,
@@ -258,18 +266,18 @@ h1.savedTopicsHeader {
 
   .saveButtonContainer {
     display: block !important;
-}
+  }
 
-button.saveTopic {
+  button.saveTopic {
     margin: 2em 1em 0em 1em;
-}
+  }
 
   /* SavedTopics Styles */
 
   .savedTopicsSection {
     width: 100%;
   }
-  
+
   .savedTopicsHeader {
     width: 100%;
     display: block;
@@ -279,8 +287,8 @@ button.saveTopic {
     font-size: 2rem;
     padding: 1em;
     border-radius: 20px;
-}
-  
+  }
+
   .savedTopicBlock {
     display: inline-block;
     border: 2px solid steelblue;
@@ -291,7 +299,7 @@ button.saveTopic {
     text-align: center;
     background-color: darkslateblue;
   }
-  
+
   h4 button {
     margin: 0.5em 0 0 1em;
   }
@@ -301,7 +309,7 @@ button.saveTopic {
     display: flex;
     text-align: center;
   }
-  
+
   .savedTopicsContainer h4 {
     margin: 1em;
     background-color: darkslateblue;
@@ -315,7 +323,7 @@ button.saveTopic {
     cursor: pointer;
     box-shadow: 5px 5px 5px powderblue;
   }
-  
+
   .savedResponseContainer {
     border: 2px solid #ffffff;
     box-sizing: border-box;
@@ -325,12 +333,12 @@ button.saveTopic {
     max-height: 150px;
     overflow: hidden;
   }
-  
+
   .savedResponseText {
     max-width: 100px;
     color: #ffffff;
   }
-  
+
   .savedResponseImage {
     max-width: 100px;
     height: auto;
@@ -338,11 +346,10 @@ button.saveTopic {
 
   a.savedTopicBlock {
     text-decoration: none;
-}
+  }
 
-.responseButton {
-  min-width: 25% !important;
-  display: inline-table !important;
-}
-
+  .responseButton {
+    min-width: 25% !important;
+    /* display: inline-table !important; */
+  }
 }
