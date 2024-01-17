@@ -1,6 +1,5 @@
 import "./SavedTopics.scss";
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import { useMutation } from "@apollo/client";
 import { REMOVE_TOPIC } from "../../../utils/mutations";
 import { QUERY_ME } from "../../../utils/queries";
@@ -18,13 +17,10 @@ export default function SavedTopics({ username, topics }) {
 
   const handleRemoveTopic = async (e, topicId) => {
     e.preventDefault();
-    console.log("I'm in the handleRemoteTopic, here's my topicId: ", topicId);
     try {
       const { data } = await removeTopic({
         variables: { topicId },
       });
-      console.log("remove topic data, ", data);
-      console.log("I have removed the topic!");
     } catch (err) {
       console.error(err);
     }
@@ -34,7 +30,6 @@ export default function SavedTopics({ username, topics }) {
     e.preventDefault();
     setEditMode(!editMode);
   };
-  console.log("This is my topic, ", topics);
   return (
     <section className="savedTopicsSection">
       {Auth.loggedIn() ? (

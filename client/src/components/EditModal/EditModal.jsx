@@ -24,7 +24,6 @@ export default function EditModal({ addCustomResponse }) {
   };
 
   const fetchCustomImageOptions = async () => {
-    console.log("I am working");
     try {
       const imageData = await axios.post(
         `http://localhost:3000/api/fetchCustomImages`,
@@ -33,8 +32,6 @@ export default function EditModal({ addCustomResponse }) {
         }
       );
 
-      console.log("Image data:", imageData);
-      console.log("Imagedata.data.photos", imageData.data.photos);
       const newImages = imageData.data.photos;
       setPossibleImageURLs(newImages);
     } catch (error) {
@@ -46,14 +43,16 @@ export default function EditModal({ addCustomResponse }) {
     setCustomImageURL(url);
     addCustomResponse(customResponse, url);
     setModal(!modal);
+    setCustomResponse("");
+    setImageSearchTerm("");
+    setPossibleImageURLs([]);
   };
 
   return (
     <div className="modalContainer">
       {!modal ? (
         <button className="addCustomResponseButton" onClick={toggleModal}>
-          <CiCirclePlus />
-          Add Custom Response
+          <CiCirclePlus /> Add Custom Response
         </button>
       ) : (
         <div>

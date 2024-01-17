@@ -1,19 +1,16 @@
+require("dotenv").config();
 const express = require("express");
-const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
+const cors = require("cors");
+const { ApolloServer } = require("@apollo/server");
 const path = require("path");
 const { authMiddleware } = require("./utils/auth");
-// const { fetchAnswers } = require("./utils/api");
 const typeDefs = require("./schemas/typeDefs");
 const resolvers = require("./schemas/resolvers");
-const db = require("./config/connection");
-const cors = require("cors");
 const bodyParser = require("body-parser");
-require("dotenv").config();
+const db = require("./config/connection");
 const { ChatOpenAI } = require("langchain/chat_models/openai");
 const { PromptTemplate } = require("langchain/prompts");
-const { RecursiveCharacterTextSplitter } = require("langchain/text_splitter");
-
 const { createClient } = require("pexels");
 
 const PORT = process.env.PORT || 3000;
@@ -23,20 +20,20 @@ const server = new ApolloServer({
   resolvers,
 });
 
+//Fetching responses from the OpenAI API based on user Input
 const fetchAnswers = async (userInput) => {
   const openAIApiKey = process.env.OPENAI_API_KEY;
-  console.log(openAIApiKey);
 
   if (!openAIApiKey) {
     console.error("could not find it!");
     return;
   }
-
+  // Create connection to langchain
   const llm = new ChatOpenAI({ openAIApiKey });
 
+  //Prompt template sent to OpenAI
   const promptTemplate =
-    "You are in a AAC device. Give 6 single word responses to the following topic or question to be used as a button to be pressed by an adult with developmental disabilities. do not start the response with a number separate each new response with a new line: {promptText}";
-
+    "You are in a AAC device. Give 6 1-2 word responses to the following topic or question to be used as a button to be pressed by an adult with developmental disabilities. do not start the response with a number separate each new response with a new line: {promptText}";
   const responsePrompt = PromptTemplate.fromTemplate(promptTemplate);
   const responseChain = responsePrompt.pipe(llm);
 
@@ -45,9 +42,6 @@ const fetchAnswers = async (userInput) => {
       promptText: userInput,
     });
 
-    console.log("this is what I got back from chatgpt, ", result);
-    console.log("Question or Topic:", userInput);
-    console.log("Chat GPT Responses:", result.content);
     return result;
   } catch (error) {
     console.error("Error fetching data from API:", error);
@@ -57,6 +51,7 @@ const fetchAnswers = async (userInput) => {
 app.use(cors());
 app.use(bodyParser.json());
 
+// Fetching a corresponding image for the responses from OpenAI
 const fetchImages = async (searchTerm) => {
   const query = searchTerm;
 
@@ -64,13 +59,14 @@ const fetchImages = async (searchTerm) => {
 
   try {
     const data = await client.photos.search({ query, per_page: 1 });
-    
+
     return data;
   } catch (error) {
     console.error("Error fetching Pexels data:", error);
   }
 };
 
+//Fetches 10 possible images for the user to select when they are making a custom response
 const fetchCustomImages = async (searchTerm) => {
   const query = searchTerm;
 
@@ -78,7 +74,7 @@ const fetchCustomImages = async (searchTerm) => {
 
   try {
     const data = await client.photos.search({ query, per_page: 10 });
-    
+
     return data;
   } catch (error) {
     console.error("Error fetching Pexels data:", error);
@@ -86,7 +82,6 @@ const fetchCustomImages = async (searchTerm) => {
 };
 
 app.post("/api/fetchAnswers", async (req, res) => {
-  
   const { userInput } = req.body;
 
   try {
@@ -99,7 +94,6 @@ app.post("/api/fetchAnswers", async (req, res) => {
 });
 
 app.post("/api/fetchImages", async (req, res) => {
-  
   const { searchTerm } = req.body;
 
   try {
@@ -112,7 +106,6 @@ app.post("/api/fetchImages", async (req, res) => {
 });
 
 app.post("/api/fetchCustomImages", async (req, res) => {
- 
   const { searchTerm } = req.body;
 
   try {

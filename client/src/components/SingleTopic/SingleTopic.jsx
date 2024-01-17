@@ -26,10 +26,6 @@ export default function SingleTopic() {
   const handleRemoveResponse = async (topicId, responseId, index, e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("here is my topicId, ", topicId);
-    console.log("here is my responseId, ", responseId);
-
-    console.log("handle remove function working");
     const { data } = await removeResponse({
       variables: { topicId, responseId },
     });

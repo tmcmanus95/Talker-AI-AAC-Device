@@ -1,17 +1,8 @@
-// .responsesContainer {
-//   width: 33%;
-//   display: flex;
-//   justify-content: center;
-//   flex: auto;
-
-// }
-
 @media (min-width: 768px) {
   .responseButton {
     display: inline-flex;
     margin: 5px;
     padding: 5px;
-    //   border: 5px solid purple;
     width: 31%;
     align-items: center;
     text-align: center;
@@ -44,6 +35,7 @@
     max-height: 100px;
     padding: 4px;
     margin: 0px 4px 4px 4px;
+    background: linear-gradient(to bottom right, rebeccapurple, purple);
   }
 
   .saveButtonContainer {
@@ -56,32 +48,17 @@
   .removeTopicButton {
     background-color: indianred !important;
   }
-  // .input-field {
-  //   width: 50vh;
-  //   height: 25px;
-  // }
+  .loginPrompt {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 25px;
+  }
+  .editTopicButton {
+    background-color: darkseagreen !important;
+    margin: 5px;
+  }
 
-  // .fetch-button {
-  //   margin: 5px;
-  //   background-color: powderblue;
-  //   color: black;
-  // }
-
-  // .responseButton:hover {
-  //   cursor: pointer;
-  //   box-shadow: 5px 5px 5px powderblue;
-  // }
-
-  // .input-field {
-  //   width: 50vh;
-  //   height: 25px;
-  // }
-
-  // .fetch-button {
-  //   margin: 5px;
-  //   background-color: powderblue;
-  //   color: black;
-  // }
   @keyframes animate-pop {
     0% {
       opacity: 0;

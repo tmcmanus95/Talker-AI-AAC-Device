@@ -22,9 +22,10 @@ the question asked along with pictures and a text to speech button
 
 # Screenshots
 
-![Alt text](image-2.png)
-
-![Alt text](image-3.png)
+![Homepage](https://github.com/project3-AAC/AAC-Conversation-Device/assets/122508345/a1b1ddcd-6701-4fe7-9e6c-d0e58822b56f)
+![AI Generated Responses](https://github.com/project3-AAC/AAC-Conversation-Device/assets/122508345/85ec2117-4a9d-4a13-a7e7-608a111489e2)
+![Custom Response](https://github.com/project3-AAC/AAC-Conversation-Device/assets/122508345/deb803a3-dba7-469b-8b39-7b8d03da3cae)
+![Saved Topics](https://github.com/project3-AAC/AAC-Conversation-Device/assets/122508345/5c502e0a-1232-4ef4-b9ae-477e05319346)
 
 # Technologies
 
