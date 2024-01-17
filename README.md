@@ -1,4 +1,4 @@
-# AI Powered AAC Device
+# Talker - AI Powered AAC Device
 
 # Elevator Pitch
 
@@ -77,7 +77,7 @@ The following files were leveraged and modified from Northwestern Coding Bootcam
 
 MIT License
 
-Copyright (c) 2023 project3-AAC
+Copyright (c) 2023 [Broca's Basilisk](https://github.com/project3-AAC)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
