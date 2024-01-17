@@ -22,9 +22,9 @@ the question asked along with pictures and a text to speech button
 
 # Screenshots
 
-![Alt text](image.png)
+![Alt text](image-2.png)
 
-![Alt text](image-1.png)
+![Alt text](image-3.png)
 
 # Technologies
 
