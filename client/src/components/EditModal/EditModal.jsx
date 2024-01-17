@@ -26,7 +26,7 @@ export default function EditModal({ addCustomResponse }) {
   const fetchCustomImageOptions = async () => {
     try {
       const imageData = await axios.post(
-        `http://localhost:3000/api/fetchCustomImages`,
+        `https://ai-aac-db2.onrender.com/api/fetchCustomImages`,
         {
           searchTerm: imageSearchTerm,
         }
