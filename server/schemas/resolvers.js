@@ -19,9 +19,9 @@ const resolvers = {
     },
 
     me: async (parent, args, context) => {
-      console.log("context, ", context.user);
+     
       if (context.user) {
-        console.log("this be my context", context.user);
+        
         return User.findOne({ _id: context.user._id }).populate({
           path: "savedTopics.topic",
           model: "Topic",
@@ -56,7 +56,7 @@ const resolvers = {
     addTopic: async (parent, { userId, topic }, context) => {
       try {
         const newTopic = await Topic.create({ promptText: topic });
-        console.log("Here's the newTopic");
+        
         const updatedUser = await User.findOneAndUpdate(
           { _id: userId },
           {
@@ -73,7 +73,7 @@ const resolvers = {
           }
         ).populate("savedTopics.topic");
 
-        console.log("updated user: ", updatedUser);
+       
         return updatedUser;
       } catch (error) {
         console.error(error);
@@ -87,7 +87,7 @@ const resolvers = {
           { $set: { promptText } },
           { new: true }
         );
-        console.log("heres my updated topic!: ", updatedTopic);
+        
         return updatedTopic;
       } catch (error) {
         console.error(error);
@@ -112,7 +112,7 @@ const resolvers = {
           responseText: responseText,
           imageURL: imageURL,
         });
-        console.log("Here's the new response, ", newResponse);
+       
         const updatedTopic = await Topic.findByIdAndUpdate(
           topicId,
           {
@@ -123,7 +123,7 @@ const resolvers = {
             runValidators: true,
           }
         ).populate("responses");
-        console.log("Here's the updated topic, ", updatedTopic);
+       
 
         return updatedTopic;
       } catch (error) {
@@ -138,7 +138,7 @@ const resolvers = {
           { $set: { responseText } },
           { new: true }
         );
-        console.log("heres my updated topic!: ", updatedResponse);
+        
         return updatedResponse;
       } catch (error) {
         console.error(error);

@@ -6,7 +6,7 @@ import SavedTopics from "../components/SavedTopics/SavedTopics";
 import { QUERY_ME } from "../../utils/queries";
 const Home = () => {
   const { loading, data } = useQuery(QUERY_ME);
-  console.log(data);
+  
   const username = data?.me.username;
   const topics = data?.me.savedTopics;
 
