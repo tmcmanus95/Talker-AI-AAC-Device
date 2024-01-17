@@ -67,14 +67,11 @@ export default function BigResponse({
       });
 
       const savedTopicId = topicData.data.addTopic.savedTopics[0].topic._id;
-      console.log("here's the topic data: ", topicData);
       setTopicId(savedTopicId);
-      console.log("This is my saved topid Id, ", savedTopicId);
 
       // Saves the responses attached to the topic to database
       for (let i = 0; i < responses.length; i++) {
         try {
-          console.log("here's my imageURLs[i]", imageURLs[i]);
           const responseMutationResult = await addResponse({
             variables: {
               topicId: savedTopicId,
@@ -82,23 +79,13 @@ export default function BigResponse({
               imageURL: imageURLs[i],
             },
           });
-          console.log(
-            "here is my responseMutationResult",
-            responseMutationResult
-          );
-          console.log(
-            "here is my responseMutationResult.data.addResponse.responses[i]._id",
-            responseMutationResult.data.addResponse.responses[i]._id
-          );
 
           const addedResponseId =
             responseMutationResult.data.addResponse.responses[i]._id;
-          console.log("here is my addedResponseId", addedResponseId);
           setResponseIds((prevResponseIds) => [
             ...prevResponseIds,
             addedResponseId,
           ]);
-          console.log("here are my responseIds, ", responseIds);
           setSavedTopic(true);
         } catch (responseError) {
           console.error(`Error adding response at index ${i}:`, responseError);
