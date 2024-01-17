@@ -24,7 +24,6 @@ export default function EditModal({ addCustomResponse }) {
   };
 
   const fetchCustomImageOptions = async () => {
-    console.log("I am working");
     try {
       const imageData = await axios.post(
         `http://localhost:3000/api/fetchCustomImages`,
@@ -33,8 +32,6 @@ export default function EditModal({ addCustomResponse }) {
         }
       );
 
-      console.log("Image data:", imageData);
-      console.log("Imagedata.data.photos", imageData.data.photos);
       const newImages = imageData.data.photos;
       setPossibleImageURLs(newImages);
     } catch (error) {

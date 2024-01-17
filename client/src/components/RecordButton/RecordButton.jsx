@@ -16,7 +16,6 @@ import { bouncy } from "ldrs";
 bouncy.register();
 
 export default function RecordButton() {
-  // console.log(config.serverUrl);
   const [userInput, setUserInput] = useState("");
   const [responses, setResponses] = useState([]);
   const [promptText, setPromptText] = useState("");
@@ -52,8 +51,6 @@ export default function RecordButton() {
         }
       );
 
-      console.log("Response from axios:", response.data);
-
       const chatGPTResults = response.data.kwargs?.content;
 
       if (!chatGPTResults) {
@@ -78,16 +75,10 @@ export default function RecordButton() {
               }
             );
 
-            console.log("Image data:", imageData.data);
-
             if (imageData.data.photos && imageData.data.photos.length > 0) {
               const imageSrc = imageData.data.photos[0].src.medium;
               newImageURLs[index] = imageSrc;
             } else {
-              console.log(
-                "No photos found in image data for searchTerm:",
-                response
-              );
             }
           } catch (imageError) {
             console.error("Error fetching image data:", imageError);

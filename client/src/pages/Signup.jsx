@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
-import Header from "../components/Header/Header";
-// import Navbar from "../components/Navbar/Navbar";
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { Container, Row, Col, Form } from "react-bootstrap";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -42,89 +40,79 @@ const Signup = () => {
   };
 
   return (
-<>
-    {/* <Header /> */}
-    {/* <Navbar /> */}
+    <>
+      {/* <Header /> */}
+      {/* <Navbar /> */}
 
-    <Container className="signUpFormContainer">
-      <Row>
-
+      <Container className="signUpFormContainer">
+        <Row>
           <h1>Sign Up</h1>
 
-            {data ? (
-              <p>
-                Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <Form onSubmit={handleFormSubmit}>
-                <Row>
-                  <Col>
+          {data ? (
+            <p>
+              Success! You may now head{" "}
+              <Link to="/">back to the homepage.</Link>
+            </p>
+          ) : (
+            <Form onSubmit={handleFormSubmit}>
+              <Row>
+                <Col>
                   <input
-                  className="form-input"
-                  placeholder="Your username"
-                  name="username"
-                  type="text"
-                  value={formState.username}
-                  onChange={handleChange}
-                />
-                  </Col>
-                </Row>
-               
-<Row>
-                  <Col>
+                    className="form-input"
+                    placeholder="Your username"
+                    name="username"
+                    type="text"
+                    value={formState.username}
+                    onChange={handleChange}
+                  />
+                </Col>
+              </Row>
+
+              <Row>
+                <Col>
                   <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                  </Col>
-                </Row>
+                    className="form-input"
+                    placeholder="Your email"
+                    name="email"
+                    type="email"
+                    value={formState.email}
+                    onChange={handleChange}
+                  />
+                </Col>
+              </Row>
 
-               
-
-<Row>
-                  <Col>
+              <Row>
+                <Col>
                   <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                  </Col>
-                </Row>
+                    className="form-input"
+                    placeholder="******"
+                    name="password"
+                    type="password"
+                    value={formState.password}
+                    onChange={handleChange}
+                  />
+                </Col>
+              </Row>
 
-                
-
-<Row>
-                  <Col>
+              <Row>
+                <Col>
                   <button
-                  className="btn btn-block btn-info"
-                  style={{ cursor: "pointer" }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-                  </Col>
-                </Row>
+                    className="btn btn-block btn-info"
+                    style={{ cursor: "pointer" }}
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </Col>
+              </Row>
+            </Form>
+          )}
 
-                
-              </Form>
-            )}
-
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
-         
-    </Row>
-    </Container>
+          {error && (
+            <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+          )}
+        </Row>
+      </Container>
     </>
   );
 };

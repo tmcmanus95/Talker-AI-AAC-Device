@@ -13,8 +13,6 @@
 .prompt-text {
   font-size: 2rem;
   color: purple;
-  /* background-color: #cccccc; */
-  /* padding: 1em; */
   margin-bottom: 1em;
   width: 100%;
 }
@@ -22,11 +20,6 @@
 span.promptText {
   padding-left: 0.5em;
 }
-
-/* 
-form {
-  margin-top: 3em;
-} */
 
 .loginFormContainer,
 .signUpFormContainer {
@@ -137,19 +130,13 @@ a.savedTopicBlock {
 
 .responseButton {
   min-width: 25% !important;
-  /* display: inline-table !important; */
-  /* width: 100px;
-  height: 100px; */
-  /* background-color: red; */
   animation-name: example;
   animation-duration: 2s;
-  /* opacity: 100%; */
+  opacity: 100%;
   margin-top: 2em !important;
 }
 
 @keyframes example {
-  /* from {opacity: 30%;}
-  to {opacity: 50%;} */
   0% {
     opacity: 0%;
   }
@@ -215,7 +202,6 @@ h1.savedTopicsHeader {
   }
 
   Form {
-    /* padding: 0.5em 2em !important; */
     width: 100% !important;
   }
 
@@ -359,6 +345,5 @@ h1.savedTopicsHeader {
 
   .responseButton {
     min-width: 25% !important;
-    /* display: inline-table !important; */
   }
 }

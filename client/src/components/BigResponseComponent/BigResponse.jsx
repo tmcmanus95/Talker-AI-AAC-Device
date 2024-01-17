@@ -38,14 +38,10 @@ export default function BigResponse({
   };
 
   const handleRemoveTopic = async (topicId) => {
-    console.log("I'm in the handleRemoteTopic, here's my topicId: ", topicId);
-
     try {
       const { data } = await removeTopic({
         variables: { topicId },
       });
-      console.log("remove topic data, ", data);
-      console.log("I have removed the topic!");
       // Resetting states
       setRemovedtopic(true);
       setTopicId(null);

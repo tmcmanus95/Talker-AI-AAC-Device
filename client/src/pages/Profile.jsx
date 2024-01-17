@@ -1,30 +1,21 @@
-import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-
 import { QUERY_ME } from "../../utils/queries";
-
-import Header from "../components/Header/Header";
-import Navbar from "../components/Navbar/Navbar";
 import RecordButton from "../components/RecordButton/RecordButton";
-
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import SavedTopics from "../components/SavedTopics/SavedTopics";
-
-// import Auth from "../utils/auth";
 
 const Profile = () => {
   const { loading, data } = useQuery(QUERY_ME);
-  
+
   const username = data?.me.username;
   const topics = data?.me.savedTopics;
- 
+
   return (
     <>
-   <Container className="profilePageContainer">
+      <Container className="profilePageContainer">
+        <RecordButton />
 
-      <RecordButton />
-   
-      <hr />
+        <hr />
 
         <Row>
           <Col>
