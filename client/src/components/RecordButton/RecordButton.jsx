@@ -101,7 +101,7 @@ export default function RecordButton() {
         type="text"
         value={userInput}
         onChange={handleInputChange}
-        placeholder="Enter a topic or question"
+        placeholder="Enter a topic or question and OpenAI will create 6 possible responses"
       />
       <div className="button-container">
         <div className="d-grid gap-2">

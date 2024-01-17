@@ -90,10 +90,11 @@ export default function EditModal({ addCustomResponse }) {
                 className="possibleImage"
                 src={possibleImage.src.medium}
               ></img>
+              <div className="imageOverlay">Select Image</div>
             </div>
           ))}
           <button className="closeButton" onClick={toggleModal}>
-            close
+            Close
           </button>
         </div>
       )}

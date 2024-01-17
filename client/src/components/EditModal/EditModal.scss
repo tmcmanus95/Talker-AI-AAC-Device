@@ -40,3 +40,21 @@
   border-radius: 5px;
   margin-left: 5px;
 }
+
+.imageOverlay {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: purple;
+  color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.possibleImageContainer:hover .imageOverlay {
+  opacity: 1;
+  cursor: pointer;
+}
