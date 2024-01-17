@@ -44,6 +44,7 @@
     max-height: 100px;
     padding: 4px;
     margin: 0px 4px 4px 4px;
+    background: linear-gradient(to bottom right, rebeccapurple, purple);
   }
 
   .saveButtonContainer {
@@ -55,6 +56,16 @@
 
   .removeTopicButton {
     background-color: indianred !important;
+  }
+  .loginPrompt {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 25px;
+  }
+  .editTopicButton {
+    background-color: darkseagreen !important;
+    margin: 5px;
   }
   // .input-field {
   //   width: 50vh;

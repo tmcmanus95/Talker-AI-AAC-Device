@@ -4,7 +4,6 @@ import {
   ADD_TOPIC,
   ADD_RESPONSE,
   REMOVE_TOPIC,
-  REMOVE_RESPONSE,
 } from "../../../utils/mutations";
 
 import "./BigResponse.scss";
@@ -12,8 +11,8 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Auth from "../../../utils/auth";
 import EditModal from "../EditModal/EditModal";
-import { QUERY_SINGLE_TOPIC } from "../../../utils/queries";
-import { useLocation, Link } from "react-router-dom";
+// import { QUERY_SINGLE_TOPIC } from "../../../utils/queries";
+import { Link } from "react-router-dom";
 
 export default function BigResponse({
   userId,
@@ -31,12 +30,8 @@ export default function BigResponse({
   const [topicId, setTopicId] = useState(null);
   const [responseIds, setResponseIds] = useState([]);
   const [response, setResponse] = useState("");
-  const location = useLocation();
-  const currentPath = location.pathname;
-  const [removeResponse, { error: removeResponseError }] = useMutation(
-    REMOVE_RESPONSE,
-    { refetchQueries: [QUERY_SINGLE_TOPIC, `${topicId}`] }
-  );
+
+  // Function that is called to make an element read out loud.
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
@@ -51,6 +46,7 @@ export default function BigResponse({
       });
       console.log("remove topic data, ", data);
       console.log("I have removed the topic!");
+      // Resetting states
       setRemovedtopic(true);
       setTopicId(null);
       setResponse("");
@@ -59,35 +55,16 @@ export default function BigResponse({
     }
   };
 
-  // const updateResponse = (response, imageURL) => {
-  //   setResponse;
-  // };
-
-  const handleRemoveResponse = async (topicId, responseId, index) => {
-    console.log("here is my topicId, ", topicId);
-    console.log("here is my responseId, ", responseId);
-
-    console.log("handle remove function working");
-    if (savedTopic) {
-      const { data } = await removeResponse({
-        variables: { topicId, responseId },
-      });
-      setResponseIds((prevResponseIds) => {
-        const newResponseIds = [...prevResponseIds];
-        newResponseIds.splice(index, 1);
-        return newResponseIds;
-      });
-    }
-  };
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    // Checks if topic has already been removed
     if (removedTopic) {
       return;
     }
 
     const topic = promptText;
 
+    // Saves the topic to database
     try {
       const topicData = await addTopic({
         variables: { userId, topic },
@@ -98,6 +75,7 @@ export default function BigResponse({
       setTopicId(savedTopicId);
       console.log("This is my saved topid Id, ", savedTopicId);
 
+      // Saves the responses attached to the topic to database
       for (let i = 0; i < responses.length; i++) {
         try {
           console.log("here's my imageURLs[i]", imageURLs[i]);
@@ -131,7 +109,7 @@ export default function BigResponse({
         }
       }
     } catch (topicError) {
-      console.error("Error adding topic:", topicError);
+      console.error("Error adding topic: ", topicError);
     }
   };
 
@@ -171,12 +149,17 @@ export default function BigResponse({
               <div className="prompt-text">
                 <span>{promptText}</span>
                 {savedTopic ? (
-                  <Button
-                    className="removeTopicButton"
-                    onClick={() => handleRemoveTopic(topicId)}
-                  >
-                    Remove Topic and Responses
-                  </Button>
+                  <div>
+                    <Button
+                      className="removeTopicButton"
+                      onClick={() => handleRemoveTopic(topicId)}
+                    >
+                      Remove Topic and Responses
+                    </Button>
+                    <Link to={`/${topicId}`}>
+                      <Button className="editTopicButton">Edit Topic</Button>
+                    </Link>
+                  </div>
                 ) : (
                   <></>
                 )}
@@ -184,7 +167,9 @@ export default function BigResponse({
             </div>
           </div>
         ) : isFetchedAnswers ? (
-          <div>Login to save and customize responses!</div>
+          <div className="loginPrompt">
+            Login to save and customize responses!
+          </div>
         ) : (
           <></>
         )}
@@ -197,7 +182,7 @@ export default function BigResponse({
         ) : (
           <></>
         )}
-        {savedTopic ? <Link to={`/${topicId}`}>Edit Topic</Link> : <></>}
+
         {responses.map((response, index) => (
           <div
             key={index}
@@ -213,13 +198,6 @@ export default function BigResponse({
                 src={imageURLs[index]}
                 alt={`Response Image ${index}`}
               />
-              {/* <Button
-                onClick={() =>
-                  handleRemoveResponse(topicId, responseIds[index])
-                }
-              >
-                Remove Response
-              </Button> */}
             </Card>
           </div>
         ))}

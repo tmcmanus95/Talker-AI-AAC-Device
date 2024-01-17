@@ -35,7 +35,7 @@ const fetchAnswers = async (userInput) => {
   const llm = new ChatOpenAI({ openAIApiKey });
 
   const promptTemplate =
-    "You are in a AAC device. Give 6 single word responses to the following topic or question to be used as a button to be pressed by an adult with developmental disabilities. do not start the response with a number separate each new response with a new line: {promptText}";
+    "You are in a AAC device. Give 6 1-2 word responses to the following topic or question to be used as a button to be pressed by an adult with developmental disabilities. do not start the response with a number separate each new response with a new line: {promptText}";
 
   const responsePrompt = PromptTemplate.fromTemplate(promptTemplate);
   const responseChain = responsePrompt.pipe(llm);
@@ -64,7 +64,7 @@ const fetchImages = async (searchTerm) => {
 
   try {
     const data = await client.photos.search({ query, per_page: 1 });
-    
+
     return data;
   } catch (error) {
     console.error("Error fetching Pexels data:", error);
@@ -78,7 +78,7 @@ const fetchCustomImages = async (searchTerm) => {
 
   try {
     const data = await client.photos.search({ query, per_page: 10 });
-    
+
     return data;
   } catch (error) {
     console.error("Error fetching Pexels data:", error);
@@ -86,7 +86,6 @@ const fetchCustomImages = async (searchTerm) => {
 };
 
 app.post("/api/fetchAnswers", async (req, res) => {
-  
   const { userInput } = req.body;
 
   try {
@@ -99,7 +98,6 @@ app.post("/api/fetchAnswers", async (req, res) => {
 });
 
 app.post("/api/fetchImages", async (req, res) => {
-  
   const { searchTerm } = req.body;
 
   try {
@@ -112,7 +110,6 @@ app.post("/api/fetchImages", async (req, res) => {
 });
 
 app.post("/api/fetchCustomImages", async (req, res) => {
- 
   const { searchTerm } = req.body;
 
   try {

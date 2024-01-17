@@ -46,14 +46,16 @@ export default function EditModal({ addCustomResponse }) {
     setCustomImageURL(url);
     addCustomResponse(customResponse, url);
     setModal(!modal);
+    setCustomResponse("");
+    setImageSearchTerm("");
+    setPossibleImageURLs([]);
   };
 
   return (
     <div className="modalContainer">
       {!modal ? (
         <button className="addCustomResponseButton" onClick={toggleModal}>
-          <CiCirclePlus />
-          Add Custom Response
+          <CiCirclePlus /> Add Custom Response
         </button>
       ) : (
         <div>

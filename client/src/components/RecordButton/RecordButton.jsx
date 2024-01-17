@@ -120,7 +120,7 @@ export default function RecordButton() {
             size="lg"
             onClick={fetchAnswersAndImages}
           >
-            Fetch
+            Generate Responses
           </Button>
         </div>
       </div>
