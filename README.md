@@ -1,4 +1,4 @@
-# AI Powered AAC Device
+# Talker - AI Powered AAC Device
 
 # Elevator Pitch
 
