@@ -7,7 +7,13 @@ export default function Footer() {
       <Row>
         <Col>
           <div className="text-center">
-            <p className="footer">Copyright 2024</p>
+            <a
+              href="https://github.com/project3-AAC"
+              target="_blank"
+              className="footer"
+            >
+              Broca's Basilisk © 2024
+            </a>
           </div>
         </Col>
       </Row>
