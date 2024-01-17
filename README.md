@@ -2,7 +2,7 @@
 
 # Elevator Pitch
 
-Do you or someone that you know have an impairment or disability with severe communication disorders?
+Do you or someone that you know have a speech impairment or disability with severe communication disorders?
 If so, than the talker app is perfect for you! This app makes communication very simple
 by providing you with pictures and text to speech as responses to any question you might have.
 Just ask a question in the app to get started today!

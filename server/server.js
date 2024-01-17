@@ -64,7 +64,7 @@ const fetchImages = async (searchTerm) => {
 
   try {
     const data = await client.photos.search({ query, per_page: 1 });
-    console.log("Here sht image data I got back, ", data);
+    
     return data;
   } catch (error) {
     console.error("Error fetching Pexels data:", error);
@@ -78,7 +78,7 @@ const fetchCustomImages = async (searchTerm) => {
 
   try {
     const data = await client.photos.search({ query, per_page: 10 });
-    console.log("Here sht image data I got back, ", data);
+    
     return data;
   } catch (error) {
     console.error("Error fetching Pexels data:", error);
@@ -86,7 +86,7 @@ const fetchCustomImages = async (searchTerm) => {
 };
 
 app.post("/api/fetchAnswers", async (req, res) => {
-  console.log(req.body);
+  
   const { userInput } = req.body;
 
   try {
@@ -99,7 +99,7 @@ app.post("/api/fetchAnswers", async (req, res) => {
 });
 
 app.post("/api/fetchImages", async (req, res) => {
-  console.log(req.body);
+  
   const { searchTerm } = req.body;
 
   try {
@@ -112,7 +112,7 @@ app.post("/api/fetchImages", async (req, res) => {
 });
 
 app.post("/api/fetchCustomImages", async (req, res) => {
-  console.log(req.body);
+ 
   const { searchTerm } = req.body;
 
   try {

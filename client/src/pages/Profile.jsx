@@ -14,12 +14,10 @@ import SavedTopics from "../components/SavedTopics/SavedTopics";
 
 const Profile = () => {
   const { loading, data } = useQuery(QUERY_ME);
-  console.log("Here's my data", data);
-  console.log("data.me.username, ", data?.me.username);
+  
   const username = data?.me.username;
   const topics = data?.me.savedTopics;
-  console.log("topics, ", topics);
-  console.log("username, ", username);
+ 
   return (
     <>
    <Container className="profilePageContainer">
