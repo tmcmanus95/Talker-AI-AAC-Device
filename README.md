@@ -2,17 +2,11 @@
 
 # Elevator Pitch
 
-Do you or someone that you know have a speech impairment or disability with severe communication disorders?
-If so, than the talker app is perfect for you! This app makes communication very simple
-by providing you with pictures and text to speech as responses to any question you might have.
-Just ask a question in the app to get started today!
+Introducing an AI-driven AAC (Augmentative and Alternative Communication) device designed to effortlessly generate responses to prompts or questions, specifically tailored to support individuals with expressive communication disorders. Our innovative technology empowers users by revolutionizing speech production, fostering meaningful interactions between indivduals with differenct communication limitations and preferences, and easing the learning curve for parents, guardians, or other caretakers setting up AAC devices by automatically populating conversation pages. Harnessing the power of OpenAI, we're dedicated to enhancing the agency and communication abilities of individuals with disabilities.
 
 # Description
 
-We have created an app that helps supplement or compensate for the
-impairment and disability patterns of individuals with severe expressive communication disorders.
-When asked a question in the app, the OpenAI pulls responses for
-the question asked along with pictures and a text to speech button
+AI-driven Augmentative and Alternative Communication (AAC) | Input your topic or question, and receive a curated selection of six potential answers tailored to your needs. Engineered with a focus on individuals with expressive communication disorders, our device offers seamless accessibility and empowerment.
 
 # Application Link
 
