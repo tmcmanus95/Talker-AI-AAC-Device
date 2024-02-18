@@ -8,6 +8,14 @@ Introducing an AI-driven AAC (Augmentative and Alternative Communication) device
 
 AI-driven Augmentative and Alternative Communication (AAC) | Input your topic or question, and receive a curated selection of six potential answers tailored to your needs. Engineered with a focus on individuals with expressive communication disorders, our device offers seamless accessibility and empowerment.
 
+# Instructions
+
+Navigate to [Talker](https://ai-aac-db2.onrender.com/) and begin by clicking sign up to create an account, or by entering a prompt or question into the search bar (e.g. "What did you have for breakfast?" or "Let's talk about the Olympics"). The application will create 6 possible resposnes to the prompt given, and populate the page with the text of a response and a corresponding image. The user can then touch or click one of the responses and it will be read aloud by the device used. The user can also create custom responses and search for correspdong images via clicking the "Create Custom Response Button".
+
+IF the user is logged in, they can save the prompt and responses by clicking the "Save Topic and Responses" button, and then edit them further by clicking on the "Edit Topic" button. Once on the topic page, they can toggle edit mode by selecting the edit icon, allowing them to delete the response or change the text and image. They may also continue to add custom responses from this page, and the responses will automatically be saved.
+
+To view all of the saved topics, the user can navigate to the homepage or their user page, where they can select a topic by clicking or touching it.
+
 # Application Link
 
 [Github Repository](https://github.com/project3-AAC/AAC-Conversation-Device)
