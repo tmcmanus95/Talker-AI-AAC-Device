@@ -53,16 +53,29 @@ export default function RecordButton() {
       );
 
       const chatGPTResults = response.data.kwargs?.content;
-
+      console.log("chatgptresults", chatGPTResults);
       if (!chatGPTResults) {
         console.error(
           "Error: 'content' property is undefined in the response data."
         );
         return;
       }
-
+      const testingArray = [
+        "1. chicken",
+        "2. sphaghetti",
+        "3. burger",
+        "4. tacos",
+        "5. Kimchi Jjigae",
+        "6. Soondubu",
+      ];
       const chatGPTResultsArray = chatGPTResults.split("\n");
-      setResponses(chatGPTResultsArray);
+      const filteredChatGPTResults = chatGPTResultsArray.map((response) =>
+        response.replace(/[\d.]+/g, "")
+      );
+      const filteredTestResults = testingArray.map((response) =>
+        response.replace(/\d+/g, "")
+      );
+      setResponses(filteredChatGPTResults);
       console.log(
         "here are my responses. I am in the RecordButton JSX, ",
         responses
