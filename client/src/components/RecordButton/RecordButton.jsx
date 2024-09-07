@@ -60,34 +60,11 @@ export default function RecordButton() {
         );
         return;
       }
-      const testingArray = [
-        "1. chicken",
-        "2. sphaghetti",
-        "3. burger",
-        "4. tacos",
-        "5. Kimchi Jjigae",
-        "6. Soondubu",
-      ];
       const chatGPTResultsArray = chatGPTResults.split("\n");
       const filteredChatGPTResults = chatGPTResultsArray.map((response) =>
         response.replace(/[\d.]+/g, "")
       );
-      const filteredTestResults = testingArray.map((response) =>
-        response.replace(/\d+/g, "")
-      );
       setResponses(filteredChatGPTResults);
-      console.log(
-        "here are my responses. I am in the RecordButton JSX, ",
-        responses
-      );
-      console.log(
-        "This is the type of responses in RecordButton:",
-        typeof responses
-      );
-      console.log(
-        "This is the type of responses in RecordButton:",
-        Array.isArray(responses) ? "array" : typeof responses
-      );
       const newImageURLs = [];
 
       await Promise.all(
