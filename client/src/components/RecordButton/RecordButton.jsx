@@ -53,28 +53,18 @@ export default function RecordButton() {
       );
 
       const chatGPTResults = response.data.kwargs?.content;
-
+      console.log("chatgptresults", chatGPTResults);
       if (!chatGPTResults) {
         console.error(
           "Error: 'content' property is undefined in the response data."
         );
         return;
       }
-
       const chatGPTResultsArray = chatGPTResults.split("\n");
-      setResponses(chatGPTResultsArray);
-      console.log(
-        "here are my responses. I am in the RecordButton JSX, ",
-        responses
+      const filteredChatGPTResults = chatGPTResultsArray.map((response) =>
+        response.replace(/[\d.]+/g, "")
       );
-      console.log(
-        "This is the type of responses in RecordButton:",
-        typeof responses
-      );
-      console.log(
-        "This is the type of responses in RecordButton:",
-        Array.isArray(responses) ? "array" : typeof responses
-      );
+      setResponses(filteredChatGPTResults);
       const newImageURLs = [];
 
       await Promise.all(
