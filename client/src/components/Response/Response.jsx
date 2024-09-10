@@ -71,9 +71,9 @@ export default function Response({ response, imageURL, savedTopic }) {
     : { background: "white" };
 
   return (
-    <>
+    <div>
       {editMode ? (
-        <>
+        <div className="editModule z-20 absolute">
           <input
             placeholder="Enter custom response text"
             onChange={(e) => setCustomResponse(e.target.value)}
@@ -138,14 +138,14 @@ export default function Response({ response, imageURL, savedTopic }) {
             </div>
           ))}
           <MdDoneOutline onClick={(e) => toggleEditMode(e)} />
-        </>
+        </div>
       ) : (
         <div
           style={savedResponse}
           onClick={() => speak(response)}
-          className="flex flex-col items-center"
+          className="flex flex-col items-center border-2 border-black"
         >
-          <h6 className="bg-purple-500">
+          <h6 className="flex flex-row">
             {customResponse}
             <span>
               <FaEdit onClick={(e) => toggleEditMode(e)} />
@@ -154,6 +154,6 @@ export default function Response({ response, imageURL, savedTopic }) {
           <img src={customImageURL}></img>
         </div>
       )}
-    </>
+    </div>
   );
 }
