@@ -25,7 +25,8 @@ export default function Response({ response, imageURL, savedTopic }) {
     window.speechSynthesis.speak(utterance);
   };
 
-  const fetchCustomImageOptions = async () => {
+  const fetchCustomImageOptions = async (e) => {
+    e.preventDefault();
     try {
       const imageData = await axios.post(
         `https://ai-aac-db2.onrender.com/api/fetchCustomImages`,
@@ -74,15 +75,21 @@ export default function Response({ response, imageURL, savedTopic }) {
     <div>
       {editMode ? (
         <div className="editModule z-20 absolute">
-          <input
-            placeholder="Enter custom response text"
-            onChange={(e) => setCustomResponse(e.target.value)}
-          />
-          <input
-            placeholder="Enter search term for custom image"
-            onChange={(e) => setImageSearchTerm(e.target.value)}
-          />
-          <button onClick={fetchCustomImageOptions}>Search Images</button>
+          <form
+            onSubmit={(e) => {
+              fetchCustomImageOptions(e);
+            }}
+          >
+            <input
+              placeholder="Enter custom response text"
+              onChange={(e) => setCustomResponse(e.target.value)}
+            />
+            <input
+              placeholder="Enter search term for custom image"
+              onChange={(e) => setImageSearchTerm(e.target.value)}
+            />
+            <button type="submit">Search Images</button>
+          </form>
           <img src={customImageURL}></img>
 
           {savedTopic ? (
