@@ -40,14 +40,14 @@ export default function RecordButton() {
     }
   }, [loading, data]);
 
-  if (isMobileOrTablet()) {
-    useEffect(() => {
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = "scroll";
-      };
-    }, []);
-  }
+  // if (isMobileOrTablet()) {
+  //   useEffect(() => {
+  //     document.body.style.overflow = "hidden";
+  //     return () => {
+  //       document.body.style.overflow = "scroll";
+  //     };
+  //   }, []);
+  // }
 
   const addCustomResponse = async (response, imageURL) => {
     setResponses([...responses, response]);
